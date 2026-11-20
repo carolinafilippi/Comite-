@@ -78,7 +78,7 @@ Si alguna vez cambiás el script, usá **Implementar → Administrar implementac
 **Cómo fluye cada actividad**
 
 - **Actividad 01.** En la diapositiva del QR, el formulario se abre solo. Cada persona escanea y responde los 6 casos a su ritmo, uno tras otro desde el celular. En la diapositiva aparece cuántos están respondiendo y cuántos terminaron, y T inicia los 10 minutos. La diapositiva siguiente muestra los gráficos de los 6 casos, que se actualizan solos. Con las teclas 1 a 6 ampliás un caso para debatirlo. La recomendación y la pregunta de debate de ese caso aparecen solo en la ventana de notas (N), nunca en la pantalla. El formulario se cierra solo al pasar al bloque 02. V lo abre o lo cierra a mano.
-- **Actividad 02.** En la diapositiva de los 6 QR, cada grupo escanea el suyo y aparece "Conectado". En el desafío, T inicia los 12 minutos. Las tarjetas se marcan como "Respondido" a medida que llegan. En los resultados, las teclas 1 a 6 abren la interpretación completa de cada grupo.
+- **Actividad 02.** En la diapositiva de los 6 QR, cada grupo escanea el suyo y aparece "Conectado". En el desafío, T inicia los 8 minutos. Cada grupo lee su frase de cliente y elige en el celular una opción para cada pregunta: qué está sintiendo el cliente, qué está buscando y qué haría primero. En "Lo que interpretó cada grupo" se ve lo que eligió cada grupo. Con → aparece la respuesta correcta (verde = coincide, violeta = la correcta). Con las teclas 1 a 6 abrís el detalle de un grupo. Después viene la etapa de análisis, con una diapositiva por grupo: señales de la frase, la respuesta correcta y su justificación, por qué no las otras opciones y el respaldo teórico. Conviene pedirle a cada grupo que justifique su elección antes de mostrar el análisis.
 - **Actividad 03.** Los grupos usan el mismo QR. El celular muestra el caso y dos tarjetas privadas, que se leen manteniendo el dedo apretado. Después, el grupo completa la evaluación. En los resultados se ven el promedio de las 5 habilidades y las frases. Nunca se muestran puntajes individuales.
 - **Compromiso.** Cada grupo envía una regla y aparece en vivo en la pantalla.
 
@@ -96,7 +96,7 @@ Si alguna vez cambiás el script, usá **Implementar → Administrar implementac
 2. Con 2 o 3 celulares reales, escaneá el QR de la Actividad 01 y respondé los 6 casos. Avanzá a la diapositiva de gráficos y verificá que las barras suben en 3 o 4 segundos.
 3. Recargá un celular a mitad del formulario: tiene que seguir desde el caso donde quedó, sin repetir los ya respondidos.
 4. Pasá al bloque 02 y verificá que el celular muestre "Formulario cerrado".
-5. Escaneá el QR de un grupo, enviá una interpretación y una evaluación, y revisá que aparezcan en la pantalla.
+5. Escaneá el QR de un grupo, elegí las opciones de la Actividad 02 y una evaluación del roleplay, y revisá que aparezcan en la pantalla.
 6. Cortá el wifi de un celular, volvé a conectarlo y verificá que sigue funcionando.
 7. Al terminar: Apps Script → ejecutar `borrarSesionDePrueba`. Esa función borra solo los datos de PRUEBA y nunca toca los del Comité.
 8. El día del evento abrí `TU-SITIO/#/presentacion` **sin** `?sesion=PRUEBA`.

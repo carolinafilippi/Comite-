@@ -13,6 +13,7 @@ export interface Screen {
 const titleOf = (d: SlideDef) => {
   if (d.type === 'cover') return 'Portada'
   if (d.type === 'author') return content.authors.find(a => a.id === d.authorId)?.name ?? 'Autor'
+  if (d.type === 'groupAnalysis') return `Análisis · Grupo ${String(d.group).padStart(2, '0')}`
   if (d.type === 'final') return 'Escuchar mejor. Pensar mejor. Responder mejor.'
   return (d.title ?? d.question ?? d.text ?? d.id) as string
 }
@@ -30,7 +31,7 @@ export function buildScreens(): Screen[] {
       out.push({ key: `${def.id}-analysis`, def, sub: 'analysis', steps: 0, page, title: `Caso ${c.number} — análisis`, kind: 'reveal' })
       continue
     }
-    const steps = def.type === 'bigQuestion' ? def.follow.length : def.type === 'newStandard' ? def.pairs.length : 0
+    const steps = def.type === 'bigQuestion' ? def.follow.length : def.type === 'newStandard' ? def.pairs.length : def.type === 'groupResults' ? 1 : 0
     out.push({
       key: def.id, def, steps,
       page: `${def.block}|${String(++n).padStart(2, '0')}`,

@@ -10,7 +10,7 @@ import type { OptionKey } from '../content'
 declare global { interface Window { AVALON_CONFIG?: { apiUrl?: string; sesion?: string; siteUrl?: string } } }
 
 export interface Estado { fase: string; caso: string | null; abierta: boolean; abiertaEn: number; duracion: number }
-export interface Interpretacion { literal: string; siente: string; necesidad: string; preguntas: string; accion: string; categoria: string; categoriaOtra?: string }
+export interface Interpretacion { siente: OptionKey | ''; busca: OptionKey | ''; primera: OptionKey | '' }
 export interface Evaluacion { comprension: number; fundamento: number; limites: number; solucion: number; acuerdo: number; frase: string }
 export interface Resultados {
   estado: Estado
@@ -93,7 +93,7 @@ async function demoPost(body: Record<string, any>): Promise<{ ok: boolean; error
       return { ok: true }
     }
     case 'grupo_unirse': demoWrite(d => { if (!d.unidos.includes(+g)) d.unidos.push(+g) }); return { ok: true }
-    case 'interpretacion': demoWrite(d => { d.interpretaciones[g] = { ...(body as Interpretacion), accion: body.primera_accion } }); return { ok: true }
+    case 'interpretacion': demoWrite(d => { d.interpretaciones[g] = { siente: body.siente, busca: body.busca, primera: body.primera } }); return { ok: true }
     case 'roleplay': demoWrite(d => { d.roleplay[g] = body as Evaluacion }); return { ok: true }
     case 'compromiso': demoWrite(d => { d.compromisos[g] = body.regla }); return { ok: true }
     case 'estado': {
@@ -120,15 +120,11 @@ export const demo = {
       for (let i = 0; i < n; i++) { let r = Math.random(); for (const [k, p] of w) { if ((r -= p) <= 0) { d.votos[caseId][k]++; break } } }
     })
   },
-  groups(kind: 'join' | 'a2' | 'a3' | 'compromiso', categories: string[]) {
+  groups(kind: 'join' | 'a2' | 'a3' | 'compromiso') {
     demoWrite(d => {
       for (let g = 1; g <= 6; g++) {
         if (!d.unidos.includes(g)) d.unidos.push(g)
-        if (kind === 'a2') d.interpretaciones[g] = {
-          literal: `[DEMO] Texto simulado del grupo ${g} sobre lo que dice el cliente.`, siente: '[DEMO] Frustración, incertidumbre.',
-          necesidad: '[DEMO] Hipótesis simulada de necesidad.', preguntas: '[DEMO] ¿Qué esperabas que sucediera?\n[DEMO] ¿Podés contarme un ejemplo concreto?',
-          accion: '[DEMO] Proponer una reunión breve para validar.', categoria: categories[(g * 3) % (categories.length - 1)],
-        }
+        if (kind === 'a2') { const L: OptionKey[] = ['A', 'B', 'C', 'D']; d.interpretaciones[g] = { siente: L[(g * 7) % 4], busca: L[(g * 3 + 1) % 4], primera: L[(g * 5 + 2) % 4] } }
         if (kind === 'a3') d.roleplay[g] = { comprension: 2 + (g % 4), fundamento: 3 + (g % 3), limites: 1 + (g % 5), solucion: 3 + (g % 2), acuerdo: 2 + (g % 3), frase: `[DEMO] Frase simulada del grupo ${g}.` }
         if (kind === 'compromiso') d.compromisos[g] = `[DEMO] Regla simulada del grupo ${g}.`
       }

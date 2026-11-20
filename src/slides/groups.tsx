@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { QRCodeSVG } from 'qrcode.react'
-import { content } from '../content'
+import { content, type InterpKey, type OptionKey } from '../content'
 import { TimerChip } from '../components/TimerChip'
-import { ease, Eyebrow, Frame, Num, rise, Title } from './kit'
+import { ease, Eyebrow, Frame, Highlight, Num, rise, Title } from './kit'
 import type { DeckCtx, SlideProps } from './types'
 
 const GROUPS = [1, 2, 3, 4, 5, 6]
@@ -47,22 +47,23 @@ export function GroupChallengeSlide({ def, page, ctx }: SlideProps) {
       <div className="absolute left-[96px] top-[160px] w-[640px]">
         <Eyebrow>Actividad 02 · Descifrando al cliente</Eyebrow>
         <Title size={52} className="mt-3">{def.title}</Title>
-        <ol className="mt-8 flex flex-col gap-4">
+        <motion.p className="text-[24px] leading-[1.4] text-text mt-5" {...rise(0.15)}>Cada grupo recibe una frase de cliente. En el celular eligen una opción por pregunta:</motion.p>
+        <ol className="mt-6 flex flex-col gap-4">
           {(def.questions as string[]).map((q, i) => (
-            <motion.li key={q} className="flex gap-4 items-start" {...rise(0.2 + i * 0.07, 12)}>
-              <Num n={i + 1} className="text-[24px] pt-0.5" />
-              <span className="text-[26px] leading-[1.35] text-ink">{q}</span>
+            <motion.li key={q} className="flex gap-4 items-start" {...rise(0.25 + i * 0.08, 12)}>
+              <Num n={i + 1} className="text-[26px] pt-0.5" />
+              <span className="font-display font-semibold text-[28px] leading-[1.3] text-ink">{q}</span>
             </motion.li>
           ))}
         </ol>
-        <motion.p className="mt-8 text-[21px] text-muted" {...rise(0.7)}>Además, elijan la necesidad principal: es una hipótesis de trabajo, no un diagnóstico.</motion.p>
+        <motion.p className="mt-8 text-[22px] leading-[1.4] text-muted border-l-[3px] border-rule pl-5" {...rise(0.6)}>Debatan antes de elegir: después cada grupo va a justificar su lectura.</motion.p>
       </div>
       <div className="absolute left-[800px] right-[96px] top-[260px] bottom-[110px] grid grid-cols-2 grid-rows-3 gap-4">
         {content.groupsA2.map((g, i) => (
           <motion.div key={g.group} className={`rounded-[24px] px-6 py-5 flex flex-col ${sent[g.group] ? 'bg-lilac-50 ring-2 ring-display' : 'bg-mist'}`} {...rise(0.25 + i * 0.06, 16)}>
             <div className="flex justify-between items-center">
               <span className="font-display font-bold text-[20px] text-ink">Grupo {String(g.group).padStart(2, '0')} · <span className="text-brand">{g.theme}</span></span>
-              {sent[g.group] && <span className="eyebrow text-[15px] text-display">✓ Respondido</span>}
+              {sent[g.group] && <span className="eyebrow text-[15px] text-display">✓ Enviado</span>}
             </div>
             <p className="text-[22px] leading-[1.35] text-text mt-auto">“{g.quote}”</p>
           </motion.div>
@@ -72,83 +73,154 @@ export function GroupChallengeSlide({ def, page, ctx }: SlideProps) {
   )
 }
 
-/* ───────── Resultados de interpretación ───────── */
-export function GroupResultsSlide({ def, page, ctx }: SlideProps) {
+const QLABEL: Record<InterpKey, string> = { siente: 'Siente', busca: 'Busca', primera: 'Primero' }
+
+/* ───────── Respuestas de los grupos + respuesta correcta (→ revela) ───────── */
+export function GroupResultsSlide({ def, page, step, ctx }: SlideProps) {
   const res = ctx.results.interpretaciones
-  const cats = content.needCategories
-  const count = Object.fromEntries(cats.map(c => [c, 0])) as Record<string, number>
-  Object.values(res).forEach(r => { if (r.categoria in count) count[r.categoria]++ })
-  const max = Math.max(1, ...Object.values(count))
+  const reveal = step >= 1
+  let hits = 0, total = 0
+  content.groupsA2.forEach(g => { const r = res[g.group]; if (r) g.questions.forEach(q => { total++; if (r[q.id] === q.correct) hits++ }) })
   const sel = ctx.selected && res[ctx.selected] ? ctx.selected : null
   return (
     <Frame page={page}>
-      <div className="absolute left-[96px] right-[96px] top-[160px]"><Title size={60}>{def.title}</Title></div>
-      <div className="absolute left-[96px] top-[280px] w-[1060px] bottom-[110px] grid grid-cols-3 grid-rows-2 gap-5">
+      <div className="absolute left-[96px] right-[96px] top-[160px] flex items-end justify-between">
+        <div>
+          <Title size={56}>{def.title}</Title>
+          {reveal ? (
+            <div className="flex items-center gap-6 text-[19px] text-muted mt-3">
+              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-sym-green" />coincide</span>
+              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-mist border border-line" />eligió el grupo</span>
+              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-display" />respuesta correcta</span>
+            </div>
+          ) : <motion.p className="text-[22px] text-text mt-2" {...rise(0.1)}>Lo que eligió cada grupo. Avanzá para ver la respuesta correcta.</motion.p>}
+        </div>
+        <AnimatePresence>
+          {reveal && total > 0 && (
+            <motion.p className="font-display font-semibold text-[24px] text-ink" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              {hits}/{total} <span className="font-normal text-muted">coincidencias con la lectura correcta</span>
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="absolute left-[96px] right-[96px] top-[290px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-5">
         {content.groupsA2.map((g, i) => {
           const r = res[g.group]
           return (
-            <motion.div key={g.group} className={`rounded-[28px] p-6 flex flex-col ${r ? 'bg-white border-2 border-display' : 'bg-mist'}`} {...rise(0.1 + i * 0.06, 20)}>
+            <motion.div key={g.group} className={`rounded-[28px] px-6 py-5 flex flex-col ${r ? 'bg-white border-2 border-line' : 'bg-mist'}`} {...rise(0.1 + i * 0.05, 18)}>
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-[22px] text-ink">Grupo {String(g.group).padStart(2, '0')}</span>
-                <span className={`eyebrow text-[14px] px-3 py-1 rounded-full ${r ? 'bg-display text-white' : 'bg-white text-subtle'}`}>{r ? 'Respondido' : 'Pendiente'}</span>
+                <span className="font-display font-bold text-[20px] text-ink">Grupo {String(g.group).padStart(2, '0')} · <span className="text-brand">{g.theme}</span></span>
+                <span className="text-[14px] text-subtle font-display">tecla {g.group}</span>
               </div>
-              <p className="text-[17px] text-muted mt-1">{g.theme}</p>
               {r ? (
-                <>
-                  <p className="text-[20px] leading-[1.35] text-ink mt-3 line-clamp-4">{r.necesidad}</p>
-                  <p className="mt-auto font-display font-semibold text-[18px] text-display">{r.categoria === 'Otra' && r.categoriaOtra ? r.categoriaOtra : r.categoria} <span className="text-subtle font-normal">· tecla {g.group}</span></p>
-                </>
+                <div className="mt-3 flex flex-col gap-3 flex-1 justify-between">
+                  {g.questions.map(q => {
+                    const mine = r[q.id] as OptionKey | '', ok = mine === q.correct
+                    return (
+                      <div key={q.id} className="grid grid-cols-[86px_1fr] gap-3 items-start">
+                        <span className="eyebrow text-[14px] text-muted pt-2">{QLABEL[q.id]}</span>
+                        <div className="flex gap-3 items-start">
+                          <span className={`shrink-0 size-[38px] rounded-full grid place-items-center font-display font-bold text-[18px] transition-colors ${!reveal ? 'bg-lilac-50 text-display' : ok ? 'bg-sym-green text-white' : 'bg-mist text-subtle line-through'}`}>{mine || '—'}</span>
+                          {reveal && !ok && <span className="shrink-0 size-[38px] rounded-full grid place-items-center font-display font-bold text-[18px] bg-display text-white">{q.correct}</span>}
+                          <p className="text-[18px] leading-[1.3] text-ink line-clamp-2 pt-0.5">{reveal ? q.options[q.correct] : mine ? q.options[mine] : '—'}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               ) : <p className="text-[19px] text-subtle mt-auto">Esperando respuesta…</p>}
             </motion.div>
           )
         })}
       </div>
-      <div className="absolute right-[96px] top-[280px] w-[560px] bottom-[110px] flex flex-col">
-        <p className="eyebrow text-[19px] text-muted">Necesidad principal identificada</p>
-        <div className="mt-5 flex flex-col gap-3">
-          {cats.map(c => (
-            <div key={c} className="grid grid-cols-[180px_1fr_40px] items-center gap-4">
-              <span className="text-[21px] text-ink">{c}</span>
-              <div className="h-[26px] rounded-full bg-lilac-50 overflow-hidden">
-                <motion.div className="h-full rounded-full bg-display" animate={{ width: `${(count[c] / max) * 100}%` }} transition={{ type: 'spring', stiffness: 90, damping: 20 }} />
-              </div>
-              <span className="font-display font-bold text-[22px] text-right tabular-nums">{count[c]}</span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-auto text-[18px] leading-[1.4] text-muted">{def.chartNote}</p>
-      </div>
-      <AnimatePresence>{sel && <InterpretationModal g={sel} ctx={ctx} />}</AnimatePresence>
+      <AnimatePresence>{sel && <InterpretationModal g={sel} ctx={ctx} reveal={reveal} />}</AnimatePresence>
     </Frame>
   )
 }
 
-function InterpretationModal({ g, ctx }: { g: number; ctx: DeckCtx }) {
+function InterpretationModal({ g, ctx, reveal }: { g: number; ctx: DeckCtx; reveal: boolean }) {
   const r = ctx.results.interpretaciones[g]
   const meta = content.groupsA2.find(x => x.group === g)!
-  const qs = ['¿Qué dice literalmente?', '¿Qué podría estar sintiendo?', '¿Qué necesidad podría haber detrás?', '¿Qué preguntas haríamos para comprobarlo?', '¿Qué primera acción recomendaríamos?']
-  const vals = [r.literal, r.siente, r.necesidad, r.preguntas, r.accion]
   return (
     <motion.div className="absolute inset-0 z-30 bg-graphite/60 backdrop-blur-sm grid place-items-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      <motion.div className="w-[1640px] h-[880px] bg-white rounded-[44px] p-[56px] flex flex-col" initial={{ scale: 0.94, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.96, opacity: 0 }} transition={{ duration: 0.45, ease }}>
-        <div className="flex items-start justify-between gap-10">
-          <div>
-            <p className="eyebrow text-[20px] text-brand">Grupo {String(g).padStart(2, '0')} · {meta.theme}</p>
-            <p className="font-display font-bold text-[38px] leading-[1.2] text-ink mt-2">“{meta.quote}”</p>
-          </div>
-          <span className="shrink-0 rounded-full bg-display text-white font-display font-semibold text-[22px] px-6 py-2.5">{r.categoria === 'Otra' && r.categoriaOtra ? r.categoriaOtra : r.categoria}</span>
+      <motion.div className="w-[1660px] bg-white rounded-[44px] p-[52px]" initial={{ scale: 0.94, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.96, opacity: 0 }} transition={{ duration: 0.45, ease }}>
+        <p className="eyebrow text-[20px] text-brand">Grupo {String(g).padStart(2, '0')} · {meta.theme}</p>
+        <p className="font-display font-bold text-[36px] leading-[1.2] text-ink mt-2">“{meta.quote}”</p>
+        <div className="mt-8 flex flex-col gap-6">
+          {meta.questions.map(q => {
+            const mine = r[q.id] as OptionKey | ''
+            const ok = mine === q.correct
+            return (
+              <div key={q.id} className="grid grid-cols-[300px_1fr] gap-8 border-t border-line pt-5">
+                <p className="font-display font-semibold text-[24px] text-ink">{q.prompt}</p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-[22px] text-ink"><b className="font-display text-display mr-2">{mine || '—'}</b>{mine ? q.options[mine] : 'Sin respuesta'} <span className="text-muted text-[18px]">· eligió el grupo</span></p>
+                  {reveal && !ok && <p className="text-[22px] text-ink"><b className="font-display text-sym-green mr-2">{q.correct}</b>{q.options[q.correct]} <span className="text-muted text-[18px]">· respuesta correcta</span></p>}
+                  {reveal && ok && <p className="text-[18px] text-sym-green font-display font-semibold">✓ Coincide con la respuesta correcta</p>}
+                </div>
+              </div>
+            )
+          })}
         </div>
-        <div className="grid grid-cols-2 gap-x-10 gap-y-6 mt-10 flex-1 min-h-0">
-          {qs.map((q, i) => (
-            <div key={q} className={`min-h-0 ${i === 4 ? 'col-span-2' : ''}`}>
-              <p className="eyebrow text-[16px] text-muted">{q}</p>
-              <p className="text-[24px] leading-[1.4] text-ink mt-1.5 whitespace-pre-line line-clamp-4">{vals[i] || '—'}</p>
-            </div>
-          ))}
-        </div>
-        <p className="text-[17px] text-muted mt-4">Interpretación del grupo: es una hipótesis de trabajo. Esc para cerrar.</p>
+        <p className="text-[17px] text-muted mt-6">Esc para cerrar.</p>
       </motion.div>
     </motion.div>
+  )
+}
+
+/* ───────── Etapa de análisis: un caso por diapositiva ───────── */
+export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
+  const g = content.groupsA2.find(x => x.group === def.group)!
+  const r = ctx.results.interpretaciones[g.group]
+  return (
+    <Frame page={page}>
+      <div className="absolute left-[96px] right-[96px] top-[160px]">
+        <Eyebrow>Análisis · Grupo {String(g.group).padStart(2, '0')} · {g.theme}</Eyebrow>
+        <motion.p className="font-display font-bold text-[40px] leading-[1.2] text-ink mt-3 max-w-[1650px]" {...rise(0.1)}>“<Highlight text={g.quote} marks={g.signals} />”</motion.p>
+        <motion.p className="text-[19px] text-muted mt-2" {...rise(0.2)}>En violeta, las señales de la frase que orientan la lectura.</motion.p>
+      </div>
+      <div className="absolute left-[96px] top-[380px] w-[1080px] bottom-[96px] flex flex-col gap-5">
+        {g.questions.map((q, i) => (
+          <motion.div key={q.id} className="rounded-[26px] bg-lilac-50 px-8 py-5" {...rise(0.25 + i * 0.12, 18)}>
+            <div className="flex items-center gap-4">
+              <span className="size-[42px] rounded-full bg-display text-white grid place-items-center font-display font-bold text-[20px] shrink-0">{q.correct}</span>
+              <div className="min-w-0">
+                <p className="eyebrow text-[14px] text-brand">{q.prompt}</p>
+                <p className="font-display font-semibold text-[22px] leading-[1.25] text-ink">{q.options[q.correct]}</p>
+              </div>
+            </div>
+            <p className="text-[19px] leading-[1.42] text-text mt-2.5">{q.why}</p>
+          </motion.div>
+        ))}
+      </div>
+      <div className="absolute left-[1216px] right-[96px] top-[380px] bottom-[96px] flex flex-col gap-5">
+        <motion.div className="rounded-[26px] border-2 border-line px-7 py-5" {...rise(0.4, 18)}>
+          <p className="eyebrow text-[15px] text-muted">Lo que eligió el grupo</p>
+          {r ? (
+            <div className="flex gap-6 mt-3">
+              {g.questions.map(q => {
+                const mine = r[q.id] as OptionKey | '', ok = mine === q.correct
+                return (
+                  <div key={q.id} className="flex items-center gap-2">
+                    <span className={`size-[38px] rounded-full grid place-items-center font-display font-bold text-[18px] ${ok ? 'bg-sym-green text-white' : 'bg-mist text-muted'}`}>{mine || '—'}</span>
+                    <span className="text-[16px] text-muted">{QLABEL[q.id]}</span>
+                  </div>
+                )
+              })}
+            </div>
+          ) : <p className="text-[18px] text-subtle mt-2">Sin respuesta</p>}
+        </motion.div>
+        <motion.div className="rounded-[26px] bg-mist px-7 py-5" {...rise(0.5, 18)}>
+          <p className="eyebrow text-[15px] text-muted">Por qué no las otras</p>
+          <p className="text-[19px] leading-[1.42] text-text mt-2">{g.othersMiss}</p>
+        </motion.div>
+        <motion.div className="rounded-[26px] bg-display text-white px-7 py-5 mt-auto" {...rise(0.6, 18)}>
+          <p className="eyebrow text-[15px] text-white/75">Respaldo</p>
+          <p className="font-display font-semibold text-[20px] mt-1">{g.backing.author}</p>
+          <p className="text-[19px] leading-[1.4] text-white/90 mt-2">{g.backing.text}</p>
+        </motion.div>
+      </div>
+    </Frame>
   )
 }
 

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { content, type RoleCard } from '../../content'
+import { content, OPTION_KEYS, type RoleCard } from '../../content'
 import { api, SESION, useEstadoSala } from '../../lib/api'
 import { MobileShell, mEase, PrimaryButton, StateScreen } from './Shell'
 
@@ -55,49 +55,49 @@ const Field = ({ label, value, onChange, rows = 3, placeholder }: { label: strin
   </label>
 )
 
-/* ───────── Actividad 02 ───────── */
+/* ───────── Actividad 02: interpretar al cliente (opciones) ───────── */
 function Interpretacion({ g }: { g: number }) {
   const meta = content.groupsA2.find(x => x.group === g)!
-  const [d, setD] = useDraft(`a2-${g}`, { literal: '', siente: '', necesidad: '', preguntas: '', accion: '', categoria: '', categoriaOtra: '', enviado: false })
+  const [d, setD] = useDraft(`a2o-${g}`, { siente: '', busca: '', primera: '', enviado: false })
   const { busy, error, send } = useSend()
-  const set = (k: keyof typeof d) => (v: string) => setD(x => ({ ...x, [k]: v }))
-  const ready = d.literal && d.necesidad && d.preguntas && d.accion && d.categoria && (d.categoria !== 'Otra' || d.categoriaOtra)
+  const ready = meta.questions.every(q => (d as Record<string, unknown>)[q.id])
 
   if (d.enviado) return (
     <div className="flex-1 flex flex-col">
-      <StateScreen icon="check" title="Interpretación enviada" body="Ya aparece en la pantalla. Si quieren corregir algo, pueden editar y volver a enviar: se usa la última versión." />
-      <button onClick={() => setD(x => ({ ...x, enviado: false }))} className="mx-auto mb-10 text-[15px] text-display underline">Editar y reenviar</button>
+      <StateScreen icon="check" title="Interpretación enviada" body="Ya aparece en la pantalla. Prepárense para justificar por qué eligieron cada opción." />
+      <button onClick={() => setD(x => ({ ...x, enviado: false }))} className="mx-auto mb-10 text-[15px] text-display underline">Cambiar y reenviar</button>
     </div>
   )
 
   return (
     <motion.main className="flex-1 px-5 pb-32" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: mEase }}>
       <p className="eyebrow text-[12px] text-brand">Actividad 02 · {meta.theme}</p>
-      <h1 className="font-display font-bold text-[22px] leading-[1.2] text-ink mt-2">El cliente dice:</h1>
+      <h1 className="font-display font-bold text-[20px] leading-[1.2] text-ink mt-2">El cliente dice:</h1>
       <p className="mt-2 font-display font-medium text-[18px] leading-[1.35] text-display">“{meta.quote}”</p>
-      <div className="mt-6 flex flex-col gap-5">
-        <Field label="1. ¿Qué está diciendo literalmente el cliente?" value={d.literal} onChange={set('literal')} rows={2} />
-        <Field label="2. ¿Qué podría estar sintiendo?" value={d.siente} onChange={set('siente')} rows={2} />
-        <Field label="3. ¿Qué necesidad podría haber detrás?" value={d.necesidad} onChange={set('necesidad')} />
-        <Field label="4. ¿Qué preguntas haríamos para comprobar nuestra interpretación?" value={d.preguntas} onChange={set('preguntas')} rows={4} placeholder="Una pregunta por línea" />
-        <Field label="5. ¿Qué primera acción recomendaríamos?" value={d.accion} onChange={set('accion')} />
-        <div>
-          <span className="block text-[14px] font-medium text-ink mb-1">Necesidad principal que identificamos</span>
-          <span className="block text-[12px] text-muted mb-2.5">Es una hipótesis de trabajo, no un diagnóstico.</span>
-          <div className="flex flex-wrap gap-2">
-            {content.needCategories.map(c => (
-              <button key={c} type="button" onClick={() => set('categoria')(c)} aria-pressed={d.categoria === c}
-                className={`rounded-full px-4 h-11 text-[14px] border-2 transition-colors ${d.categoria === c ? 'bg-display border-display text-white' : 'border-line text-ink'}`}>{c}</button>
-            ))}
-          </div>
-          {d.categoria === 'Otra' && <input value={d.categoriaOtra} onChange={e => set('categoriaOtra')(e.target.value)} maxLength={60} placeholder="¿Cuál?" className="mt-3 w-full rounded-2xl border-2 border-line focus:border-display outline-none px-4 h-12 text-[15px]" />}
-        </div>
+      <p className="mt-3 text-[13px] text-muted">Debatan en grupo y elijan una opción en cada pregunta.</p>
+      <div className="mt-6 flex flex-col gap-7">
+        {meta.questions.map((q, qi) => (
+          <fieldset key={q.id}>
+            <legend className="font-display font-semibold text-[16px] text-ink mb-3">{qi + 1}. {q.prompt}</legend>
+            <div className="flex flex-col gap-2.5">
+              {OPTION_KEYS.map(k => {
+                const on = (d as Record<string, unknown>)[q.id] === k
+                return (
+                  <motion.label key={k} whileTap={{ scale: 0.98 }} className={`flex gap-3 items-start rounded-2xl p-3.5 border-2 cursor-pointer transition-colors ${on ? 'border-display bg-lilac-50' : 'border-line bg-white'}`}>
+                    <input type="radio" name={`${g}-${q.id}`} value={k} checked={on} onChange={() => setD(x => ({ ...x, [q.id]: k }))} className="sr-only" />
+                    <span className={`shrink-0 size-9 rounded-full grid place-items-center font-display font-bold text-[16px] transition-colors ${on ? 'bg-display text-white' : 'bg-lilac-50 text-display'}`}>{k}</span>
+                    <span className="text-[14.5px] leading-[1.45] text-text pt-1">{q.options[k]}</span>
+                  </motion.label>
+                )
+              })}
+            </div>
+          </fieldset>
+        ))}
         {error && <p role="alert" className="text-[14px] text-ink bg-mist rounded-xl px-4 py-3">{error}</p>}
       </div>
       <PrimaryButton busy={busy} disabled={!ready} onClick={async () => {
-        const { enviado: _e, accion: primera_accion, ...rest } = d; void _e
-        if (await send({ ...rest, primera_accion, accion: 'interpretacion', grupo: g })) setD(x => ({ ...x, enviado: true }))
-      }}>{ready ? 'Enviar interpretación' : 'Faltan respuestas (1, 3, 4, 5 y necesidad)'}</PrimaryButton>
+        if (await send({ accion: 'interpretacion', grupo: g, siente: d.siente, busca: d.busca, primera: d.primera })) setD(x => ({ ...x, enviado: true }))
+      }}>{ready ? 'Enviar interpretación' : 'Elijan una opción en cada pregunta'}</PrimaryButton>
     </motion.main>
   )
 }

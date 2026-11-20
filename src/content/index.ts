@@ -22,6 +22,13 @@ export interface AuthorContent {
   portrait?: { src: string; credit: string; license: string } | null
 }
 
+export type InterpKey = 'siente' | 'busca' | 'primera'
+export interface GroupQuestion { id: InterpKey; prompt: string; options: Record<OptionKey, string>; correct: OptionKey; why: string }
+export interface GroupCase {
+  group: number; theme: string; quote: string; signals: string[]
+  questions: GroupQuestion[]; othersMiss: string; backing: { author: string; text: string }
+}
+
 export interface RoleCard { context: string; goal: string; hidden?: string; behaviour?: string; keys?: string[]; lines: string[] }
 export interface RoleplayCase { group: number; title: string; professional: string; summary: string; client: RoleCard; pro: RoleCard }
 
@@ -35,8 +42,7 @@ export interface ComiteContent {
   slides: SlideDef[]
   cases: CaseContent[]
   authors: AuthorContent[]
-  groupsA2: { group: number; theme: string; quote: string; objective: string }[]
-  needCategories: string[]
+  groupsA2: GroupCase[]
   roleplay: { evaluation: { id: string; label: string }[]; phraseQuestion: string; cases: RoleplayCase[] }
   sentimentSurvey: {
     loaded: boolean; period: string; clientsSurveyed: number | null; responses: number | null; scaleMax: number

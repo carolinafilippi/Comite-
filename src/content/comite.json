@@ -277,25 +277,75 @@
       "type": "groupChallenge",
       "block": "03",
       "activity": "a2",
-      "timerMin": 12,
-      "title": "Cada grupo, una frase de cliente",
+      "timerMin": 8,
+      "title": "¿Qué siente y qué busca el cliente?",
       "questions": [
-        "¿Qué está diciendo literalmente el cliente?",
-        "¿Qué podría estar sintiendo?",
-        "¿Qué necesidad podría haber detrás?",
-        "¿Qué preguntas haríamos para comprobar nuestra interpretación?",
-        "¿Qué primera acción recomendaríamos?"
+        "¿Qué está sintiendo el cliente?",
+        "¿Qué está buscando realmente?",
+        "¿Qué harías primero?"
       ],
-      "notes": "12 minutos de trabajo. Pasá por las mesas. Recordá que la categoría de necesidad es una hipótesis de trabajo."
+      "notes": "8 minutos. Cada grupo lee su frase, debate y elige una opción por pregunta en el celular. Pedí que justifiquen su elección entre ellos: después la van a defender."
     },
     {
       "id": "a2-results",
       "type": "groupResults",
       "block": "03",
       "activity": "a2",
-      "title": "Lo que interpretamos",
-      "chartNote": "Cada grupo trabajó un caso distinto: el gráfico clasifica el ejercicio, no es un resultado estadístico generalizable.",
-      "notes": "Elegí 2 o 3 grupos (teclas 1 a 6 o clic) y abrí el debate: ¿qué preguntas proponen para validar? Esc cierra la tarjeta."
+      "title": "Lo que interpretó cada grupo",
+      "notes": "Primero se ven las elecciones de cada grupo. Con → aparece la respuesta correcta. Teclas 1 a 6 para ver un grupo en detalle; Esc vuelve. Después sigue la etapa de análisis, caso por caso."
+    },
+    {
+      "id": "a2-analysis-intro",
+      "type": "statement",
+      "block": "03",
+      "text": "Ahora, el análisis: qué señales había en cada frase y por qué esa es la lectura más sólida.",
+      "highlight": [
+        "por qué esa es la lectura más sólida"
+      ],
+      "attribution": "Etapa de análisis · Actividad 02",
+      "notes": "Para cada caso: pedí primero al grupo que justifique su elección, después mostrá el análisis."
+    },
+    {
+      "id": "a2-analysis-1",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 1,
+      "notes": "Grupo 01 · Falta de atención. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: antes, más pendientes, tenemos que pedir todo."
+    },
+    {
+      "id": "a2-analysis-2",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 2,
+      "notes": "Grupo 02 · Creatividad. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: se parece demasiado, más creativos."
+    },
+    {
+      "id": "a2-analysis-3",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 3,
+      "notes": "Grupo 03 · Resultados. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: pagamos todos los meses, no sé, nos está sirviendo."
+    },
+    {
+      "id": "a2-analysis-4",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 4,
+      "notes": "Grupo 04 · Comunicación. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: más reuniones, no estamos alineados."
+    },
+    {
+      "id": "a2-analysis-5",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 5,
+      "notes": "Grupo 05 · Exigencia. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: especialistas, tantas cosas, a mí."
+    },
+    {
+      "id": "a2-analysis-6",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 6,
+      "notes": "Grupo 06 · Confianza. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: estoy pensando, si continuar."
     },
     {
       "id": "a2-teaching",
@@ -900,47 +950,317 @@
       "group": 1,
       "theme": "Falta de atención",
       "quote": "Siento que antes estaban mucho más pendientes de nuestra cuenta. Ahora parece que tenemos que pedir todo.",
-      "objective": "Descubrir posibles necesidades de seguimiento, visibilidad, tranquilidad y anticipación."
+      "signals": [
+        "antes",
+        "más pendientes",
+        "tenemos que pedir todo"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Enojo por el precio que paga.",
+            "B": "Desconfianza en la calidad creativa del equipo.",
+            "C": "Que perdió prioridad y que ahora tiene que empujar la relación solo.",
+            "D": "Ganas de cambiar de agencia cuanto antes."
+          },
+          "correct": "C",
+          "why": "Compara con el pasado («antes») y describe una carga nueva («tenemos que pedir todo»): no habla de precio ni de calidad, habla de haber dejado de sentirse prioridad."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Que nos anticipemos: seguimiento proactivo y visibilidad de lo que estamos haciendo.",
+            "B": "Más reuniones semanales.",
+            "C": "Un descuento que compense la falta de atención.",
+            "D": "Un nuevo responsable para su cuenta."
+          },
+          "correct": "A",
+          "why": "El problema no es la cantidad de contacto sino quién lo inicia. Quiere dejar de pedir: que le avisemos, le mostremos avances y nos adelantemos."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Pedir disculpas y prometer más atención.",
+            "B": "Enviarle un informe completo de todo lo realizado.",
+            "C": "Proponer una bonificación para el próximo mes.",
+            "D": "Preguntarle qué cosas tuvo que pedir últimamente y qué esperaba recibir sin pedirlo."
+          },
+          "correct": "D",
+          "why": "Antes de prometer, hay que entender qué cambió para él. La respuesta da ejemplos concretos para diseñar un seguimiento a su medida."
+        }
+      ],
+      "othersMiss": "Prometer «más atención» sin entender qué falta suele repetir el problema. Un informe o un descuento responden a otra cosa: no alivian la sensación de tener que empujar la relación.",
+      "backing": {
+        "author": "Dixon, Freeman y Toman (2010)",
+        "text": "Reducir el esfuerzo del cliente pesa en su lealtad: tener que pedir todo es esfuerzo."
+      }
     },
     {
       "group": 2,
       "theme": "Creatividad",
       "quote": "Todo lo que publicamos se parece demasiado. Necesitamos ser más creativos.",
-      "objective": "Distinguir necesidad de diferenciación, frustración por resultados y preferencia estética."
+      "signals": [
+        "se parece demasiado",
+        "más creativos"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Aburrimiento estético personal con las piezas.",
+            "B": "Frustración porque la marca no se distingue y pasa desapercibida.",
+            "C": "Enojo con el diseñador asignado.",
+            "D": "Vergüenza frente a su equipo."
+          },
+          "correct": "B",
+          "why": "«Se parece demasiado» sugiere comparación: con su propio contenido o con la competencia. La emoción de fondo es no destacarse, no un gusto personal."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Piezas más llamativas y coloridas.",
+            "B": "Más cantidad de publicaciones por semana.",
+            "C": "Cambiar de estilo visual cada mes.",
+            "D": "Diferenciarse de la competencia y lograr mejores resultados."
+          },
+          "correct": "D",
+          "why": "«Creatividad» es el medio que nombra; el trabajo que necesita resolver es diferenciarse y que eso se note en resultados."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Preguntar con quién se compara, qué resultado espera y qué entiende por «creativo».",
+            "B": "Rediseñar todo el feed esta misma semana.",
+            "C": "Presentar tres propuestas nuevas mañana.",
+            "D": "Explicar que el estilo respeta el manual de marca."
+          },
+          "correct": "A",
+          "why": "Sin saber contra qué se compara ni qué resultado espera, cualquier propuesta es adivinar. Preguntar define el criterio de éxito antes de producir."
+        }
+      ],
+      "othersMiss": "Producir rápido (rediseñar o mostrar propuestas) responde al pedido literal y puede fallar otra vez. Defender el manual es correcto técnicamente, pero cierra la conversación sin entender la frustración.",
+      "backing": {
+        "author": "Christensen et al. (2016) · Jobs to be done",
+        "text": "El cliente no compra «creatividad»: contrata un resultado. Hay que descubrir el trabajo que quiere resolver."
+      }
     },
     {
       "group": 3,
       "theme": "Resultados",
       "quote": "Pagamos todos los meses y sinceramente no sé si esto nos está sirviendo.",
-      "objective": "Explorar expectativas comerciales, indicadores de éxito, atribución y comprensión del trabajo realizado."
+      "signals": [
+        "pagamos todos los meses",
+        "no sé",
+        "nos está sirviendo"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que el servicio es caro para su presupuesto.",
+            "B": "Desconfianza en nuestra honestidad.",
+            "C": "Incertidumbre: no ve la conexión entre lo que paga y lo que gana su negocio.",
+            "D": "Desinterés por el proyecto."
+          },
+          "correct": "C",
+          "why": "Dice «no sé», no dice «no sirve». La emoción es incertidumbre: hay inversión constante y no tiene cómo evaluarla."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Bajar el costo mensual.",
+            "B": "Entender qué valor le generamos, con indicadores de éxito acordados.",
+            "C": "Recibir informes con más métricas.",
+            "D": "Resultados inmediatos."
+          },
+          "correct": "B",
+          "why": "Busca poder responder «sí, nos sirve» con evidencia que entienda. Más métricas no alcanzan si no están conectadas con lo que él considera éxito."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Enviarle el último informe mensual.",
+            "B": "Ofrecerle servicios adicionales.",
+            "C": "Defender los resultados de alcance e interacción.",
+            "D": "Preguntarle qué tendría que ver para considerar que esto funciona, y acordar esos indicadores."
+          },
+          "correct": "D",
+          "why": "Primero hay que definir juntos qué significa «servir» para su negocio; recién después tiene sentido mostrar datos."
+        }
+      ],
+      "othersMiss": "Mandar el informe o defender métricas responde con nuestros criterios, no con los suyos. Ofrecer más servicios ante una duda de valor suele aumentar la desconfianza.",
+      "backing": {
+        "author": "Christensen et al. (2016) · Jobs to be done",
+        "text": "«¿Qué necesita cambiar en tu negocio para que consideres exitosa nuestra intervención?»"
+      }
     },
     {
       "group": 4,
       "theme": "Comunicación",
       "quote": "Me gustaría tener más reuniones. Siento que no estamos alineados.",
-      "objective": "Descubrir si el problema es la frecuencia de reuniones o la falta de información útil, decisiones compartidas y confianza."
+      "signals": [
+        "más reuniones",
+        "no estamos alineados"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Falta de control e información sobre decisiones que lo afectan.",
+            "B": "Que no trabajamos lo suficiente.",
+            "C": "Necesidad de compañía.",
+            "D": "Desconfianza en el equipo."
+          },
+          "correct": "A",
+          "why": "El pedido (reuniones) viene acompañado de la causa: «no estamos alineados». Siente que se toman decisiones o se avanza sin que él tenga claridad."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Reuniones semanales de una hora.",
+            "B": "Un chat directo disponible todo el día.",
+            "C": "Claridad: información útil, prioridades y decisiones compartidas.",
+            "D": "Revisar las condiciones del contrato."
+          },
+          "correct": "C",
+          "why": "«Más reuniones» es su posición; el interés es estar alineados. Puede resolverse con reuniones, pero también con mejor información y decisiones compartidas."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Agendar reuniones semanales desde ya.",
+            "B": "Preguntarle en qué temas siente que no estamos alineados y qué decisiones quiere compartir.",
+            "C": "Explicarle que más reuniones encarecen el servicio.",
+            "D": "Enviarle un resumen semanal sin hablarlo antes."
+          },
+          "correct": "B",
+          "why": "Indagar el interés detrás de la posición permite proponer la solución correcta, que no siempre es más reuniones."
+        }
+      ],
+      "othersMiss": "Agendar reuniones complace el pedido literal y puede no resolver la desalineación. Hablar de costos o mandar un resumen sin consultarlo responde sin haber entendido.",
+      "backing": {
+        "author": "Fisher y Ury (1981) · Negociación basada en intereses",
+        "text": "Identificar intereses, no solamente posiciones: detrás de «más reuniones» hay una necesidad de alineación."
+      }
     },
     {
       "group": 5,
       "theme": "Exigencia",
       "quote": "Si ustedes son especialistas, ¿por qué me preguntan tantas cosas a mí?",
-      "objective": "Explorar expectativas respecto del asesoramiento, la delegación y las responsabilidades compartidas."
+      "signals": [
+        "especialistas",
+        "tantas cosas",
+        "a mí"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que lo molestamos sin motivo.",
+            "B": "Que no sabemos hacer nuestro trabajo.",
+            "C": "Desinterés por el proyecto.",
+            "D": "Cansancio: siente que el trabajo vuelve a él en lugar de estar delegado."
+          },
+          "correct": "D",
+          "why": "Contrató especialistas para delegar y percibe que la carga de decidir vuelve a él. No cuestiona tanto nuestra capacidad como el reparto del esfuerzo."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Que no le pregunten nada nunca más.",
+            "B": "Delegar con confianza: recibir recomendaciones concretas y decidir solo lo clave.",
+            "C": "Cambiar de agencia.",
+            "D": "Tener más reuniones de seguimiento."
+          },
+          "correct": "B",
+          "why": "No quiere desentenderse: quiere que lleguemos con criterio propio y le pidamos solo las decisiones que realmente le corresponden."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Acordar qué decide él y qué decidimos nosotros, y traerle recomendaciones en vez de preguntas abiertas.",
+            "B": "Dejar de consultarle y decidir todo por nuestra cuenta.",
+            "C": "Explicarle que necesitamos su aprobación por contrato.",
+            "D": "Pedirle disculpas por las molestias."
+          },
+          "correct": "A",
+          "why": "Ordena la relación (resuelvo, consulto, escalo) y baja su esfuerzo sin perder las aprobaciones que sí corresponden."
+        }
+      ],
+      "othersMiss": "Dejar de consultar todo es el extremo opuesto y genera riesgos. Escudarse en el contrato es cierto pero no resuelve su cansancio. Disculparse sin cambiar nada repite el problema.",
+      "backing": {
+        "author": "Dixon, Freeman y Toman (2010) · Esfuerzo del cliente",
+        "text": "Preguntas abiertas = esfuerzo para el cliente. Recomendaciones con criterio = asesoramiento profesional."
+      }
     },
     {
       "group": 6,
       "theme": "Confianza",
       "quote": "Estoy pensando si continuar con Avalon el próximo mes.",
-      "objective": "Identificar posibles brechas entre expectativas, resultados, comunicación y valor percibido."
+      "signals": [
+        "estoy pensando",
+        "si continuar"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que ya decidió irse.",
+            "B": "Duda: no está seguro de que el valor recibido justifique la inversión.",
+            "C": "Enojo con una persona del equipo.",
+            "D": "Presión por un problema de caja."
+          },
+          "correct": "B",
+          "why": "«Estoy pensando» indica que la decisión no está tomada. Está evaluando: hay una duda que todavía se puede trabajar."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Un descuento para quedarse.",
+            "B": "Que lo convenzamos con una buena presentación.",
+            "C": "Que le liberemos el contrato sin problemas.",
+            "D": "Razones claras para seguir: entender el valor y ver un plan concreto."
+          },
+          "correct": "D",
+          "why": "Si lo comenta en lugar de cancelar directamente, está buscando motivos para quedarse. Necesita entender el valor y ver qué va a cambiar."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Ofrecer un descuento inmediato.",
+            "B": "Enviarle el caso de éxito de otro cliente.",
+            "C": "Preguntarle qué lo hace dudar y qué tendría que pasar para que sienta que vale la pena seguir.",
+            "D": "Aceptar la baja con cortesía."
+          },
+          "correct": "C",
+          "why": "Comprender su marco de referencia antes de responder. Un descuento o un caso de éxito ajeno contestan una pregunta que todavía no hicimos."
+        }
+      ],
+      "othersMiss": "El descuento instala la idea de que el problema es el precio. Aceptar la baja abandona una relación que todavía se puede recuperar.",
+      "backing": {
+        "author": "Carl Rogers · Comprensión empática",
+        "text": "Antes de responder, comprender cómo vive el cliente la situación: qué lo hace dudar."
+      }
     }
-  ],
-  "needCategories": [
-    "Confianza",
-    "Resultados",
-    "Reconocimiento",
-    "Control",
-    "Claridad",
-    "Acompañamiento",
-    "Otra"
   ],
   "roleplay": {
     "evaluation": [

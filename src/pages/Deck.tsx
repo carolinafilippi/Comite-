@@ -7,13 +7,13 @@ import { api, demo, IS_DEMO, IS_TEST_SESSION, publicUrl, SESION, useResultados }
 import { buildScreens, type Screen } from '../lib/deck'
 import { playBlip } from '../lib/sound'
 import { A1ResultsSlide, WhyDifferentSlide } from '../slides/activity1'
-import { CommitmentSlide, GroupChallengeSlide, GroupQRSlide, GroupResultsSlide, RoleplayIntroSlide, RoleplayResultsSlide, RoleplayRunSlide } from '../slides/groups'
+import { CommitmentSlide, GroupAnalysisSlide, GroupChallengeSlide, GroupQRSlide, GroupResultsSlide, RoleplayIntroSlide, RoleplayResultsSlide, RoleplayRunSlide } from '../slides/groups'
 import { ActivityIntroSlide, BigQuestionSlide, CoverSlide, DividerSlide, FinalSlide, LearnedSlide, NewStandardSlide, StatementSlide, TwoSkillsSlide } from '../slides/intro'
 import { AuthorSlide, BeliefsSlide, FourStepsSlide, LimitsSlide, MatrixSlide, ProfessionalPlaceSlide, QuestionsListSlide, SayVsNeedSlide, SentimentSlide, SynthesisSlide } from '../slides/theory'
 import type { DeckCtx, SlideProps } from '../slides/types'
 
 const REGISTRY: Record<string, (p: SlideProps) => React.ReactElement> = {
-  cover: CoverSlide, a1Results: A1ResultsSlide, bigQuestion: BigQuestionSlide, twoSkills: TwoSkillsSlide, statement: StatementSlide, activityIntro: ActivityIntroSlide,
+  cover: CoverSlide, a1Results: A1ResultsSlide, groupAnalysis: GroupAnalysisSlide, bigQuestion: BigQuestionSlide, twoSkills: TwoSkillsSlide, statement: StatementSlide, activityIntro: ActivityIntroSlide,
   divider: DividerSlide, whyDifferent: WhyDifferentSlide, sayVsNeed: SayVsNeedSlide, author: AuthorSlide, synthesis: SynthesisSlide,
   sentiment: SentimentSlide, beliefs: BeliefsSlide, groupQR: GroupQRSlide, groupChallenge: GroupChallengeSlide, groupResults: GroupResultsSlide,
   questionsList: QuestionsListSlide, professionalPlace: ProfessionalPlaceSlide, matrix: MatrixSlide, fourSteps: FourStepsSlide, limits: LimitsSlide,
@@ -120,7 +120,7 @@ export function Deck() {
     }
     const kind = def.type === 'groupChallenge' || def.type === 'groupResults' ? 'a2' : def.activity === 'a3' && def.type !== 'roleplayIntro' ? 'a3' : def.activity === 'compromiso' ? 'compromiso' : null
     if (def.type === 'groupQR' || kind) {
-      const id = window.setTimeout(() => { demo.groups(kind ?? 'join', content.needCategories); refresh() }, kind ? 2500 : 1200)
+      const id = window.setTimeout(() => { demo.groups(kind ?? 'join'); refresh() }, kind ? 2500 : 1200)
       return () => clearTimeout(id)
     }
   }, [screen.key, results]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -144,9 +144,9 @@ export function Deck() {
   const simulate = useCallback(() => {
     if (!IS_DEMO) return
     if (isA1) content.cases.forEach(c => demo.votes(c.id, 3))
-    else if (def.activity === 'a2' || def.type === 'groupResults') demo.groups('a2', content.needCategories)
-    else if (def.activity === 'a3') demo.groups('a3', [])
-    else if (def.activity === 'compromiso') demo.groups('compromiso', [])
+    else if (def.activity === 'a2' || def.type === 'groupResults') demo.groups('a2')
+    else if (def.activity === 'a3') demo.groups('a3')
+    else if (def.activity === 'compromiso') demo.groups('compromiso')
     else content.cases.forEach(c => demo.votes(c.id, 4))
     refresh(); flash('Datos simulados agregados')
   }, [def, isA1, refresh])

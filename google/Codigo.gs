@@ -13,7 +13,7 @@
 
 var HOJAS = {
   votos: ['fecha', 'sesion', 'caso', 'opcion', 'token_hash'],
-  interpretaciones: ['fecha', 'sesion', 'grupo', 'literal', 'siente', 'necesidad', 'preguntas', 'primera_accion', 'categoria', 'categoria_otra'],
+  lecturas: ['fecha', 'sesion', 'grupo', 'siente', 'busca', 'primera'],
   roleplay: ['fecha', 'sesion', 'grupo', 'comprension', 'fundamento', 'limites', 'solucion', 'acuerdo', 'frase'],
   compromisos: ['fecha', 'sesion', 'grupo', 'regla']
 };
@@ -43,7 +43,7 @@ function doPost(e) {
     switch (d.accion) {
       case 'votar': return json(votar(sesion, d));
       case 'grupo_unirse': return json(unirse(sesion, d));
-      case 'interpretacion': return json(guardarGrupo('interpretaciones', sesion, d, ['literal', 'siente', 'necesidad', 'preguntas', 'primera_accion', 'categoria', 'categoriaOtra']));
+      case 'interpretacion': return json(guardarLectura(sesion, d));
       case 'roleplay': return json(guardarRoleplay(sesion, d));
       case 'compromiso': return json(guardarGrupo('compromisos', sesion, d, ['regla']));
       case 'estado': return json(cambiarEstado(sesion, d));
@@ -127,6 +127,17 @@ function guardarGrupo(nombreHoja, sesion, d, campos) {
   return { ok: true };
 }
 
+/** Actividad 02: una opción (A–D) por pregunta. */
+function guardarLectura(sesion, d) {
+  var g = grupoValido(d.grupo);
+  if (!g) return { ok: false, error: 'grupo' };
+  var fila = [new Date(), sesion, g];
+  var ok = ['siente', 'busca', 'primera'].every(function (k) { var v = String(d[k] || ''); fila.push(v); return OPCIONES.indexOf(v) >= 0; });
+  if (!ok) return { ok: false, error: 'opcion' };
+  hoja('lecturas').appendRow(fila);
+  return { ok: true };
+}
+
 function guardarRoleplay(sesion, d) {
   var g = grupoValido(d.grupo);
   if (!g) return { ok: false, error: 'grupo' };
@@ -152,8 +163,8 @@ function resultados(sesion) {
 
   // De cada grupo se usa su última respuesta
   var interp = {};
-  filas('interpretaciones', sesion).forEach(function (r) {
-    interp[r[2]] = { literal: r[3], siente: r[4], necesidad: r[5], preguntas: r[6], accion: r[7], categoria: r[8], categoriaOtra: r[9] };
+  filas('lecturas', sesion).forEach(function (r) {
+    interp[r[2]] = { siente: r[3], busca: r[4], primera: r[5] };
   });
   var rp = {};
   filas('roleplay', sesion).forEach(function (r) {
