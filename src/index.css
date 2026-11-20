@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ── Fuentes de marca (OFL, incluidas en /public/brand/fonts) ── */
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-Light.ttf") format("truetype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/brand/fonts/Unbounded-ExtraBold.ttf") format("truetype"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/brand/fonts/Poppins-Light.ttf") format("truetype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/brand/fonts/Poppins-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/brand/fonts/Poppins-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/brand/fonts/Poppins-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/brand/fonts/Poppins-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+
+/* ── Tokens del brandbook Avalon ── */
+@theme {
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "Poppins", system-ui, sans-serif;
+
+  --color-brand: #7d03ff;        /* acento de marca */
+  --color-display: #4b22f4;      /* titulares display */
+  --color-ink: #000000;
+  --color-text: #3f3f3f;
+  --color-graphite: #2d2d2d;
+  --color-muted: #6b6b6b;
+  --color-subtle: #939393;
+  --color-mist: #f1f1f3;
+  --color-lilac-50: #f4eeff;
+  --color-lilac-100: #e6d8ff;
+  --color-line: #e4e1ec;
+  --color-rule: #b9a6f5;
+  --color-on-dark: #e9e7ee;
+  --color-accent-dark: #b98aff;
+
+  /* Colores de los símbolos: solo símbolos y series de datos */
+  --color-sym-indigo: #3733f6;
+  --color-sym-violet: #7907f9;
+  --color-sym-orange: #ff4a1c;
+  --color-sym-green: #06d05a;
+  --color-sym-turquoise: #3adbd7;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Palabra clave en violeta display */
+.hl { color: var(--color-display); }
+
+/* Eyebrow de marca */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
