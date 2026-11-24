@@ -109,15 +109,8 @@ export function Deck() {
   /* ── Modo revisión: votos que van llegando solos y grupos que responden ── */
   useEffect(() => {
     if (!REVIEW) return
-    if (isA1) {
-      const id = window.setInterval(() => {
-        if (!(results.estado.abierta && results.estado.fase === 'a1')) return
-        const open = content.cases.filter(c => { const t = results.votos[c.id]; return !t || t.A + t.B + t.C + t.D < 22 })
-        if (!open.length) return
-        demo.votes(open[Math.floor(Math.random() * open.length)].id, 1); refresh()
-      }, 450)
-      return () => clearInterval(id)
-    }
+    // Actividad 01: sin votos automáticos; arranca en cero y solo suma respuestas reales (o la tecla D en demo)
+    if (isA1) return
     const kind = def.type === 'groupChallenge' || def.type === 'groupResults' ? 'a2' : def.activity === 'a3' && def.type !== 'roleplayIntro' ? 'a3' : def.activity === 'compromiso' ? 'compromiso' : null
     if (def.type === 'groupQR' || kind) {
       const id = window.setTimeout(() => { demo.groups(kind ?? 'join'); refresh() }, kind ? 2500 : 1200)

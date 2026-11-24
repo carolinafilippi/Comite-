@@ -1,0 +1,1518 @@
+{
+  "meta": {
+    "title": "Lo que el cliente no dice",
+    "subtitle": "El arte de comprender, responder y construir confianza.",
+    "organization": "Avalon World Agency®",
+    "presenter": "Gerson",
+    "presenterRole": "Director Creativo y de Estrategia",
+    "eyebrow": "Comité Avalon · Capacitación interna"
+  },
+  "blocks": [
+    {
+      "id": "01",
+      "title": "Introducción y actividad individual",
+      "minutes": 20
+    },
+    {
+      "id": "02",
+      "title": "Psicología e interpretación del cliente",
+      "minutes": 15
+    },
+    {
+      "id": "03",
+      "title": "Actividad grupal: Descifrando al cliente",
+      "minutes": 20
+    },
+    {
+      "id": "04",
+      "title": "Autoridad profesional y conversaciones difíciles",
+      "minutes": 10
+    },
+    {
+      "id": "05",
+      "title": "Actividad grupal: El cliente tiene la palabra",
+      "minutes": 20
+    },
+    {
+      "id": "06",
+      "title": "Conclusiones y compromisos",
+      "minutes": 5
+    }
+  ],
+  "slides": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "block": "01",
+      "notes": "Bienvenida. Presentate y contá el porqué del Comité: el equipo pidió herramientas para posicionarse frente al cliente. No es una repetición del Comité de autonomía y proactividad."
+    },
+    {
+      "id": "big-question",
+      "type": "bigQuestion",
+      "block": "01",
+      "question": "¿Alguna vez un cliente te pidió algo que sabías que no era conveniente?",
+      "follow": [
+        "¿Qué hiciste?",
+        "¿Defendiste tu recomendación?",
+        "¿Terminaste aceptando algo con lo que no estabas de acuerdo?"
+      ],
+      "notes": "Dejá 20 segundos de silencio. No hace falta que respondan en voz alta; si alguien quiere compartir, una o dos historias como máximo. Las preguntas aparecen de a una con →."
+    },
+    {
+      "id": "two-skills",
+      "type": "twoSkills",
+      "block": "01",
+      "title": "Entender y hacerse entender.",
+      "skills": [
+        {
+          "name": "Interpretar",
+          "desc": "Comprender necesidades, emociones y expectativas.",
+          "verbs": [
+            "escuchar",
+            "preguntar",
+            "validar"
+          ]
+        },
+        {
+          "name": "Posicionarse",
+          "desc": "Recomendar, argumentar, negociar y establecer límites.",
+          "verbs": [
+            "fundamentar",
+            "proponer",
+            "acordar"
+          ]
+        }
+      ],
+      "footnote": "Una sin la otra no alcanza: interpretar sin posicionarse es obedecer; posicionarse sin interpretar es imponer.",
+      "notes": "Idea central del Comité: la empatía y la firmeza no son opuestos. Todo lo que sigue entrena estas dos habilidades a la vez."
+    },
+    {
+      "id": "core-message",
+      "type": "statement",
+      "block": "01",
+      "text": "El cliente nos cuenta lo que quiere. Nuestro desafío es comprender lo que necesita.",
+      "highlight": [
+        "comprender lo que necesita"
+      ],
+      "attribution": "Avalon World Agency®",
+      "notes": "Frase editorial de Avalon, no es una cita académica."
+    },
+    {
+      "id": "a1-intro",
+      "type": "activityIntro",
+      "block": "01",
+      "activity": "a1",
+      "number": "01",
+      "title": "¿Qué harías vos?",
+      "concept": "Decisiones bajo presión",
+      "mode": "Individual · anónima · en tiempo real",
+      "steps": [
+        "Escaneá el QR: se abre el formulario con los 6 casos.",
+        "Respondé cada uno con la alternativa que realmente tomarías. Vas a tu ritmo.",
+        "Mientras tanto, los resultados se van armando en vivo en la pantalla."
+      ],
+      "disclaimer": "No hay ganadores. Las recomendaciones son guías para debatir, no leyes universales.",
+      "notes": "Pedí que todos escaneen y respondan los 6 casos (unos 8 a 10 minutos; T inicia el temporizador). El formulario queda abierto hasta que pases al bloque 02. Después avanzá al gráfico y debatí los casos con más dispersión.",
+      "timerMin": 10
+    },
+    {
+      "id": "a1-results",
+      "type": "a1Results",
+      "block": "01",
+      "activity": "a1",
+      "title": "¿Qué decidimos?",
+      "lead": "Resultados en vivo, anónimos. No hay respuestas correctas: hay criterios.",
+      "notes": "Los gráficos se actualizan solos. Con las teclas 1 a 6 ampliás un caso para debatirlo; en esta ventana de notas vas a ver la recomendación inicial y la pregunta de debate de ese caso (no se proyectan). Esc vuelve a la vista general."
+    },
+    {
+      "id": "div-02",
+      "type": "divider",
+      "block": "02",
+      "number": "02",
+      "title": "Psicología e interpretación del cliente",
+      "lead": "Por qué el mismo pedido se puede leer de maneras muy distintas.",
+      "bg": "bg-lavender-wave",
+      "notes": "Transición: venimos de ver cuánto diferimos entre nosotros. Si eso nos pasa a nosotros, imaginen lo que pasa con el cliente."
+    },
+    {
+      "id": "why-different",
+      "type": "whyDifferent",
+      "block": "02",
+      "title": "¿Por qué respondemos diferente?",
+      "lead": "Las mismas seis situaciones generaron decisiones distintas en el mismo equipo.",
+      "factors": [
+        "Experiencia profesional",
+        "Interpretación del contexto",
+        "Emociones",
+        "Percepción del riesgo",
+        "Información disponible",
+        "Seguridad para defender nuestro criterio"
+      ],
+      "notes": "Mostrá los casos con mayor dispersión (los marca el gráfico). Preguntá: ¿qué factor creen que pesó más en sus respuestas?"
+    },
+    {
+      "id": "say-vs-need",
+      "type": "sayVsNeed",
+      "block": "02",
+      "title": "Lo que dice vs. lo que necesita",
+      "says": "Quiero un Instagram más moderno.",
+      "maybe": [
+        "Necesidad de diferenciar su marca",
+        "Temor a parecer desactualizado",
+        "Frustración por resultados insuficientes",
+        "Comparación con competidores",
+        "Deseo de mayor reconocimiento"
+      ],
+      "warning": "Son hipótesis, no diagnósticos. Se confirman preguntando.",
+      "notes": "Cada hipótesis llevaría a una respuesta profesional distinta. Si respondemos al pedido literal, podemos acertar en la forma y fallar en el fondo."
+    },
+    {
+      "id": "author-rogers",
+      "type": "author",
+      "block": "02",
+      "authorId": "rogers",
+      "notes": "Rogers viene de la psicoterapia; tomamos su idea de comprender el marco de referencia del otro como inspiración, no como técnica clínica."
+    },
+    {
+      "id": "author-christensen",
+      "type": "author",
+      "block": "02",
+      "authorId": "christensen",
+      "notes": "Ejemplo útil: nadie quiere un taladro, quiere un agujero; y en realidad quiere colgar un cuadro. ¿Qué 'trabajo' nos contratan nuestros clientes?"
+    },
+    {
+      "id": "author-fisher-ury",
+      "type": "author",
+      "block": "02",
+      "authorId": "fisherury",
+      "notes": "Clave para la Actividad 03: detrás de cada posición hay un interés. Negociar posiciones es pulseada; negociar intereses abre opciones."
+    },
+    {
+      "id": "author-dixon",
+      "type": "author",
+      "block": "02",
+      "authorId": "dixon",
+      "notes": "Aclarar el alcance: el estudio es sobre atención al cliente en contact centers, no sobre agencias. Lo tomamos como pregunta para nosotros, no como ley."
+    },
+    {
+      "id": "author-kahneman",
+      "type": "author",
+      "block": "02",
+      "authorId": "kahneman",
+      "notes": "Contá el experimento del agua fría en una frase. No es una ley universal de satisfacción: es una pista de por qué los momentos intensos y los cierres pesan."
+    },
+    {
+      "id": "second-concept",
+      "type": "statement",
+      "block": "02",
+      "text": "El cliente conoce su negocio. Nosotros conocemos nuestra disciplina. Las mejores decisiones nacen cuando ambos conocimientos trabajan juntos.",
+      "highlight": [
+        "ambos conocimientos trabajan juntos"
+      ],
+      "attribution": "Avalon World Agency®",
+      "notes": "Puente hacia el bloque de autoridad profesional."
+    },
+    {
+      "id": "synthesis",
+      "type": "synthesis",
+      "block": "02",
+      "title": "Escuchar no es adivinar.",
+      "steps": [
+        {
+          "name": "Escuchar",
+          "desc": "Recibir el pedido completo, sin interrumpir ni defenderse."
+        },
+        {
+          "name": "Interpretar",
+          "desc": "Formular hipótesis sobre lo que puede haber detrás."
+        },
+        {
+          "name": "Validar",
+          "desc": "Comprobar las hipótesis con buenas preguntas."
+        },
+        {
+          "name": "Proponer",
+          "desc": "Recién entonces, recomendar."
+        }
+      ],
+      "footnote": "La comprensión profesional implica construir hipótesis y comprobarlas mediante buenas preguntas.",
+      "notes": "Esta secuencia es la base de la Actividad 02."
+    },
+    {
+      "id": "sentiment",
+      "type": "sentiment",
+      "block": "02",
+      "title": "Lo que dicen nuestros clientes",
+      "lead": "Resultados del formulario de sentimiento y satisfacción.",
+      "notes": "Si la encuesta todavía no tiene resultados confirmados, la diapositiva lo dice. Nunca mostrar cifras estimadas."
+    },
+    {
+      "id": "beliefs",
+      "type": "beliefs",
+      "block": "02",
+      "title": "Lo que nosotros creemos vs. lo que los clientes perciben",
+      "notes": "Distinguí siempre hechos (dato de la encuesta) de interpretaciones (lo que creemos que significa)."
+    },
+    {
+      "id": "div-03",
+      "type": "divider",
+      "block": "03",
+      "number": "03",
+      "title": "Descifrando al cliente",
+      "lead": "El cliente dice una cosa. ¿Qué necesita realmente?",
+      "bg": "bg-peach-lilac",
+      "notes": "Armá los 6 grupos mixtos ahora (no por célula). Un celular por grupo."
+    },
+    {
+      "id": "a2-qr",
+      "type": "groupQR",
+      "block": "03",
+      "activity": "a2",
+      "title": "Un celular por grupo",
+      "lead": "Escaneen el QR de su grupo. Solo ese dispositivo envía la respuesta consensuada.",
+      "notes": "Esperá a que los 6 grupos aparezcan como conectados."
+    },
+    {
+      "id": "a2-challenge",
+      "type": "groupChallenge",
+      "block": "03",
+      "activity": "a2",
+      "timerMin": 8,
+      "title": "¿Qué siente y qué busca el cliente?",
+      "questions": [
+        "¿Qué está sintiendo el cliente?",
+        "¿Qué está buscando realmente?",
+        "¿Qué harías primero?"
+      ],
+      "notes": "8 minutos. Cada grupo lee su frase, debate y elige una opción por pregunta en el celular. Pedí que justifiquen su elección entre ellos: después la van a defender."
+    },
+    {
+      "id": "a2-results",
+      "type": "groupResults",
+      "block": "03",
+      "activity": "a2",
+      "title": "Lo que interpretó cada grupo",
+      "notes": "Primero se ven las elecciones de cada grupo. Con → aparece la respuesta correcta. Teclas 1 a 6 para ver un grupo en detalle; Esc vuelve. Después sigue la etapa de análisis, caso por caso."
+    },
+    {
+      "id": "a2-analysis-intro",
+      "type": "statement",
+      "block": "03",
+      "text": "Ahora, el análisis: qué señales había en cada frase y por qué esa es la lectura más sólida.",
+      "highlight": [
+        "por qué esa es la lectura más sólida"
+      ],
+      "attribution": "Etapa de análisis · Actividad 02",
+      "notes": "Para cada caso: pedí primero al grupo que justifique su elección, después mostrá el análisis."
+    },
+    {
+      "id": "a2-analysis-1",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 1,
+      "notes": "Grupo 01 · Falta de atención. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: antes, más pendientes, tenemos que pedir todo."
+    },
+    {
+      "id": "a2-analysis-2",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 2,
+      "notes": "Grupo 02 · Creatividad. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: se parece demasiado, más creativos."
+    },
+    {
+      "id": "a2-analysis-3",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 3,
+      "notes": "Grupo 03 · Resultados. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: pagamos todos los meses, no sé, nos está sirviendo."
+    },
+    {
+      "id": "a2-analysis-4",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 4,
+      "notes": "Grupo 04 · Comunicación. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: más reuniones, no estamos alineados."
+    },
+    {
+      "id": "a2-analysis-5",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 5,
+      "notes": "Grupo 05 · Exigencia. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: especialistas, tantas cosas, a mí."
+    },
+    {
+      "id": "a2-analysis-6",
+      "type": "groupAnalysis",
+      "block": "03",
+      "group": 6,
+      "notes": "Grupo 06 · Confianza. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: estoy pensando, si continuar."
+    },
+    {
+      "id": "a2-teaching",
+      "type": "questionsList",
+      "block": "03",
+      "title": "Interpretar no es adivinar. Es hacer mejores preguntas.",
+      "questions": [
+        "¿Qué te preocupa particularmente de esta situación?",
+        "¿Qué esperabas que sucediera?",
+        "¿Qué sería diferente si esto estuviera funcionando bien?",
+        "¿Podés contarme un ejemplo concreto?",
+        "¿Qué aspecto es prioritario para tu negocio?",
+        "¿Cómo sabríamos juntos que el problema quedó resuelto?"
+      ],
+      "notes": "Sugerí que cada uno elija una pregunta para usar esta semana."
+    },
+    {
+      "id": "div-04",
+      "type": "divider",
+      "block": "04",
+      "number": "04",
+      "title": "Autoridad profesional y conversaciones difíciles",
+      "lead": "Saber escuchar también implica saber recomendar.",
+      "bg": "bg-pastel-sky",
+      "notes": "Cambio de foco: de interpretar a posicionarse."
+    },
+    {
+      "id": "professional-place",
+      "type": "professionalPlace",
+      "block": "04",
+      "title": "Saber escuchar también implica saber recomendar.",
+      "client": {
+        "label": "El cliente",
+        "text": "Conoce su negocio: su mercado, su historia, sus clientes, sus límites."
+      },
+      "agency": {
+        "label": "Avalon",
+        "text": "Aporta conocimiento especializado en marketing, estrategia, comunicación y ejecución."
+      },
+      "together": "La relación profesional requiere colaboración y respeto mutuo. Ni obediencia ni confrontación: confianza.",
+      "notes": "Si solo obedecemos, el cliente pierde el valor de lo que nos contrata. Si solo imponemos, perdemos la relación."
+    },
+    {
+      "id": "matrix",
+      "type": "matrix",
+      "block": "04",
+      "title": "Cuándo ceder y cuándo sostener una postura",
+      "rows": [
+        {
+          "situation": "Preferencias personales",
+          "action": "Escuchar y buscar puntos de acuerdo",
+          "level": 1
+        },
+        {
+          "situation": "Decisiones técnicas",
+          "action": "Fundamentar con evidencia",
+          "level": 3
+        },
+        {
+          "situation": "Riesgos estratégicos",
+          "action": "Advertir y recomendar",
+          "level": 4
+        },
+        {
+          "situation": "Errores de Avalon",
+          "action": "Reconocer y resolver",
+          "level": 2
+        },
+        {
+          "situation": "Pedidos fuera de alcance",
+          "action": "Explicar límites y alternativas",
+          "level": 3
+        },
+        {
+          "situation": "Compromisos económicos",
+          "action": "Respetar contratos y autorizaciones",
+          "level": 4
+        },
+        {
+          "situation": "Trato irrespetuoso",
+          "action": "Establecer límites y escalar cuando corresponda",
+          "level": 5
+        }
+      ],
+      "scaleLabels": [
+        "Más flexibilidad",
+        "Más firmeza"
+      ],
+      "notes": "La escala es orientativa: muestra cuánto margen hay para ceder en cada tipo de situación."
+    },
+    {
+      "id": "four-steps",
+      "type": "fourSteps",
+      "block": "04",
+      "title": "Cuatro pasos para responder",
+      "steps": [
+        {
+          "name": "Escuchar",
+          "desc": "Comprender el pedido sin reaccionar defensivamente."
+        },
+        {
+          "name": "Fundamentar",
+          "desc": "Explicar nuestro criterio con razones comprensibles."
+        },
+        {
+          "name": "Proponer",
+          "desc": "Ofrecer una alternativa viable."
+        },
+        {
+          "name": "Acordar",
+          "desc": "Definir decisión, responsabilidades y próximos pasos."
+        }
+      ],
+      "example": {
+        "client": "Necesito que la campaña salga mañana, sí o sí.",
+        "bad": "Imposible, no llegamos. Nos tendrías que haber avisado antes.",
+        "good": "Entiendo que mañana es clave para vos. Contame qué pasa ese día. [escuchar] Para lanzar la campaña completa necesitamos aprobar piezas y configurar la pauta, y apurar eso pone en riesgo la calidad. [fundamentar] Lo que sí podemos hacer es salir mañana con dos piezas y el resto el jueves. [proponer] ¿Te parece si lo dejamos así y te confirmo a las 17 h? [acordar]"
+      },
+      "notes": "Leé la mala respuesta y preguntá qué genera en el cliente. Después la mejorada, marcando cada paso."
+    },
+    {
+      "id": "limits",
+      "type": "limits",
+      "block": "04",
+      "title": "Límites profesionales",
+      "levels": [
+        {
+          "name": "Resuelvo",
+          "desc": "Dentro de mi rol y de los acuerdos existentes."
+        },
+        {
+          "name": "Consulto",
+          "desc": "Cuando afecta a otras áreas, la estrategia, el presupuesto o compromisos."
+        },
+        {
+          "name": "Escalo",
+          "desc": "Cuando existe riesgo contractual, reputacional, legal o comercial significativo."
+        }
+      ],
+      "footnote": "Cada rol tiene sus propios márgenes: si no está claro, consultá antes de comprometerte.",
+      "notes": "No definimos atribuciones específicas por persona: eso lo define cada área con Dirección."
+    },
+    {
+      "id": "div-05",
+      "type": "divider",
+      "block": "05",
+      "number": "05",
+      "title": "El cliente tiene la palabra",
+      "lead": "Conversaciones bajo presión.",
+      "bg": "bg-peach-violet",
+      "notes": "Mismos 6 grupos y mismo celular por grupo."
+    },
+    {
+      "id": "a3-intro",
+      "type": "roleplayIntro",
+      "block": "05",
+      "activity": "a3",
+      "title": "Roleplay en tres roles",
+      "roles": [
+        {
+          "name": "Cliente",
+          "desc": "Recibe una motivación que no expresa de forma directa."
+        },
+        {
+          "name": "Profesional de Avalon",
+          "desc": "Tiene que descubrirla con preguntas y llegar a un acuerdo."
+        },
+        {
+          "name": "Observadores",
+          "desc": "Siguen la conversación y completan la evaluación del grupo."
+        }
+      ],
+      "skills": [
+        "Escucha",
+        "Interpretación",
+        "Argumentación",
+        "Negociación",
+        "Establecimiento de límites",
+        "Cierre profesional"
+      ],
+      "privacy": "Cada tarjeta se lee en privado: mantené el dedo apretado para verla y soltá para ocultarla.",
+      "notes": "Primero el cliente lee su tarjeta a solas, después el profesional. Los observadores no leen ninguna."
+    },
+    {
+      "id": "a3-run",
+      "type": "roleplayRun",
+      "block": "05",
+      "activity": "a3",
+      "timerMin": 8,
+      "title": "Seis conversaciones difíciles",
+      "notes": "8 minutos de conversación y 4 de evaluación. Avisá cuando queden 2 minutos."
+    },
+    {
+      "id": "a3-results",
+      "type": "roleplayResults",
+      "block": "05",
+      "activity": "a3",
+      "title": "Lo que funcionó",
+      "disclaimer": "Autoevaluación del ejercicio, no una medición de desempeño laboral. No se muestran puntajes individuales.",
+      "notes": "Elegí una frase destacada (teclas 1 a 6) y pedí al grupo que cuente el contexto."
+    },
+    {
+      "id": "div-06",
+      "type": "divider",
+      "block": "06",
+      "number": "06",
+      "title": "Conclusiones y compromisos",
+      "lead": "Lo que nos llevamos a la próxima conversación.",
+      "bg": "bg-mint-violet",
+      "notes": "Cierre: 5 minutos."
+    },
+    {
+      "id": "learned",
+      "type": "learned",
+      "block": "06",
+      "title": "Lo que aprendimos",
+      "items": [
+        {
+          "name": "Comprender",
+          "desc": "Escuchar el pedido e identificar posibles necesidades."
+        },
+        {
+          "name": "Recomendar",
+          "desc": "Fundamentar decisiones con conocimiento y evidencia."
+        },
+        {
+          "name": "Construir confianza",
+          "desc": "Cumplir compromisos y cuidar la relación."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "new-standard",
+      "type": "newStandard",
+      "block": "06",
+      "title": "El nuevo estándar de conversación",
+      "pairs": [
+        {
+          "instead": "Eso no se puede hacer.",
+          "use": "Con las condiciones actuales no podemos garantizarlo. Te propongo estas alternativas."
+        },
+        {
+          "instead": "El cliente tiene razón, hagámoslo.",
+          "use": "Entiendo tu objetivo. Mi recomendación profesional es otra y quiero explicarte por qué."
+        },
+        {
+          "instead": "Eso no es nuestra responsabilidad.",
+          "use": "Este punto excede el alcance acordado. Veamos cómo podemos resolverlo."
+        },
+        {
+          "instead": "No me gusta esa idea.",
+          "use": "Me preocupa que esta decisión pueda afectar el resultado que buscamos. Revisemos las alternativas."
+        }
+      ],
+      "notes": "Las frases aparecen de a una con →."
+    },
+    {
+      "id": "commitment",
+      "type": "commitment",
+      "block": "06",
+      "activity": "compromiso",
+      "timerMin": 3,
+      "question": "¿Qué vas a hacer diferente en tu próxima conversación con un cliente?",
+      "lead": "Cada grupo aporta una regla de comunicación para incorporar a Avalon.",
+      "footnote": "Estas reglas serán el insumo del futuro Manual de Conversaciones con Clientes.",
+      "notes": "3 minutos. Leé en voz alta las reglas a medida que llegan."
+    },
+    {
+      "id": "closing-concept",
+      "type": "statement",
+      "block": "06",
+      "text": "La autoridad profesional se demuestra con criterio, empatía y decisiones fundamentadas.",
+      "highlight": [
+        "criterio, empatía y decisiones fundamentadas"
+      ],
+      "attribution": "Avalon World Agency®",
+      "notes": ""
+    },
+    {
+      "id": "final",
+      "type": "final",
+      "block": "06",
+      "title": [
+        "Escuchar mejor.",
+        "Pensar mejor.",
+        "Responder mejor."
+      ],
+      "subtitle": "La confianza se construye en cada conversación.",
+      "notes": "Gracias. Contá que las reglas de los grupos y los resultados se comparten en los próximos días."
+    }
+  ],
+  "cases": [
+    {
+      "id": "c01",
+      "number": "01",
+      "area": "Community Management",
+      "title": "El contenido que puede hacer explotar las redes",
+      "context": [
+        "Un cliente quiere publicar un reel provocador sobre un tema polémico de su industria.",
+        "El contenido no contiene información falsa ni infringe normas, pero podría generar rechazo. La pieza podría generar mucho alcance."
+      ],
+      "quote": "Estamos cansados de pasar desapercibidos. Quiero que la marca se anime.",
+      "options": {
+        "A": "Recomiendo no publicarlo porque considero demasiado alto el riesgo reputacional.",
+        "B": "Propongo una versión menos agresiva, aunque probablemente tenga menos impacto.",
+        "C": "Acepto publicarlo si el cliente confirma que comprende y asume los riesgos.",
+        "D": "Evalúo con el cliente los riesgos y el objetivo, recomiendo un enfoque y elevo la decisión si el impacto lo justifica."
+      },
+      "recommended": "D",
+      "rationale": "Una aprobación del cliente no reemplaza el asesoramiento profesional. Debemos comprender objetivos, contexto y consecuencias antes de recomendar una acción.",
+      "risks": {
+        "A": "Cierra la conversación sin explorar el objetivo. Puede leerse como falta de audacia y el cliente podría publicarlo igual, sin nuestro acompañamiento.",
+        "B": "Es una concesión rápida que puede no conformar a nadie: no elimina el riesgo y tampoco logra el impacto que el cliente busca.",
+        "C": "Traslada toda la responsabilidad al cliente. Si sale mal, la relación se resiente igual, aunque haya firmado."
+      },
+      "askBefore": [
+        "¿Qué querés lograr exactamente con esta pieza: alcance, posicionamiento, ventas?",
+        "¿Qué reacción de tu audiencia o de tu sector te preocuparía?",
+        "¿Quién más en la empresa tiene que estar de acuerdo con este tono?"
+      ],
+      "debate": "¿Hasta dónde debemos proteger al cliente de una decisión que él mismo quiere tomar?",
+      "durationSec": 90
+    },
+    {
+      "id": "c02",
+      "number": "02",
+      "area": "Paid Media",
+      "title": "La campaña funciona, pero el cliente quiere detenerla",
+      "context": [
+        "Una campaña de Meta Ads está generando leads a un costo 25% inferior al objetivo acordado.",
+        "El especialista tiene buenas métricas publicitarias, pero no dispone de información del CRM."
+      ],
+      "quote": "Los leads no sirven y mi equipo comercial está perdiendo tiempo.",
+      "options": {
+        "A": "Recomiendo mantenerla 72 horas mientras auditamos los leads.",
+        "B": "La pauso temporalmente y propongo analizar la calidad de las consultas con el cliente.",
+        "C": "Reduzco la inversión mientras verificamos el problema.",
+        "D": "Explico que las métricas están cumpliendo el objetivo y solicito evidencia antes de modificarla."
+      },
+      "recommended": "B",
+      "alsoReasonable": [
+        "C"
+      ],
+      "rationale": "Un costo bajo por lead no demuestra su calidad comercial. Si existe una advertencia fundada del cliente, corresponde tomarla en serio y controlar el riesgo económico.",
+      "risks": {
+        "A": "Defiende la métrica pero desoye una alerta concreta: si los leads no sirven, seguimos invirtiendo dinero del cliente 72 horas más.",
+        "C": "También puede ser razonable: limita el gasto mientras se investiga. El riesgo es quedarse a mitad de camino sin revisar de verdad la calidad.",
+        "D": "Discute desde nuestra métrica y pone la carga de la prueba en el cliente. Puede sentirse como que no lo escuchamos."
+      },
+      "askBefore": [
+        "¿Qué tienen en común los leads que no sirven?",
+        "¿Cómo define tu equipo comercial un lead calificado?",
+        "¿Podemos revisar juntos una muestra del CRM esta semana?"
+      ],
+      "debate": "¿Quién define si una campaña funciona: Paid Media o el cliente que recibe los leads?",
+      "durationSec": 90
+    },
+    {
+      "id": "c03",
+      "number": "03",
+      "area": "Diseño",
+      "title": "El logo aprobado que ahora rechazan",
+      "context": [
+        "Una identidad visual fue aprobada por escrito dos semanas atrás y el manual está prácticamente terminado.",
+        "Ahora el cliente pide rediseñar el logotipo porque uno de sus socios considera que es demasiado arriesgado. El lanzamiento está cerca."
+      ],
+      "quote": "Mi socio lo ve demasiado arriesgado. Necesitamos rediseñar el logo.",
+      "options": {
+        "A": "Explico que el rediseño excede el alcance aprobado y presento un presupuesto.",
+        "B": "Propongo una reunión con los responsables de decisión para comprender el problema antes de definir cambios, tiempos o costos.",
+        "C": "Ofrezco una adaptación parcial sin costo para conservar la relación.",
+        "D": "Recomiendo mantener el diseño aprobado hasta después del lanzamiento."
+      },
+      "recommended": "B",
+      "rationale": "Primero necesitamos comprender la naturaleza del desacuerdo y quién tiene autoridad para aprobarlo. Escuchar no significa aceptar gratuitamente todo cambio.",
+      "risks": {
+        "A": "Es correcto en lo contractual, pero ir directo al presupuesto sin entender el problema puede escalar el conflicto.",
+        "C": "Regala trabajo antes de saber qué se necesita, sienta un precedente y no garantiza resolver la objeción del socio.",
+        "D": "Puede ser técnicamente sólido, pero lanzar una marca que quien decide ya no acepta es un riesgo para la relación."
+      },
+      "askBefore": [
+        "¿Qué percibe exactamente tu socio como arriesgado?",
+        "¿Quién tiene la decisión final sobre la identidad?",
+        "¿Qué margen hay en la fecha de lanzamiento si revisamos algo?"
+      ],
+      "debate": "¿Defenderías un diseño aprobado aunque el dueño de la empresa ya no lo quiera?",
+      "durationSec": 90
+    },
+    {
+      "id": "c04",
+      "number": "04",
+      "area": "Project Management",
+      "title": "La verdad que podría hacer perder al cliente",
+      "context": [
+        "Un cliente estratégico exige explicaciones porque una campaña no se lanzó cuando estaba previsto. La cuenta está en riesgo.",
+        "Sabés que hubo un error de coordinación de Avalon. También sabés que el cliente demoró una aprobación."
+      ],
+      "quote": "Necesito que me expliquen por qué la campaña no salió cuando habíamos acordado.",
+      "options": {
+        "A": "Asumo el error de Avalon y presento una solución, sin mencionar la demora del cliente.",
+        "B": "Presento una cronología objetiva, explico las responsabilidades comprobadas y propongo un plan para evitar otra demora.",
+        "C": "Priorizo recuperar el lanzamiento y postergo la discusión de responsabilidades.",
+        "D": "Ofrezco una compensación comercial antes de explicar lo ocurrido."
+      },
+      "recommended": "B",
+      "rationale": "La transparencia debe apoyarse en hechos verificables, no en el reparto defensivo de culpas. La comunicación tiene que incluir nuestra responsabilidad y un plan concreto.",
+      "risks": {
+        "A": "Asumir el error está bien, pero omitir la demora del cliente distorsiona los hechos y deja la causa sin resolver.",
+        "C": "Recuperar el lanzamiento es urgente, pero postergar la explicación deja la confianza sin reparar.",
+        "D": "Compensar antes de explicar puede leerse como admisión total de culpa o como un intento de cerrar la conversación."
+      },
+      "askBefore": [
+        "¿Qué hechos podemos documentar con fechas?",
+        "¿Qué necesita hoy el cliente: explicación, solución o ambas?",
+        "¿Qué cambio de proceso evita que vuelva a pasar?"
+      ],
+      "debate": "¿Conviene explicar una verdad incómoda si puede aumentar el conflicto?",
+      "durationSec": 90
+    },
+    {
+      "id": "c05",
+      "number": "05",
+      "area": "Comercial",
+      "title": "Un cliente enorme con una condición incómoda",
+      "context": [
+        "Una empresa importante quiere contratar un servicio integral. El presupuesto podría representar una porción relevante de la facturación mensual de Avalon.",
+        "Pero exige resultados comerciales mínimos garantizados por contrato."
+      ],
+      "quote": "Sin resultados garantizados por contrato, no firmamos.",
+      "options": {
+        "A": "Rechazo la garantía y explico que podemos comprometernos con procesos, entregables y optimización, pero no con ventas aseguradas.",
+        "B": "Ofrezco una garantía limitada condicionada al presupuesto y al cumplimiento de nuestras recomendaciones.",
+        "C": "Propongo un piloto pago de 90 días con indicadores y condiciones claras para obtener evidencia antes de negociar garantías.",
+        "D": "Elevo a Dirección una propuesta de garantía y revisión legal para estudiar si existe un compromiso viable."
+      },
+      "recommended": "C",
+      "recommendedNote": "Siempre que el piloto sea aceptable y no incluya garantías improcedentes.",
+      "alsoReasonable": [
+        "A",
+        "D"
+      ],
+      "rationale": "Debemos explorar alternativas comerciales que protejan a la agencia de compromisos fuera de su control. A y D también son decisiones defendibles, según el contexto y la autoridad de quien negocia.",
+      "risks": {
+        "A": "Defendible: protege a la agencia. El riesgo es perder la cuenta sin haber explorado una alternativa.",
+        "B": "Compromete a Avalon con resultados que dependen de factores fuera de su control: producto, precio, equipo comercial del cliente.",
+        "D": "Defendible si quien negocia no tiene autoridad. El riesgo es demorar y transmitir que la garantía es negociable."
+      },
+      "askBefore": [
+        "¿Qué resultado concreto necesita mostrar el cliente, y en qué plazo?",
+        "¿Qué partes del proceso comercial dependen de su equipo?",
+        "¿Quién en Avalon puede aprobar condiciones contractuales especiales?"
+      ],
+      "debate": "¿Qué estarías dispuesto a negociar para conseguir al cliente más importante del año?",
+      "durationSec": 90
+    },
+    {
+      "id": "c06",
+      "number": "06",
+      "area": "Administración",
+      "title": "El cliente que siempre pagó y hoy no puede",
+      "context": [
+        "Una cuenta importante tiene una factura vencida. El contrato contempla suspensión por mora.",
+        "El cliente explica que atraviesa problemas de caja, necesita mantener sus campañas activas para generar ventas y promete pagar dentro de diez días."
+      ],
+      "quote": "Estamos con problemas de caja. Necesito que las campañas sigan; en diez días les pago.",
+      "options": {
+        "A": "Solicito autorización para evaluar un plan de pagos documentado, con controles de riesgo.",
+        "B": "Comunico el procedimiento de suspensión contractual y solicito regularizar la deuda.",
+        "C": "Propongo mantener temporalmente únicamente los servicios críticos, si Dirección lo autoriza por escrito.",
+        "D": "Elevo el caso a Dirección sin recomendar ninguna alternativa porque excede mi responsabilidad."
+      },
+      "recommended": "A",
+      "recommendedNote": "Condicionada al historial del cliente, el riesgo y la autorización correspondiente.",
+      "rationale": "Escuchar una dificultad genuina no implica conceder automáticamente excepciones. Las decisiones deben contemplar antecedentes, obligaciones contractuales y exposición financiera.",
+      "risks": {
+        "B": "Ajustado al contrato, pero aplicado sin escuchar puede romper una relación con buen historial.",
+        "C": "Puede ser razonable con autorización, pero sin un plan de pagos documentado la deuda puede seguir creciendo.",
+        "D": "Escalar está bien; hacerlo sin recomendación le quita a Dirección el criterio de quien mejor conoce la cuenta."
+      },
+      "askBefore": [
+        "¿Cómo fue el historial de pagos de esta cuenta?",
+        "¿Qué monto y qué fecha concreta puede comprometer el cliente?",
+        "¿Cuál es nuestra exposición si no paga?"
+      ],
+      "debate": "¿Hasta qué punto ayudar a un cliente empieza a perjudicar a la agencia?",
+      "durationSec": 90
+    }
+  ],
+  "authors": [
+    {
+      "id": "rogers",
+      "name": "Carl Rogers",
+      "years": "1902–1987",
+      "discipline": "Psicología humanista · Psicoterapia",
+      "concept": "Comprensión empática",
+      "contribution": "Rogers destacó la importancia de comprender el marco de referencia de la otra persona: cómo vive y significa una situación desde su propio lugar.",
+      "application": "Antes de responder un pedido o una crítica, intentar comprender cómo vive el cliente la situación.",
+      "example": {
+        "leftLabel": "El cliente dice",
+        "left": "No me convence el diseño.",
+        "rightLabel": "Antes de responder, preguntá",
+        "right": "¿Qué sentís que la propuesta todavía no está logrando transmitir?"
+      },
+      "caveat": "El trabajo original de Rogers pertenece a la psicoterapia. Acá usamos sus principios de empatía como inspiración para la comunicación profesional.",
+      "source": {
+        "label": "Rogers, C. R. (1957). The necessary and sufficient conditions of therapeutic personality change. Journal of Consulting Psychology, 21(2), 95–103.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/13416422/"
+      }
+    },
+    {
+      "id": "christensen",
+      "name": "Clayton Christensen",
+      "years": "1952–2020",
+      "discipline": "Innovación · Harvard Business School",
+      "concept": "Jobs to be done",
+      "contribution": "Las personas adquieren productos y servicios para avanzar o resolver un problema en determinadas circunstancias: «contratan» una solución para hacer un trabajo.",
+      "application": "Una empresa puede contratar redes sociales, pero su necesidad subyacente puede ser generar demanda, construir reputación o delegar una función que no puede gestionar internamente.",
+      "example": {
+        "leftLabel": "Lo que contrata",
+        "left": "Gestión de redes sociales.",
+        "rightLabel": "Para descubrir el trabajo real, preguntá",
+        "right": "¿Qué necesita cambiar en tu negocio para que consideres exitosa nuestra intervención?"
+      },
+      "caveat": "El marco nació para pensar innovación de productos. Lo usamos para entender qué «trabajo» le resolvemos a cada cliente.",
+      "source": {
+        "label": "Christensen, C. M., Hall, T., Dillon, K. y Duncan, D. S. (2016). Know your customers' «jobs to be done». Harvard Business Review, septiembre de 2016.",
+        "url": "https://hbr.org/2016/09/know-your-customers-jobs-to-be-done"
+      }
+    },
+    {
+      "id": "fisherury",
+      "name": "Roger Fisher y William Ury",
+      "initials": "F·U",
+      "years": "Harvard Negotiation Project",
+      "discipline": "Negociación · Derecho y antropología",
+      "concept": "Negociación basada en intereses",
+      "contribution": "En lugar de pulsear posiciones, la negociación avanza cuando se entienden los intereses que hay detrás y se buscan opciones que sirvan a ambas partes.",
+      "principles": [
+        "Separar a las personas del problema.",
+        "Identificar intereses, no solamente posiciones.",
+        "Desarrollar opciones beneficiosas para ambas partes.",
+        "Utilizar criterios objetivos."
+      ],
+      "application": "Comprender el objetivo permite recomendar una solución alternativa.",
+      "example": {
+        "leftLabel": "Posición del cliente",
+        "left": "Quiero publicar mañana.",
+        "rightLabel": "Interés posible",
+        "right": "Necesito aprovechar una oportunidad comercial que termina esta semana."
+      },
+      "caveat": "",
+      "source": {
+        "label": "Fisher, R. y Ury, W. (1981). Getting to Yes: Negotiating Agreement Without Giving In. Program on Negotiation, Harvard Law School.",
+        "url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/six-guidelines-for-getting-to-yes/"
+      }
+    },
+    {
+      "id": "dixon",
+      "name": "Dixon, Freeman y Toman",
+      "initials": "DFT",
+      "years": "Harvard Business Review, 2010",
+      "discipline": "Experiencia del cliente · Corporate Executive Board",
+      "concept": "El esfuerzo del cliente",
+      "contribution": "Un estudio con más de 75.000 personas que interactuaron con centros de contacto o canales de autoservicio encontró que reducir el esfuerzo del cliente pesa más en su lealtad que intentar «deslumbrarlo».",
+      "application": "¿Cuánto esfuerzo tiene que hacer nuestro cliente para conseguir una respuesta, comprender un informe o solucionar un problema?",
+      "example": {
+        "leftLabel": "Esfuerzo alto",
+        "left": "Tener que pedir tres veces el mismo dato o descifrar un informe.",
+        "rightLabel": "Esfuerzo bajo",
+        "right": "Anticipar la próxima pregunta y entregar respuestas claras en el primer contacto."
+      },
+      "caveat": "La investigación estudió atención al cliente, no servicios de agencia. No trasladamos automáticamente sus conclusiones a todo el marketing: la usamos como pregunta.",
+      "source": {
+        "label": "Dixon, M., Freeman, K. y Toman, N. (2010). Stop trying to delight your customers. Harvard Business Review, 88(7/8), 116–122.",
+        "url": "https://hbr.org/2010/07/stop-trying-to-delight-your-customers"
+      }
+    },
+    {
+      "id": "kahneman",
+      "name": "Daniel Kahneman",
+      "years": "1934–2024",
+      "discipline": "Psicología · Economía del comportamiento",
+      "concept": "Experiencia y recuerdo",
+      "contribution": "Lo que vivimos y cómo lo recordamos pueden diferir. En un experimento, la mayoría prefirió repetir una exposición al agua fría más larga, pero que terminaba un poco menos fría: el momento más intenso y el final pesaron más que la duración.",
+      "application": "La calidad de las reuniones, la respuesta ante reclamos y los cierres de proyectos pueden influir en cómo se recuerda el servicio.",
+      "example": {
+        "leftLabel": "La experiencia",
+        "left": "Tres meses de proyecto con un reclamo mal resuelto en el medio.",
+        "rightLabel": "Para el recuerdo, cuidá",
+        "right": "Cómo respondemos en el momento crítico y cómo cerramos."
+      },
+      "caveat": "No es una ley universal de satisfacción del cliente: describe un patrón en ciertas evaluaciones retrospectivas.",
+      "source": {
+        "label": "Kahneman, D., Fredrickson, B. L., Schreiber, C. A. y Redelmeier, D. A. (1993). When more pain is preferred to less: Adding a better end. Psychological Science, 4(6), 401–405.",
+        "url": "https://doi.org/10.1111/j.1467-9280.1993.tb00589.x"
+      }
+    }
+  ],
+  "groupsA2": [
+    {
+      "group": 1,
+      "theme": "Falta de atención",
+      "quote": "Siento que antes estaban mucho más pendientes de nuestra cuenta. Ahora parece que tenemos que pedir todo.",
+      "signals": [
+        "antes",
+        "más pendientes",
+        "tenemos que pedir todo"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Enojo por el precio que paga.",
+            "B": "Desconfianza en la calidad creativa del equipo.",
+            "C": "Que perdió prioridad y que ahora tiene que empujar la relación solo.",
+            "D": "Ganas de cambiar de agencia cuanto antes."
+          },
+          "correct": "C",
+          "why": "Compara con el pasado («antes») y describe una carga nueva («tenemos que pedir todo»): no habla de precio ni de calidad, habla de haber dejado de sentirse prioridad."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Que nos anticipemos: seguimiento proactivo y visibilidad de lo que estamos haciendo.",
+            "B": "Más reuniones semanales.",
+            "C": "Un descuento que compense la falta de atención.",
+            "D": "Un nuevo responsable para su cuenta."
+          },
+          "correct": "A",
+          "why": "El problema no es la cantidad de contacto sino quién lo inicia. Quiere dejar de pedir: que le avisemos, le mostremos avances y nos adelantemos."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Pedir disculpas y prometer más atención.",
+            "B": "Enviarle un informe completo de todo lo realizado.",
+            "C": "Proponer una bonificación para el próximo mes.",
+            "D": "Preguntarle qué cosas tuvo que pedir últimamente y qué esperaba recibir sin pedirlo."
+          },
+          "correct": "D",
+          "why": "Antes de prometer, hay que entender qué cambió para él. La respuesta da ejemplos concretos para diseñar un seguimiento a su medida."
+        }
+      ],
+      "othersMiss": "Prometer «más atención» sin entender qué falta suele repetir el problema. Un informe o un descuento responden a otra cosa: no alivian la sensación de tener que empujar la relación.",
+      "backing": {
+        "author": "Dixon, Freeman y Toman (2010)",
+        "text": "Reducir el esfuerzo del cliente pesa en su lealtad: tener que pedir todo es esfuerzo."
+      }
+    },
+    {
+      "group": 2,
+      "theme": "Creatividad",
+      "quote": "Todo lo que publicamos se parece demasiado. Necesitamos ser más creativos.",
+      "signals": [
+        "se parece demasiado",
+        "más creativos"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Aburrimiento estético personal con las piezas.",
+            "B": "Frustración porque la marca no se distingue y pasa desapercibida.",
+            "C": "Enojo con el diseñador asignado.",
+            "D": "Vergüenza frente a su equipo."
+          },
+          "correct": "B",
+          "why": "«Se parece demasiado» sugiere comparación: con su propio contenido o con la competencia. La emoción de fondo es no destacarse, no un gusto personal."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Piezas más llamativas y coloridas.",
+            "B": "Más cantidad de publicaciones por semana.",
+            "C": "Cambiar de estilo visual cada mes.",
+            "D": "Diferenciarse de la competencia y lograr mejores resultados."
+          },
+          "correct": "D",
+          "why": "«Creatividad» es el medio que nombra; el trabajo que necesita resolver es diferenciarse y que eso se note en resultados."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Preguntar con quién se compara, qué resultado espera y qué entiende por «creativo».",
+            "B": "Rediseñar todo el feed esta misma semana.",
+            "C": "Presentar tres propuestas nuevas mañana.",
+            "D": "Explicar que el estilo respeta el manual de marca."
+          },
+          "correct": "A",
+          "why": "Sin saber contra qué se compara ni qué resultado espera, cualquier propuesta es adivinar. Preguntar define el criterio de éxito antes de producir."
+        }
+      ],
+      "othersMiss": "Producir rápido (rediseñar o mostrar propuestas) responde al pedido literal y puede fallar otra vez. Defender el manual es correcto técnicamente, pero cierra la conversación sin entender la frustración.",
+      "backing": {
+        "author": "Christensen et al. (2016) · Jobs to be done",
+        "text": "El cliente no compra «creatividad»: contrata un resultado. Hay que descubrir el trabajo que quiere resolver."
+      }
+    },
+    {
+      "group": 3,
+      "theme": "Resultados",
+      "quote": "Pagamos todos los meses y sinceramente no sé si esto nos está sirviendo.",
+      "signals": [
+        "pagamos todos los meses",
+        "no sé",
+        "nos está sirviendo"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que el servicio es caro para su presupuesto.",
+            "B": "Desconfianza en nuestra honestidad.",
+            "C": "Incertidumbre: no ve la conexión entre lo que paga y lo que gana su negocio.",
+            "D": "Desinterés por el proyecto."
+          },
+          "correct": "C",
+          "why": "Dice «no sé», no dice «no sirve». La emoción es incertidumbre: hay inversión constante y no tiene cómo evaluarla."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Bajar el costo mensual.",
+            "B": "Entender qué valor le generamos, con indicadores de éxito acordados.",
+            "C": "Recibir informes con más métricas.",
+            "D": "Resultados inmediatos."
+          },
+          "correct": "B",
+          "why": "Busca poder responder «sí, nos sirve» con evidencia que entienda. Más métricas no alcanzan si no están conectadas con lo que él considera éxito."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Enviarle el último informe mensual.",
+            "B": "Ofrecerle servicios adicionales.",
+            "C": "Defender los resultados de alcance e interacción.",
+            "D": "Preguntarle qué tendría que ver para considerar que esto funciona, y acordar esos indicadores."
+          },
+          "correct": "D",
+          "why": "Primero hay que definir juntos qué significa «servir» para su negocio; recién después tiene sentido mostrar datos."
+        }
+      ],
+      "othersMiss": "Mandar el informe o defender métricas responde con nuestros criterios, no con los suyos. Ofrecer más servicios ante una duda de valor suele aumentar la desconfianza.",
+      "backing": {
+        "author": "Christensen et al. (2016) · Jobs to be done",
+        "text": "«¿Qué necesita cambiar en tu negocio para que consideres exitosa nuestra intervención?»"
+      }
+    },
+    {
+      "group": 4,
+      "theme": "Comunicación",
+      "quote": "Me gustaría tener más reuniones. Siento que no estamos alineados.",
+      "signals": [
+        "más reuniones",
+        "no estamos alineados"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Falta de control e información sobre decisiones que lo afectan.",
+            "B": "Que no trabajamos lo suficiente.",
+            "C": "Necesidad de compañía.",
+            "D": "Desconfianza en el equipo."
+          },
+          "correct": "A",
+          "why": "El pedido (reuniones) viene acompañado de la causa: «no estamos alineados». Siente que se toman decisiones o se avanza sin que él tenga claridad."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Reuniones semanales de una hora.",
+            "B": "Un chat directo disponible todo el día.",
+            "C": "Claridad: información útil, prioridades y decisiones compartidas.",
+            "D": "Revisar las condiciones del contrato."
+          },
+          "correct": "C",
+          "why": "«Más reuniones» es su posición; el interés es estar alineados. Puede resolverse con reuniones, pero también con mejor información y decisiones compartidas."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Agendar reuniones semanales desde ya.",
+            "B": "Preguntarle en qué temas siente que no estamos alineados y qué decisiones quiere compartir.",
+            "C": "Explicarle que más reuniones encarecen el servicio.",
+            "D": "Enviarle un resumen semanal sin hablarlo antes."
+          },
+          "correct": "B",
+          "why": "Indagar el interés detrás de la posición permite proponer la solución correcta, que no siempre es más reuniones."
+        }
+      ],
+      "othersMiss": "Agendar reuniones complace el pedido literal y puede no resolver la desalineación. Hablar de costos o mandar un resumen sin consultarlo responde sin haber entendido.",
+      "backing": {
+        "author": "Fisher y Ury (1981) · Negociación basada en intereses",
+        "text": "Identificar intereses, no solamente posiciones: detrás de «más reuniones» hay una necesidad de alineación."
+      }
+    },
+    {
+      "group": 5,
+      "theme": "Exigencia",
+      "quote": "Si ustedes son especialistas, ¿por qué me preguntan tantas cosas a mí?",
+      "signals": [
+        "especialistas",
+        "tantas cosas",
+        "a mí"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que lo molestamos sin motivo.",
+            "B": "Que no sabemos hacer nuestro trabajo.",
+            "C": "Desinterés por el proyecto.",
+            "D": "Cansancio: siente que el trabajo vuelve a él en lugar de estar delegado."
+          },
+          "correct": "D",
+          "why": "Contrató especialistas para delegar y percibe que la carga de decidir vuelve a él. No cuestiona tanto nuestra capacidad como el reparto del esfuerzo."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Que no le pregunten nada nunca más.",
+            "B": "Delegar con confianza: recibir recomendaciones concretas y decidir solo lo clave.",
+            "C": "Cambiar de agencia.",
+            "D": "Tener más reuniones de seguimiento."
+          },
+          "correct": "B",
+          "why": "No quiere desentenderse: quiere que lleguemos con criterio propio y le pidamos solo las decisiones que realmente le corresponden."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Acordar qué decide él y qué decidimos nosotros, y traerle recomendaciones en vez de preguntas abiertas.",
+            "B": "Dejar de consultarle y decidir todo por nuestra cuenta.",
+            "C": "Explicarle que necesitamos su aprobación por contrato.",
+            "D": "Pedirle disculpas por las molestias."
+          },
+          "correct": "A",
+          "why": "Ordena la relación (resuelvo, consulto, escalo) y baja su esfuerzo sin perder las aprobaciones que sí corresponden."
+        }
+      ],
+      "othersMiss": "Dejar de consultar todo es el extremo opuesto y genera riesgos. Escudarse en el contrato es cierto pero no resuelve su cansancio. Disculparse sin cambiar nada repite el problema.",
+      "backing": {
+        "author": "Dixon, Freeman y Toman (2010) · Esfuerzo del cliente",
+        "text": "Preguntas abiertas = esfuerzo para el cliente. Recomendaciones con criterio = asesoramiento profesional."
+      }
+    },
+    {
+      "group": 6,
+      "theme": "Confianza",
+      "quote": "Estoy pensando si continuar con Avalon el próximo mes.",
+      "signals": [
+        "estoy pensando",
+        "si continuar"
+      ],
+      "questions": [
+        {
+          "id": "siente",
+          "prompt": "¿Qué está sintiendo el cliente?",
+          "options": {
+            "A": "Que ya decidió irse.",
+            "B": "Duda: no está seguro de que el valor recibido justifique la inversión.",
+            "C": "Enojo con una persona del equipo.",
+            "D": "Presión por un problema de caja."
+          },
+          "correct": "B",
+          "why": "«Estoy pensando» indica que la decisión no está tomada. Está evaluando: hay una duda que todavía se puede trabajar."
+        },
+        {
+          "id": "busca",
+          "prompt": "¿Qué está buscando realmente?",
+          "options": {
+            "A": "Un descuento para quedarse.",
+            "B": "Que lo convenzamos con una buena presentación.",
+            "C": "Que le liberemos el contrato sin problemas.",
+            "D": "Razones claras para seguir: entender el valor y ver un plan concreto."
+          },
+          "correct": "D",
+          "why": "Si lo comenta en lugar de cancelar directamente, está buscando motivos para quedarse. Necesita entender el valor y ver qué va a cambiar."
+        },
+        {
+          "id": "primera",
+          "prompt": "¿Qué harías primero?",
+          "options": {
+            "A": "Ofrecer un descuento inmediato.",
+            "B": "Enviarle el caso de éxito de otro cliente.",
+            "C": "Preguntarle qué lo hace dudar y qué tendría que pasar para que sienta que vale la pena seguir.",
+            "D": "Aceptar la baja con cortesía."
+          },
+          "correct": "C",
+          "why": "Comprender su marco de referencia antes de responder. Un descuento o un caso de éxito ajeno contestan una pregunta que todavía no hicimos."
+        }
+      ],
+      "othersMiss": "El descuento instala la idea de que el problema es el precio. Aceptar la baja abandona una relación que todavía se puede recuperar.",
+      "backing": {
+        "author": "Carl Rogers · Comprensión empática",
+        "text": "Antes de responder, comprender cómo vive el cliente la situación: qué lo hace dudar."
+      }
+    }
+  ],
+  "roleplay": {
+    "evaluation": [
+      {
+        "id": "comprension",
+        "label": "¿Se comprendió la necesidad real?"
+      },
+      {
+        "id": "fundamento",
+        "label": "¿El profesional fundamentó su recomendación?"
+      },
+      {
+        "id": "limites",
+        "label": "¿Estableció límites adecuados?"
+      },
+      {
+        "id": "solucion",
+        "label": "¿Propuso una solución?"
+      },
+      {
+        "id": "acuerdo",
+        "label": "¿Se llegó a un acuerdo viable?"
+      }
+    ],
+    "phraseQuestion": "¿Qué frase o argumento funcionó mejor?",
+    "cases": [
+      {
+        "group": 1,
+        "title": "El cliente cambia todo",
+        "professional": "Diseño · Dirección de arte",
+        "summary": "El cliente quiere cambiar una propuesta creativa que ya había aprobado.",
+        "client": {
+          "context": "Aprobaste la propuesta creativa hace diez días. Ayer la mostraste a tus socios y hubo caras largas. Hoy pedís cambiarla bastante.",
+          "goal": "Conseguir cambios importantes, rápido.",
+          "hidden": "Temés que tus socios cuestionen tu criterio por haberla aprobado. No lo decís de entrada; lo admitís solo si te preguntan con interés genuino por cómo la recibieron los demás.",
+          "behaviour": "Empezá insistiendo en que «no termina de convencer». Si el profesional se pone a la defensiva, endurecete. Si te pregunta bien, abrite de a poco.",
+          "lines": [
+            "Mirándola de nuevo, no es lo que imaginaba.",
+            "¿No se puede cambiar el concepto entero?",
+            "Tampoco quiero que parezca que me equivoqué."
+          ]
+        },
+        "pro": {
+          "context": "Sos responsable de diseño. La propuesta fue aprobada por escrito y el trabajo siguiente ya avanzó.",
+          "goal": "Entender qué cambió desde la aprobación y llegar a un acuerdo que cuide el proyecto, los tiempos y el alcance.",
+          "keys": [
+            "Preguntá qué pasó entre la aprobación y hoy.",
+            "Separá preferencia personal de objeción de negocio.",
+            "Ofrecé argumentos que el cliente pueda llevar a sus socios.",
+            "Si hay cambios, acordá alcance, tiempos y costos."
+          ],
+          "lines": [
+            "¿Cómo la recibieron los demás en la empresa?",
+            "Te propongo preparar juntos los argumentos para tus socios."
+          ]
+        }
+      },
+      {
+        "group": 2,
+        "title": "El cliente exige resultados",
+        "professional": "Paid Media",
+        "summary": "El cliente está disconforme con las campañas y exige resultados inmediatos.",
+        "client": {
+          "context": "Hace tres meses que invertís en pauta y sentís que no se traduce en ventas.",
+          "goal": "Que «hagan algo ya»: más resultados, inmediatamente.",
+          "hidden": "Tu equipo comercial no está convirtiendo las consultas que llegan y temés que tu jefe te cuestione a vos. Lo admitís si te preguntan qué pasa con las consultas después de que llegan.",
+          "behaviour": "Arrancá molesto y con urgencia. Si te muestran solo métricas, frustrate más. Si te preguntan por el proceso comercial, bajá la guardia.",
+          "lines": [
+            "No me importan los clics, me importan las ventas.",
+            "Necesito mostrar algo la semana que viene.",
+            "Mi equipo dice que las consultas no sirven."
+          ]
+        },
+        "pro": {
+          "context": "Las campañas cumplen los indicadores acordados (costo por lead, volumen), pero no tenés acceso a lo que pasa después en ventas.",
+          "goal": "Entender dónde se corta el proceso y acordar un plan con responsabilidades claras de ambos lados.",
+          "keys": [
+            "Reconocé la preocupación antes de mostrar datos.",
+            "Preguntá qué pasa con un lead desde que llega.",
+            "No prometas ventas que dependen de factores fuera de tu control.",
+            "Proponé una revisión conjunta de calidad de leads."
+          ],
+          "lines": [
+            "¿Qué pasa con una consulta desde que entra hasta que se cierra?",
+            "Revisemos juntos 20 leads esta semana."
+          ]
+        }
+      },
+      {
+        "group": 3,
+        "title": "El cliente quiere más servicios",
+        "professional": "Project Management",
+        "summary": "El cliente pide trabajos adicionales sin pagarlos.",
+        "client": {
+          "context": "Contrataste un paquete mensual. Pedís una landing, mails y piezas para una feria «ya que están».",
+          "goal": "Que lo hagan dentro del fee actual.",
+          "hidden": "Interpretás sinceramente que el servicio contratado incluye un acompañamiento más amplio: nadie te explicó bien el alcance. Lo decís si te preguntan qué entendiste al contratar.",
+          "behaviour": "Sé insistente pero no agresivo. Si te dicen «no está incluido» sin explicación, sentite engañado. Si te explican con claridad, negociá.",
+          "lines": [
+            "Pensé que esto venía con el servicio.",
+            "Siempre nos dieron una mano con estas cosas.",
+            "¿Para qué les pago entonces?"
+          ]
+        },
+        "pro": {
+          "context": "Sos PM de la cuenta. Lo pedido excede claramente el alcance del contrato.",
+          "goal": "Explicar el alcance sin confrontar, entender la expectativa del cliente y ofrecer alternativas viables.",
+          "keys": [
+            "Preguntá qué entendió el cliente al contratar.",
+            "Mostrá el alcance con claridad, sin tono defensivo.",
+            "Ofrecé opciones: priorizar, cotizar aparte o ampliar el plan.",
+            "Acordá qué se hace, quién lo aprueba y cuándo."
+          ],
+          "lines": [
+            "Contame qué esperabas que incluyera el servicio.",
+            "Este punto excede el alcance acordado. Veamos cómo podemos resolverlo."
+          ]
+        }
+      },
+      {
+        "group": 4,
+        "title": "El cliente quiere una baja",
+        "professional": "Responsable de cuentas",
+        "summary": "El cliente amenaza con cancelar el contrato.",
+        "client": {
+          "context": "Llevás un año con la agencia. Recibís informes, pero casi no hablás con nadie.",
+          "goal": "Anunciar que estás pensando en cancelar.",
+          "hidden": "Te sentís poco acompañado y no lográs entender qué valor te da el servicio. Lo admitís si te preguntan cómo vivís la relación, no solo si te ofrecen descuentos.",
+          "behaviour": "Mantenete frío y breve. Si te ofrecen un descuento enseguida, confirmá que te vas. Si te escuchan, contá lo que sentís.",
+          "lines": [
+            "Estamos evaluando otras opciones.",
+            "Los informes llegan, pero no sé bien qué mirar.",
+            "No es una cuestión de precio."
+          ]
+        },
+        "pro": {
+          "context": "Sos responsable de la cuenta. El servicio se cumple en tiempo y forma según el contrato.",
+          "goal": "Comprender el motivo real antes de ofrecer nada y acordar un próximo paso concreto.",
+          "keys": [
+            "No defiendas el servicio de entrada: preguntá.",
+            "Indagá cómo vive el cliente la relación.",
+            "Evitá ofrecer descuentos como primera respuesta.",
+            "Proponé un cambio concreto y verificable."
+          ],
+          "lines": [
+            "¿Qué tendría que pasar para que sientas que esto vale la pena?",
+            "Te propongo una reunión mensual de 30 minutos para revisar resultados juntos."
+          ]
+        }
+      },
+      {
+        "group": 5,
+        "title": "El cliente compara precios",
+        "professional": "Comercial",
+        "summary": "El cliente pide un descuento importante porque otra agencia le ofreció algo más económico.",
+        "client": {
+          "context": "Recibiste dos propuestas. La de Avalon es más cara. Querés un descuento fuerte.",
+          "goal": "Bajar el precio un 30%.",
+          "hidden": "En realidad no entendés las diferencias de alcance entre las propuestas y querés sentirte seguro antes de contratar. Lo admitís si te ayudan a comparar en vez de discutir el precio.",
+          "behaviour": "Negociá firme sobre el número. Si te bajan el precio sin más, desconfiá. Si te ayudan a comparar, interesate.",
+          "lines": [
+            "La otra agencia me cobra bastante menos.",
+            "Al final todos hacen más o menos lo mismo, ¿no?",
+            "Si me igualás el precio, firmamos hoy."
+          ]
+        },
+        "pro": {
+          "context": "Sos de Comercial. La propuesta de Avalon incluye más alcance y un equipo dedicado. Tu margen de descuento es limitado.",
+          "goal": "Ayudar al cliente a comparar con claridad y defender el valor sin desacreditar a la competencia.",
+          "keys": [
+            "Preguntá qué incluye la otra propuesta.",
+            "Compará alcance contra alcance, no precio contra precio.",
+            "No hables mal de la otra agencia.",
+            "Si ajustás precio, ajustá también el alcance."
+          ],
+          "lines": [
+            "¿Te parece si comparamos punto por punto qué incluye cada una?",
+            "Si el presupuesto es el límite, veamos qué alcance tiene sentido."
+          ]
+        }
+      },
+      {
+        "group": 6,
+        "title": "El cliente no quiere pagar",
+        "professional": "Administración",
+        "summary": "El cliente discute una factura por un trabajo adicional.",
+        "client": {
+          "context": "Te llegó una factura por un trabajo adicional que no esperabas pagar.",
+          "goal": "No pagarla, o pagar mucho menos.",
+          "hidden": "Considerás que hubo una diferencia entre lo que te prometieron comercialmente y lo que te entregaron. Lo decís si te preguntan qué te habían dicho al contratar.",
+          "behaviour": "Mostrate molesto y desconfiado. Si te leen el contrato de entrada, endurecete. Si te preguntan qué te prometieron, explicá.",
+          "lines": [
+            "Esto no lo voy a pagar.",
+            "Nadie me avisó que esto se cobraba aparte.",
+            "Me dijeron otra cosa cuando firmé."
+          ]
+        },
+        "pro": {
+          "context": "Sos de Administración. El trabajo adicional fue entregado y hay un mail del cliente pidiéndolo.",
+          "goal": "Entender el desacuerdo, separar hechos de percepciones y acordar un camino, sin resignar lo que corresponde.",
+          "keys": [
+            "Escuchá antes de mostrar documentación.",
+            "Preguntá qué le prometieron.",
+            "Si hay una diferencia con Comercial, consultá antes de decidir.",
+            "Acordá un próximo paso con fecha."
+          ],
+          "lines": [
+            "Contame qué te habían explicado cuando contrataron.",
+            "Lo reviso con el área comercial y te respondo el jueves."
+          ]
+        }
+      }
+    ]
+  },
+  "sentimentSurvey": {
+    "loaded": false,
+    "period": "",
+    "clientsSurveyed": null,
+    "responses": null,
+    "scaleMax": 5,
+    "metrics": [
+      {
+        "id": "satisfaccion",
+        "label": "Satisfacción general",
+        "value": null
+      },
+      {
+        "id": "acompanamiento",
+        "label": "Percepción del acompañamiento",
+        "value": null
+      },
+      {
+        "id": "claridad",
+        "label": "Claridad de la comunicación",
+        "value": null
+      },
+      {
+        "id": "valor",
+        "label": "Valor percibido",
+        "value": null
+      },
+      {
+        "id": "facilidad",
+        "label": "Facilidad para resolver problemas",
+        "value": null
+      }
+    ],
+    "strengths": [],
+    "improvements": [],
+    "comments": []
+  },
+  "beliefsVsPerception": {
+    "items": []
+  }
+}

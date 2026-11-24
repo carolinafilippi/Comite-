@@ -33,7 +33,8 @@ const cfg = window.AVALON_CONFIG ?? {}
 const params = hashParams()
 export const IS_DEMO = !cfg.apiUrl || params.has('demo')
 export const SESION = (params.get('sesion') || cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
-export const IS_TEST_SESSION = SESION !== 'COMITE'
+/** Sesión de prueba = cualquier sesión distinta de la configurada para el evento (config.js → sesion). */
+export const IS_TEST_SESSION = SESION !== (cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
 
 /** URL pública para los QR (respeta demo/sesión de prueba). */
 export function publicUrl(route: string) {

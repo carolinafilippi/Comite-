@@ -31,7 +31,7 @@ Una presentación web con formularios propios de Avalon. Las respuestas se guard
 1. Abrí `sitio/config.js` con cualquier editor de texto y completalo:
    ```js
    apiUrl: "https://script.google.com/macros/s/XXXX/exec",   // la URL del paso 5
-   sesion: "COMITE",
+   sesion: "COMITE-EVENTO",
    siteUrl: ""                                               // completalo después del paso 2
    ```
 2. Entrá a **app.netlify.com/drop** (con una cuenta gratuita) y arrastrá la carpeta `sitio` completa. Netlify te da una dirección del tipo `https://nombre.netlify.app`. Podés cambiar el nombre en *Site settings*.
@@ -112,9 +112,21 @@ Si alguna vez cambiás el script, usá **Implementar → Administrar implementac
 
 ---
 
-## 6. Cambiar textos o datos
+## 6. Cambiar textos o datos (sin Claude y sin recompilar)
 
-Todo el contenido está en `codigo-fuente/src/content/comite.json`: diapositivas, casos, alternativas, recomendaciones, autores, actividades, notas del presentador y duraciones. Después de editarlo hay que recompilar con `npm install` y `npm run build`, y volver a subir la carpeta `dist`.
+Todos los textos están en **`docs/contenido.json`**, en el repositorio de GitHub: diapositivas, casos, alternativas, respuestas correctas y análisis de la Actividad 02, autores, roleplay, notas del presentador y duraciones.
 
-- **Encuesta de sentimiento:** completá `sentimentSurvey` en el JSON con los datos reales y poné `"loaded": true`. Mientras no haya datos, la diapositiva muestra "Datos pendientes de incorporar". Nunca usa números inventados.
+1. Abrí el archivo en github.com/carolinafilippi/Comite-/blob/main/docs/contenido.json y tocá el lápiz (Edit).
+2. Cambiá el texto entre comillas. No borres comillas, comas ni llaves.
+3. Tocá **Commit changes**. En 1 o 2 minutos el cambio aparece en la presentación y en los celulares. Recargá la página.
+
+Si el archivo queda con un error de formato, la presentación sigue funcionando con los textos anteriores. Para verificar antes de guardar, podés pegar el contenido en jsonlint.com.
+
+- **Encuesta de sentimiento:** completá `sentimentSurvey` con los datos reales y poné `"loaded": true`. Mientras no haya datos, la diapositiva muestra "Datos pendientes de incorporar".
 - **"Lo que creemos vs. lo que perciben":** cargá los pares en `beliefsVsPerception.items`, cada uno marcado como `"hecho"` o `"interpretacion"`.
+
+Los cambios de diseño o de funcionamiento sí requieren modificar el código (`src/`) y volver a compilar.
+
+## 7. Empezar de cero
+
+Las respuestas se separan por **sesión**. En `docs/config.js`, el valor `sesion` define la sesión del evento real. Si ese día querés que todo arranque en cero, cambiá ese nombre (por ejemplo `"COMITE-DIC"`). Las respuestas viejas quedan en la planilla, pero la presentación no las muestra.
