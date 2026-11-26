@@ -23,9 +23,9 @@ export interface AuthorContent {
 }
 
 export type InterpKey = 'siente' | 'busca' | 'primera'
-export interface GroupQuestion { id: InterpKey; prompt: string; options: Record<OptionKey, string>; correct: OptionKey; why: string }
+export interface GroupQuestion { id: InterpKey; prompt: string; options: Record<OptionKey, string>; tags: Record<OptionKey, string>; correct: OptionKey; why: string }
 export interface GroupCase {
-  group: number; theme: string; quote: string; signals: string[]
+  group: number; theme: string; quote: string; signals: string[]; need: string; needWhy: string
   questions: GroupQuestion[]; othersMiss: string; backing: { author: string; text: string }
 }
 
@@ -43,6 +43,7 @@ export interface ComiteContent {
   cases: CaseContent[]
   authors: AuthorContent[]
   groupsA2: GroupCase[]
+  needCategories?: string[]
   roleplay: { evaluation: { id: string; label: string }[]; phraseQuestion: string; cases: RoleplayCase[] }
   sentimentSurvey: {
     loaded: boolean; period: string; clientsSurveyed: number | null; responses: number | null; scaleMax: number
@@ -57,3 +58,20 @@ export interface ComiteContent {
 export const content = raw as unknown as ComiteContent
 export const caseById = (id: string) => content.cases.find(c => c.id === id)!
 export const authorById = (id: string) => content.authors.find(a => a.id === id)!
+
+/**
+ * Interpretación de un grupo: cada opción elegida apunta a una necesidad (tags).
+ * Gana la necesidad más repetida entre las 3 respuestas; si empatan, decide «¿Qué está buscando?».
+ */
+export function groupReading(g: GroupCase, r?: Partial<Record<InterpKey, string>> | null): string | null {
+  if (!r) return null
+  const picks = g.questions.map(q => ({ q, k: r[q.id] as OptionKey | undefined })).filter(x => x.k && x.q.tags?.[x.k])
+  if (!picks.length) return null
+  const count: Record<string, number> = {}
+  picks.forEach(({ q, k }) => { const t = q.tags[k!]; count[t] = (count[t] ?? 0) + 1 })
+  const max = Math.max(...Object.values(count))
+  const top = Object.keys(count).filter(t => count[t] === max)
+  if (top.length === 1) return top[0]
+  const busca = picks.find(x => x.q.id === 'busca')
+  return busca && top.includes(busca.q.tags[busca.k!]) ? busca.q.tags[busca.k!] : top[0]
+}

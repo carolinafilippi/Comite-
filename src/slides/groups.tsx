@@ -1,33 +1,46 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { QRCodeSVG } from 'qrcode.react'
-import { content, type InterpKey, type OptionKey } from '../content'
+import { content, groupReading, type InterpKey, type OptionKey } from '../content'
 import { TimerChip } from '../components/TimerChip'
 import { ease, Eyebrow, Frame, Highlight, Num, rise, Title } from './kit'
 import type { DeckCtx, SlideProps } from './types'
 
 const GROUPS = [1, 2, 3, 4, 5, 6]
 
-/* ───────── Seis QR de grupo ───────── */
+/* ───────── Seis QR de grupo + estado de respuesta ───────── */
 export function GroupQRSlide({ def, page, ctx }: SlideProps) {
   const joined = new Set(ctx.results.unidos)
+  const answered = ctx.results.interpretaciones
+  const done = Object.keys(answered).length
   return (
     <Frame page={page} bg="bg-mist">
-      <div className="absolute left-[96px] right-[96px] top-[160px] flex items-end justify-between">
-        <div><Title size={60}>{def.title}</Title><motion.p className="text-[25px] text-text mt-2" {...rise(0.15)}>{def.lead}</motion.p></div>
-        <p className="font-display font-semibold text-[26px] text-ink tabular-nums">{joined.size}/6 conectados</p>
+      <div className="absolute left-[96px] right-[96px] top-[150px] flex items-end justify-between gap-8">
+        <div>
+          <Title size={56}>{def.title}</Title>
+          <motion.p className="text-[23px] text-text mt-2" {...rise(0.15)}>{def.lead}</motion.p>
+          {def.questions && (
+            <motion.div className="flex gap-3 mt-4" {...rise(0.25)}>
+              {(def.questions as string[]).map((q, i) => <span key={q} className="rounded-full bg-white px-5 py-2 text-[19px] text-ink"><b className="font-display text-display mr-2">{i + 1}</b>{q}</span>)}
+            </motion.div>
+          )}
+        </div>
+        <div className="flex items-center gap-5 shrink-0">
+          {ctx.timer && <TimerChip t={ctx.timer} />}
+          <p className="font-display font-semibold text-[24px] text-ink tabular-nums text-right leading-tight">{done}/6 respondieron<br /><span className="font-normal text-[18px] text-muted">{joined.size}/6 conectados</span></p>
+        </div>
       </div>
-      <div className="absolute left-[96px] right-[96px] top-[340px] bottom-[110px] grid grid-cols-3 grid-rows-2 gap-6">
+      <div className="absolute left-[96px] right-[96px] top-[400px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-6">
         {GROUPS.map((g, i) => {
-          const on = joined.has(g)
+          const ok = !!answered[g], on = joined.has(g) || ok
           return (
-            <motion.div key={g} className={`rounded-[32px] bg-white flex items-center gap-7 px-8 border-2 transition-colors ${on ? 'border-sym-green' : 'border-transparent'}`} {...rise(0.15 + i * 0.07, 24)}>
-              <div className="p-2 bg-white rounded-xl"><QRCodeSVG value={ctx.groupUrl(g)} size={220} level="M" marginSize={0} /></div>
+            <motion.div key={g} className={`rounded-[32px] bg-white flex items-center gap-7 px-7 border-[3px] transition-colors ${ok ? 'border-display' : on ? 'border-sym-green' : 'border-transparent'}`} {...rise(0.15 + i * 0.07, 24)}>
+              <div className="p-1.5 bg-white rounded-xl"><QRCodeSVG value={ctx.groupUrl(g)} size={190} level="M" marginSize={0} /></div>
               <div>
-                <p className="eyebrow text-[18px] text-brand">Grupo</p>
-                <p className="font-display font-bold text-[84px] leading-none text-ink tabular-nums">{String(g).padStart(2, '0')}</p>
-                <p className={`mt-4 flex items-center gap-2 text-[20px] ${on ? 'text-ink' : 'text-subtle'}`}>
-                  <motion.span className={`size-3.5 rounded-full ${on ? 'bg-sym-green' : 'bg-line'}`} animate={on ? { scale: [1, 1.5, 1] } : {}} transition={{ duration: 0.6 }} />
-                  {on ? 'Conectado' : 'Esperando'}
+                <p className="eyebrow text-[17px] text-brand">Grupo</p>
+                <p className="font-display font-bold text-[76px] leading-none text-ink tabular-nums">{String(g).padStart(2, '0')}</p>
+                <p className={`mt-3 flex items-center gap-2 text-[19px] ${ok ? 'text-display font-display font-semibold' : on ? 'text-ink' : 'text-subtle'}`}>
+                  <span className={`size-3.5 rounded-full ${ok ? 'bg-display' : on ? 'bg-sym-green' : 'bg-line'}`} />
+                  {ok ? 'Respondió' : on ? 'Conectado' : 'Esperando'}
                 </p>
               </div>
             </motion.div>
@@ -75,60 +88,64 @@ export function GroupChallengeSlide({ def, page, ctx }: SlideProps) {
 
 const QLABEL: Record<InterpKey, string> = { siente: 'Siente', busca: 'Busca', primera: 'Primero' }
 
-/* ───────── Respuestas de los grupos + respuesta correcta (→ revela) ───────── */
+/* ───────── Interpretación de cada grupo → (clic) necesidad real ───────── */
 export function GroupResultsSlide({ def, page, step, ctx }: SlideProps) {
   const res = ctx.results.interpretaciones
   const reveal = step >= 1
   let hits = 0, total = 0
-  content.groupsA2.forEach(g => { const r = res[g.group]; if (r) g.questions.forEach(q => { total++; if (r[q.id] === q.correct) hits++ }) })
+  content.groupsA2.forEach(g => { const n = groupReading(g, res[g.group]); if (n) { total++; if (n === g.need) hits++ } })
   const sel = ctx.selected && res[ctx.selected] ? ctx.selected : null
   return (
     <Frame page={page}>
-      <div className="absolute left-[96px] right-[96px] top-[160px] flex items-end justify-between">
-        <div>
-          <Title size={56}>{def.title}</Title>
-          {reveal ? (
-            <div className="flex items-center gap-6 text-[19px] text-muted mt-3">
-              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-sym-green" />coincide</span>
-              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-mist border border-line" />eligió el grupo</span>
-              <span className="flex items-center gap-2"><span className="size-4 rounded-full bg-display" />respuesta correcta</span>
-            </div>
-          ) : <motion.p className="text-[22px] text-text mt-2" {...rise(0.1)}>Lo que eligió cada grupo. Avanzá para ver la respuesta correcta.</motion.p>}
+      <div className="absolute left-[96px] right-[96px] top-[160px]">
+        <Title size={56} className="whitespace-nowrap">{def.title}</Title>
+        <div className="flex items-baseline justify-between gap-8 mt-2">
+          <motion.p className="text-[22px] text-text" {...rise(0.1)}>{reveal ? 'Lo que interpretó cada grupo frente a la necesidad real del cliente.' : 'Lo que interpretó cada grupo, según sus respuestas. Avanzá para ver la necesidad real.'}</motion.p>
+          <AnimatePresence>
+            {reveal && total > 0 && (
+              <motion.p className="font-display font-semibold text-[24px] text-ink whitespace-nowrap" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+                {hits}/{total} <span className="font-normal text-muted">identificaron la necesidad real</span>
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
-        <AnimatePresence>
-          {reveal && total > 0 && (
-            <motion.p className="font-display font-semibold text-[24px] text-ink" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              {hits}/{total} <span className="font-normal text-muted">coincidencias con la lectura correcta</span>
-            </motion.p>
-          )}
-        </AnimatePresence>
       </div>
-      <div className="absolute left-[96px] right-[96px] top-[290px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-5">
+      <div className="absolute left-[96px] right-[96px] top-[290px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-6">
         {content.groupsA2.map((g, i) => {
           const r = res[g.group]
+          const reading = groupReading(g, r)
+          const ok = reading === g.need
+          const letters = g.questions.map(q => (r?.[q.id] as string) || '–').join(' · ')
           return (
-            <motion.div key={g.group} className={`rounded-[28px] px-6 py-5 flex flex-col ${r ? 'bg-white border-2 border-line' : 'bg-mist'}`} {...rise(0.1 + i * 0.05, 18)}>
+            <motion.div key={g.group} className={`relative rounded-[30px] px-7 py-6 flex flex-col overflow-hidden ${r ? 'bg-white border-2 border-line' : 'bg-mist'}`} {...rise(0.1 + i * 0.05, 18)}>
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-[20px] text-ink">Grupo {String(g.group).padStart(2, '0')} · <span className="text-brand">{g.theme}</span></span>
+                <span className="font-display font-bold text-[20px] text-ink">Grupo {String(g.group).padStart(2, '0')}</span>
                 <span className="text-[14px] text-subtle font-display">tecla {g.group}</span>
               </div>
+              <p className="text-[18px] leading-[1.35] text-muted mt-1 line-clamp-2">“{g.quote}”</p>
               {r ? (
-                <div className="mt-3 flex flex-col gap-3 flex-1 justify-between">
-                  {g.questions.map(q => {
-                    const mine = r[q.id] as OptionKey | '', ok = mine === q.correct
-                    return (
-                      <div key={q.id} className="grid grid-cols-[86px_1fr] gap-3 items-start">
-                        <span className="eyebrow text-[14px] text-muted pt-2">{QLABEL[q.id]}</span>
-                        <div className="flex gap-3 items-start">
-                          <span className={`shrink-0 size-[38px] rounded-full grid place-items-center font-display font-bold text-[18px] transition-colors ${!reveal ? 'bg-lilac-50 text-display' : ok ? 'bg-sym-green text-white' : 'bg-mist text-subtle line-through'}`}>{mine || '—'}</span>
-                          {reveal && !ok && <span className="shrink-0 size-[38px] rounded-full grid place-items-center font-display font-bold text-[18px] bg-display text-white">{q.correct}</span>}
-                          <p className="text-[18px] leading-[1.3] text-ink line-clamp-2 pt-0.5">{reveal ? q.options[q.correct] : mine ? q.options[mine] : '—'}</p>
+                <div className="mt-auto">
+                  <p className="eyebrow text-[14px] text-muted">Respondieron {letters} · interpretaron</p>
+                  <p className={`font-display font-bold text-[44px] leading-[1.05] mt-1 transition-colors ${reveal && !ok ? 'text-subtle line-through decoration-[3px]' : 'text-ink'}`}>{reading}</p>
+                  <AnimatePresence>
+                    {reveal && (
+                      <motion.div className={`mt-3 rounded-[18px] px-5 py-3 flex items-center gap-3 ${ok ? 'bg-sym-green text-white' : 'bg-display text-white'}`}
+                        initial={{ opacity: 0, y: 16, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: i * 0.12, duration: 0.5, ease }}>
+                        <span className="font-display font-bold text-[26px]">{ok ? '✓' : '→'}</span>
+                        <div>
+                          <p className="text-[14px] uppercase tracking-[.08em] font-display opacity-80">{ok ? 'Coincide con la necesidad real' : 'Necesidad real'}</p>
+                          <p className="font-display font-bold text-[28px] leading-tight">{g.need}</p>
                         </div>
-                      </div>
-                    )
-                  })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              ) : <p className="text-[19px] text-subtle mt-auto">Esperando respuesta…</p>}
+              ) : (
+                <div className="mt-auto">
+                  <p className="text-[19px] text-subtle">Esperando respuesta…</p>
+                  {reveal && <p className="mt-3 rounded-[18px] px-5 py-3 bg-display text-white font-display"><span className="text-[14px] uppercase tracking-[.08em] opacity-80 block">Necesidad real</span><span className="font-bold text-[28px]">{g.need}</span></p>}
+                </div>
+              )}
             </motion.div>
           )
         })}
@@ -146,7 +163,11 @@ function InterpretationModal({ g, ctx, reveal }: { g: number; ctx: DeckCtx; reve
       <motion.div className="w-[1660px] bg-white rounded-[44px] p-[52px]" initial={{ scale: 0.94, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.96, opacity: 0 }} transition={{ duration: 0.45, ease }}>
         <p className="eyebrow text-[20px] text-brand">Grupo {String(g).padStart(2, '0')} · {meta.theme}</p>
         <p className="font-display font-bold text-[36px] leading-[1.2] text-ink mt-2">“{meta.quote}”</p>
-        <div className="mt-8 flex flex-col gap-6">
+        <div className="mt-5 flex gap-4 text-[22px]">
+          <span className="rounded-full bg-lilac-50 px-5 py-2">Interpretaron: <b className="font-display">{groupReading(meta, r)}</b></span>
+          {reveal && <span className="rounded-full bg-display text-white px-5 py-2">Necesidad real: <b className="font-display">{meta.need}</b></span>}
+        </div>
+        <div className="mt-6 flex flex-col gap-5">
           {meta.questions.map(q => {
             const mine = r[q.id] as OptionKey | ''
             const ok = mine === q.correct
@@ -154,7 +175,7 @@ function InterpretationModal({ g, ctx, reveal }: { g: number; ctx: DeckCtx; reve
               <div key={q.id} className="grid grid-cols-[300px_1fr] gap-8 border-t border-line pt-5">
                 <p className="font-display font-semibold text-[24px] text-ink">{q.prompt}</p>
                 <div className="flex flex-col gap-2">
-                  <p className="text-[22px] text-ink"><b className="font-display text-display mr-2">{mine || '—'}</b>{mine ? q.options[mine] : 'Sin respuesta'} <span className="text-muted text-[18px]">· eligió el grupo</span></p>
+                  <p className="text-[22px] text-ink"><b className="font-display text-display mr-2">{mine || '—'}</b>{mine ? q.options[mine] : 'Sin respuesta'} <span className="text-muted text-[18px]">· eligió el grupo{mine ? ` → ${q.tags[mine]}` : ''}</span></p>
                   {reveal && !ok && <p className="text-[22px] text-ink"><b className="font-display text-sym-green mr-2">{q.correct}</b>{q.options[q.correct]} <span className="text-muted text-[18px]">· respuesta correcta</span></p>}
                   {reveal && ok && <p className="text-[18px] text-sym-green font-display font-semibold">✓ Coincide con la respuesta correcta</p>}
                 </div>
@@ -177,7 +198,11 @@ export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
       <div className="absolute left-[96px] right-[96px] top-[160px]">
         <Eyebrow>Análisis · Grupo {String(g.group).padStart(2, '0')} · {g.theme}</Eyebrow>
         <motion.p className="font-display font-bold text-[40px] leading-[1.2] text-ink mt-3 max-w-[1650px]" {...rise(0.1)}>“<Highlight text={g.quote} marks={g.signals} />”</motion.p>
-        <motion.p className="text-[19px] text-muted mt-2" {...rise(0.2)}>En violeta, las señales de la frase que orientan la lectura.</motion.p>
+        <motion.div className="flex items-center gap-4 mt-3" {...rise(0.2)}>
+          <span className="rounded-full bg-display text-white px-5 py-1.5 font-display font-semibold text-[20px]">Necesidad real: {g.need}</span>
+          {r && <span className={`rounded-full px-5 py-1.5 text-[19px] ${groupReading(g, r) === g.need ? 'bg-sym-green text-white' : 'bg-mist text-text'}`}>El grupo interpretó: <b className="font-display">{groupReading(g, r)}</b></span>}
+          <span className="text-[18px] text-muted">En violeta, las señales de la frase.</span>
+        </motion.div>
       </div>
       <div className="absolute left-[96px] top-[380px] w-[1080px] bottom-[96px] flex flex-col gap-5">
         {g.questions.map((q, i) => (

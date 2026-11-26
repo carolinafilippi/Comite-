@@ -268,31 +268,23 @@
       "type": "groupQR",
       "block": "03",
       "activity": "a2",
-      "title": "Un celular por grupo",
-      "lead": "Escaneen el QR de su grupo. Solo ese dispositivo envía la respuesta consensuada.",
-      "notes": "Esperá a que los 6 grupos aparezcan como conectados."
-    },
-    {
-      "id": "a2-challenge",
-      "type": "groupChallenge",
-      "block": "03",
-      "activity": "a2",
-      "timerMin": 8,
-      "title": "¿Qué siente y qué busca el cliente?",
+      "title": "Escaneen y respondan",
+      "lead": "Un celular por grupo. Cada grupo lee su frase de cliente y elige una opción en cada pregunta.",
+      "notes": "Cada grupo escanea su QR y responde en el celular (8 minutos, T inicia el temporizador). La tarjeta del grupo pasa a «Respondió». Pedí que debatan: después van a justificar su elección.",
       "questions": [
         "¿Qué está sintiendo el cliente?",
         "¿Qué está buscando realmente?",
         "¿Qué harías primero?"
       ],
-      "notes": "8 minutos. Cada grupo lee su frase, debate y elige una opción por pregunta en el celular. Pedí que justifiquen su elección entre ellos: después la van a defender."
+      "timerMin": 8
     },
     {
       "id": "a2-results",
       "type": "groupResults",
       "block": "03",
       "activity": "a2",
-      "title": "Lo que interpretó cada grupo",
-      "notes": "Primero se ven las elecciones de cada grupo. Con → aparece la respuesta correcta. Teclas 1 a 6 para ver un grupo en detalle; Esc vuelve. Después sigue la etapa de análisis, caso por caso."
+      "title": "¿Qué necesita realmente el cliente?",
+      "notes": "Primero se ve lo que interpretó cada grupo según sus respuestas. Con → aparece la necesidad real de cada cliente (✓ si coincide). Teclas 1 a 6: detalle de un grupo. Después sigue el análisis caso por caso."
     },
     {
       "id": "a2-analysis-intro",
@@ -966,7 +958,13 @@
             "D": "Ganas de cambiar de agencia cuanto antes."
           },
           "correct": "C",
-          "why": "Compara con el pasado («antes») y describe una carga nueva («tenemos que pedir todo»): no habla de precio ni de calidad, habla de haber dejado de sentirse prioridad."
+          "why": "Compara con el pasado («antes») y describe una carga nueva («tenemos que pedir todo»): no habla de precio ni de calidad, habla de haber dejado de sentirse prioridad.",
+          "tags": {
+            "A": "Precio",
+            "B": "Creatividad",
+            "C": "Acompañamiento",
+            "D": "Cambio"
+          }
         },
         {
           "id": "busca",
@@ -978,7 +976,13 @@
             "D": "Un nuevo responsable para su cuenta."
           },
           "correct": "A",
-          "why": "El problema no es la cantidad de contacto sino quién lo inicia. Quiere dejar de pedir: que le avisemos, le mostremos avances y nos adelantemos."
+          "why": "El problema no es la cantidad de contacto sino quién lo inicia. Quiere dejar de pedir: que le avisemos, le mostremos avances y nos adelantemos.",
+          "tags": {
+            "A": "Acompañamiento",
+            "B": "Más contacto",
+            "C": "Precio",
+            "D": "Cambio"
+          }
         },
         {
           "id": "primera",
@@ -990,14 +994,22 @@
             "D": "Preguntarle qué cosas tuvo que pedir últimamente y qué esperaba recibir sin pedirlo."
           },
           "correct": "D",
-          "why": "Antes de prometer, hay que entender qué cambió para él. La respuesta da ejemplos concretos para diseñar un seguimiento a su medida."
+          "why": "Antes de prometer, hay que entender qué cambió para él. La respuesta da ejemplos concretos para diseñar un seguimiento a su medida.",
+          "tags": {
+            "A": "Más contacto",
+            "B": "Claridad",
+            "C": "Precio",
+            "D": "Acompañamiento"
+          }
         }
       ],
       "othersMiss": "Prometer «más atención» sin entender qué falta suele repetir el problema. Un informe o un descuento responden a otra cosa: no alivian la sensación de tener que empujar la relación.",
       "backing": {
         "author": "Dixon, Freeman y Toman (2010)",
         "text": "Reducir el esfuerzo del cliente pesa en su lealtad: tener que pedir todo es esfuerzo."
-      }
+      },
+      "need": "Acompañamiento",
+      "needWhy": "No pide más contacto ni un descuento: necesita volver a sentirse prioridad, con un seguimiento que se anticipe."
     },
     {
       "group": 2,
@@ -1018,7 +1030,13 @@
             "D": "Vergüenza frente a su equipo."
           },
           "correct": "B",
-          "why": "«Se parece demasiado» sugiere comparación: con su propio contenido o con la competencia. La emoción de fondo es no destacarse, no un gusto personal."
+          "why": "«Se parece demasiado» sugiere comparación: con su propio contenido o con la competencia. La emoción de fondo es no destacarse, no un gusto personal.",
+          "tags": {
+            "A": "Creatividad",
+            "B": "Resultados",
+            "C": "Cambio",
+            "D": "Reconocimiento"
+          }
         },
         {
           "id": "busca",
@@ -1030,7 +1048,13 @@
             "D": "Diferenciarse de la competencia y lograr mejores resultados."
           },
           "correct": "D",
-          "why": "«Creatividad» es el medio que nombra; el trabajo que necesita resolver es diferenciarse y que eso se note en resultados."
+          "why": "«Creatividad» es el medio que nombra; el trabajo que necesita resolver es diferenciarse y que eso se note en resultados.",
+          "tags": {
+            "A": "Creatividad",
+            "B": "Más contacto",
+            "C": "Creatividad",
+            "D": "Resultados"
+          }
         },
         {
           "id": "primera",
@@ -1042,14 +1066,22 @@
             "D": "Explicar que el estilo respeta el manual de marca."
           },
           "correct": "A",
-          "why": "Sin saber contra qué se compara ni qué resultado espera, cualquier propuesta es adivinar. Preguntar define el criterio de éxito antes de producir."
+          "why": "Sin saber contra qué se compara ni qué resultado espera, cualquier propuesta es adivinar. Preguntar define el criterio de éxito antes de producir.",
+          "tags": {
+            "A": "Resultados",
+            "B": "Creatividad",
+            "C": "Creatividad",
+            "D": "Creatividad"
+          }
         }
       ],
       "othersMiss": "Producir rápido (rediseñar o mostrar propuestas) responde al pedido literal y puede fallar otra vez. Defender el manual es correcto técnicamente, pero cierra la conversación sin entender la frustración.",
       "backing": {
         "author": "Christensen et al. (2016) · Jobs to be done",
         "text": "El cliente no compra «creatividad»: contrata un resultado. Hay que descubrir el trabajo que quiere resolver."
-      }
+      },
+      "need": "Resultados",
+      "needWhy": "Habla de creatividad, pero lo que necesita es que su marca se diferencie y que eso se vea en resultados."
     },
     {
       "group": 3,
@@ -1071,7 +1103,13 @@
             "D": "Desinterés por el proyecto."
           },
           "correct": "C",
-          "why": "Dice «no sé», no dice «no sirve». La emoción es incertidumbre: hay inversión constante y no tiene cómo evaluarla."
+          "why": "Dice «no sé», no dice «no sirve». La emoción es incertidumbre: hay inversión constante y no tiene cómo evaluarla.",
+          "tags": {
+            "A": "Precio",
+            "B": "Confianza",
+            "C": "Claridad",
+            "D": "Cambio"
+          }
         },
         {
           "id": "busca",
@@ -1083,7 +1121,13 @@
             "D": "Resultados inmediatos."
           },
           "correct": "B",
-          "why": "Busca poder responder «sí, nos sirve» con evidencia que entienda. Más métricas no alcanzan si no están conectadas con lo que él considera éxito."
+          "why": "Busca poder responder «sí, nos sirve» con evidencia que entienda. Más métricas no alcanzan si no están conectadas con lo que él considera éxito.",
+          "tags": {
+            "A": "Precio",
+            "B": "Claridad",
+            "C": "Resultados",
+            "D": "Resultados"
+          }
         },
         {
           "id": "primera",
@@ -1095,14 +1139,22 @@
             "D": "Preguntarle qué tendría que ver para considerar que esto funciona, y acordar esos indicadores."
           },
           "correct": "D",
-          "why": "Primero hay que definir juntos qué significa «servir» para su negocio; recién después tiene sentido mostrar datos."
+          "why": "Primero hay que definir juntos qué significa «servir» para su negocio; recién después tiene sentido mostrar datos.",
+          "tags": {
+            "A": "Resultados",
+            "B": "Resultados",
+            "C": "Resultados",
+            "D": "Claridad"
+          }
         }
       ],
       "othersMiss": "Mandar el informe o defender métricas responde con nuestros criterios, no con los suyos. Ofrecer más servicios ante una duda de valor suele aumentar la desconfianza.",
       "backing": {
         "author": "Christensen et al. (2016) · Jobs to be done",
         "text": "«¿Qué necesita cambiar en tu negocio para que consideres exitosa nuestra intervención?»"
-      }
+      },
+      "need": "Claridad",
+      "needWhy": "No dice que no sirve: dice que no lo sabe. Necesita claridad sobre el valor que recibe, con indicadores que entienda."
     },
     {
       "group": 4,
@@ -1123,7 +1175,13 @@
             "D": "Desconfianza en el equipo."
           },
           "correct": "A",
-          "why": "El pedido (reuniones) viene acompañado de la causa: «no estamos alineados». Siente que se toman decisiones o se avanza sin que él tenga claridad."
+          "why": "El pedido (reuniones) viene acompañado de la causa: «no estamos alineados». Siente que se toman decisiones o se avanza sin que él tenga claridad.",
+          "tags": {
+            "A": "Control",
+            "B": "Resultados",
+            "C": "Acompañamiento",
+            "D": "Confianza"
+          }
         },
         {
           "id": "busca",
@@ -1135,7 +1193,13 @@
             "D": "Revisar las condiciones del contrato."
           },
           "correct": "C",
-          "why": "«Más reuniones» es su posición; el interés es estar alineados. Puede resolverse con reuniones, pero también con mejor información y decisiones compartidas."
+          "why": "«Más reuniones» es su posición; el interés es estar alineados. Puede resolverse con reuniones, pero también con mejor información y decisiones compartidas.",
+          "tags": {
+            "A": "Más contacto",
+            "B": "Más contacto",
+            "C": "Control",
+            "D": "Precio"
+          }
         },
         {
           "id": "primera",
@@ -1147,14 +1211,22 @@
             "D": "Enviarle un resumen semanal sin hablarlo antes."
           },
           "correct": "B",
-          "why": "Indagar el interés detrás de la posición permite proponer la solución correcta, que no siempre es más reuniones."
+          "why": "Indagar el interés detrás de la posición permite proponer la solución correcta, que no siempre es más reuniones.",
+          "tags": {
+            "A": "Más contacto",
+            "B": "Control",
+            "C": "Precio",
+            "D": "Más contacto"
+          }
         }
       ],
       "othersMiss": "Agendar reuniones complace el pedido literal y puede no resolver la desalineación. Hablar de costos o mandar un resumen sin consultarlo responde sin haber entendido.",
       "backing": {
         "author": "Fisher y Ury (1981) · Negociación basada en intereses",
         "text": "Identificar intereses, no solamente posiciones: detrás de «más reuniones» hay una necesidad de alineación."
-      }
+      },
+      "need": "Control",
+      "needWhy": "Pide reuniones, pero necesita sentir control: información útil y participación en las decisiones."
     },
     {
       "group": 5,
@@ -1176,7 +1248,13 @@
             "D": "Cansancio: siente que el trabajo vuelve a él en lugar de estar delegado."
           },
           "correct": "D",
-          "why": "Contrató especialistas para delegar y percibe que la carga de decidir vuelve a él. No cuestiona tanto nuestra capacidad como el reparto del esfuerzo."
+          "why": "Contrató especialistas para delegar y percibe que la carga de decidir vuelve a él. No cuestiona tanto nuestra capacidad como el reparto del esfuerzo.",
+          "tags": {
+            "A": "Más contacto",
+            "B": "Confianza",
+            "C": "Cambio",
+            "D": "Delegación"
+          }
         },
         {
           "id": "busca",
@@ -1188,7 +1266,13 @@
             "D": "Tener más reuniones de seguimiento."
           },
           "correct": "B",
-          "why": "No quiere desentenderse: quiere que lleguemos con criterio propio y le pidamos solo las decisiones que realmente le corresponden."
+          "why": "No quiere desentenderse: quiere que lleguemos con criterio propio y le pidamos solo las decisiones que realmente le corresponden.",
+          "tags": {
+            "A": "Más contacto",
+            "B": "Delegación",
+            "C": "Cambio",
+            "D": "Más contacto"
+          }
         },
         {
           "id": "primera",
@@ -1200,14 +1284,22 @@
             "D": "Pedirle disculpas por las molestias."
           },
           "correct": "A",
-          "why": "Ordena la relación (resuelvo, consulto, escalo) y baja su esfuerzo sin perder las aprobaciones que sí corresponden."
+          "why": "Ordena la relación (resuelvo, consulto, escalo) y baja su esfuerzo sin perder las aprobaciones que sí corresponden.",
+          "tags": {
+            "A": "Delegación",
+            "B": "Más contacto",
+            "C": "Control",
+            "D": "Acompañamiento"
+          }
         }
       ],
       "othersMiss": "Dejar de consultar todo es el extremo opuesto y genera riesgos. Escudarse en el contrato es cierto pero no resuelve su cansancio. Disculparse sin cambiar nada repite el problema.",
       "backing": {
         "author": "Dixon, Freeman y Toman (2010) · Esfuerzo del cliente",
         "text": "Preguntas abiertas = esfuerzo para el cliente. Recomendaciones con criterio = asesoramiento profesional."
-      }
+      },
+      "need": "Delegación",
+      "needWhy": "No quiere desentenderse: necesita poder delegar en nuestro criterio y decidir solo lo importante."
     },
     {
       "group": 6,
@@ -1228,7 +1320,13 @@
             "D": "Presión por un problema de caja."
           },
           "correct": "B",
-          "why": "«Estoy pensando» indica que la decisión no está tomada. Está evaluando: hay una duda que todavía se puede trabajar."
+          "why": "«Estoy pensando» indica que la decisión no está tomada. Está evaluando: hay una duda que todavía se puede trabajar.",
+          "tags": {
+            "A": "Cambio",
+            "B": "Confianza",
+            "C": "Cambio",
+            "D": "Precio"
+          }
         },
         {
           "id": "busca",
@@ -1240,7 +1338,13 @@
             "D": "Razones claras para seguir: entender el valor y ver un plan concreto."
           },
           "correct": "D",
-          "why": "Si lo comenta en lugar de cancelar directamente, está buscando motivos para quedarse. Necesita entender el valor y ver qué va a cambiar."
+          "why": "Si lo comenta en lugar de cancelar directamente, está buscando motivos para quedarse. Necesita entender el valor y ver qué va a cambiar.",
+          "tags": {
+            "A": "Precio",
+            "B": "Resultados",
+            "C": "Cambio",
+            "D": "Confianza"
+          }
         },
         {
           "id": "primera",
@@ -1252,14 +1356,22 @@
             "D": "Aceptar la baja con cortesía."
           },
           "correct": "C",
-          "why": "Comprender su marco de referencia antes de responder. Un descuento o un caso de éxito ajeno contestan una pregunta que todavía no hicimos."
+          "why": "Comprender su marco de referencia antes de responder. Un descuento o un caso de éxito ajeno contestan una pregunta que todavía no hicimos.",
+          "tags": {
+            "A": "Precio",
+            "B": "Resultados",
+            "C": "Confianza",
+            "D": "Cambio"
+          }
         }
       ],
       "othersMiss": "El descuento instala la idea de que el problema es el precio. Aceptar la baja abandona una relación que todavía se puede recuperar.",
       "backing": {
         "author": "Carl Rogers · Comprensión empática",
         "text": "Antes de responder, comprender cómo vive el cliente la situación: qué lo hace dudar."
-      }
+      },
+      "need": "Confianza",
+      "needWhy": "Todavía no decidió: necesita confianza, razones claras para seguir y un plan concreto."
     }
   ],
   "roleplay": {
@@ -1560,5 +1672,18 @@
   },
   "beliefsVsPerception": {
     "items": []
-  }
+  },
+  "needCategories": [
+    "Acompañamiento",
+    "Resultados",
+    "Claridad",
+    "Control",
+    "Delegación",
+    "Confianza",
+    "Creatividad",
+    "Más contacto",
+    "Precio",
+    "Cambio",
+    "Reconocimiento"
+  ]
 }
