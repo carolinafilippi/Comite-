@@ -205,7 +205,9 @@ export function LearnedSlide({ def, page }: SlideProps) {
         {items.map((it, i) => (
           <div key={it.name} className="relative min-w-0">
             <motion.div className={`h-full rounded-[44px] p-[48px] flex flex-col ${i === 2 ? 'bg-display text-white' : 'bg-white/90'}`} {...rise(0.25 + i * 0.25, 50)}>
-              <img src={icons[i]} alt="" aria-hidden className="h-[96px] w-fit" />
+              <motion.img src={icons[i]} alt="" aria-hidden className="h-[96px] w-fit origin-center"
+                animate={[{ rotate: [0, 90, 90, 180, 180, 360] }, { x: [0, 14, 0], y: [0, -14, 0] }, { scale: [1, 1.22, 1] }][i]}
+                transition={{ duration: [6, 1.8, 2.4][i], repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.4 }} />
               <h3 className={`font-display font-bold text-[54px] leading-[1.02] mt-auto ${i === 2 ? 'text-white' : 'text-display'}`}>{it.name}</h3>
               <p className={`text-[28px] leading-[1.35] mt-4 ${i === 2 ? 'text-white/90' : 'text-ink'}`}>{it.desc}</p>
               {it.where && <span className={`mt-6 w-fit rounded-full px-5 py-2 text-[19px] font-display font-medium ${i === 2 ? 'bg-white/15 text-white' : 'bg-lilac-50 text-display'}`}>{it.where}</span>}
