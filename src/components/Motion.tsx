@@ -9,7 +9,7 @@ export function MovingBg({ src, opacity = 1, className = '' }: { src: string; op
         src={src} alt="" className="absolute inset-[-6%] w-[112%] h-[112%] object-cover max-w-none"
         style={{ opacity }}
         initial={{ scale: 1.12, opacity: 0 }}
-        animate={reduce ? { scale: 1, opacity } : { scale: [1.04, 1.12, 1.04], x: [0, -40, 20, 0], y: [0, 24, -16, 0], rotate: [0, 1.2, -0.8, 0], opacity }}
+        animate={reduce ? { scale: 1, opacity } : { scale: [1.04, 1.08, 1.04], x: [0, -18, 0], y: [0, 10, 0], opacity }}
         transition={reduce ? { duration: 0 } : { duration: 26, repeat: Infinity, ease: 'easeInOut', opacity: { duration: 1.4 } }}
       />
     </div>
@@ -24,7 +24,7 @@ export function FloatingBlobs({ items }: { items: { src: string; x: number; y: n
       {items.map((b, i) => (
         <motion.img key={i} src={b.src} alt="" aria-hidden className="absolute pointer-events-none select-none max-w-none"
           style={{ left: b.x, top: b.y, width: b.w, opacity: b.o ?? 0.5 }}
-          animate={reduce ? {} : { x: [0, 40, -20, 0], y: [0, -30, 20, 0], rotate: [0, 12, -8, 0], scale: [1, 1.06, 0.97, 1] }}
+          animate={reduce ? {} : { x: [0, 18, 0], y: [0, -14, 0] }}
           transition={{ duration: 18 + (b.d ?? i * 4), repeat: Infinity, ease: 'easeInOut' }} />
       ))}
     </>

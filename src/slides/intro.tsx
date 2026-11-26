@@ -13,9 +13,7 @@ export function CoverSlide() {
   const { meta } = content
     const lines = ['Lo que', 'el cliente', 'no dice']
   return (
-    <div className="absolute inset-0">
-      <MovingBg src="brand/bg/bg-mint-violet.jpg" />
-      <FloatingBlobs items={[{ src: 'brand/blobs/blob-violet-sky.png', x: 1180, y: -120, w: 760, o: 0.45 }, { src: 'brand/blobs/blob-mint-blue.png', x: 1500, y: 640, w: 520, o: 0.4, d: 6 }]} />
+    <div className="absolute inset-0 bg-white">
       <motion.div className="absolute top-[64px] left-[110px] right-[110px] flex items-start justify-between"
         initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8, ease }}>
         <Logo variant="stacked" height={70} />
@@ -32,8 +30,7 @@ export function CoverSlide() {
         ))}
       </div>
       <div className="absolute left-[110px] bottom-[150px] w-[980px]">
-        <motion.div className="h-[3px] bg-rule origin-left mb-9" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 1.5, duration: 1.1, ease }} />
-        <motion.p className="text-[40px] leading-[1.35] text-text font-light" {...rise(1.75, 16)}>{meta.subtitle}</motion.p>
+        <motion.p className="font-display font-medium text-[46px] leading-[1.3] text-ink" {...rise(1.75, 16)}>{meta.subtitle.split('construir confianza').map((t, i, a) => <span key={i}>{t}{i < a.length - 1 && <span className="text-display">construir confianza</span>}</span>)}</motion.p>
       </div>
       <motion.div className="absolute left-[110px] right-[110px] bottom-[64px] flex items-end justify-between"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.1, duration: 0.8 }}>
@@ -63,7 +60,6 @@ export function BigQuestionSlide({ def, step }: SlideProps) {
   const follow: string[] = def.follow
   return (
     <Frame bg="bg-graphite" tone="white" footer={false}>
-      <FloatingBlobs items={[{ src: 'brand/blobs/blob-violet-blue.png', x: 1280, y: -80, w: 760, o: 0.7 }, { src: 'brand/blobs/blob-pink-coral.png', x: -200, y: 620, w: 560, o: 0.35, d: 8 }]} />
       <div className="absolute left-[110px] right-[420px] top-[230px]">
         <motion.h2 className="font-display font-bold text-white text-[88px] leading-[1.08]" {...rise(0.1)}>{def.question}</motion.h2>
       </div>
