@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
+import { useEffect, useState } from 'react'
 
 /** Fondo de marca con movimiento lento y continuo (deriva + zoom suave). */
 export function MovingBg({ src, opacity = 1, className = '' }: { src: string; opacity?: number; className?: string }) {
@@ -51,6 +52,92 @@ export function Decor({ items }: { items?: DecorItem[] }) {
           </motion.div>
         )
       })}
+    </div>
+  )
+}
+
+/* ───────── Estilo de referencia: degradé pastel + grilla fina + formas glossy que se transforman ───────── */
+export function GlassBg({ className = '' }: { className?: string }) {
+  return (
+    <div className={`absolute inset-0 ${className}`} aria-hidden
+      style={{
+        backgroundImage: 'linear-gradient(rgba(75,34,244,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(75,34,244,.05) 1px, transparent 1px), linear-gradient(135deg, #e9ddff 0%, #f6f2fd 45%, #ffffff 100%)',
+        backgroundSize: '64px 64px, 64px 64px, 100% 100%',
+      }} />
+  )
+}
+
+type Shp = [number, number, number, number, number, number] // x, y, w, h, radius, opacity
+const GRADS = [
+  'linear-gradient(150deg, #8f7bff 0%, #4b22f4 100%)',
+  'linear-gradient(160deg, #cfe9ff 0%, #3adbd7 100%)',
+  'linear-gradient(200deg, #e6d8ff 0%, #b98aff 100%)',
+  'linear-gradient(160deg, #ffb3c7 0%, #ff4a1c 100%)',
+]
+const SCENES: Shp[][] = [
+  [[250, 290, 130, 130, 999, 1], [280, 320, 60, 60, 999, 0], [280, 320, 60, 60, 999, 0], [280, 320, 40, 40, 999, 0]],
+  [[290, 300, 20, 20, 999, 0], [40, 230, 300, 300, 999, 1], [280, 90, 280, 280, 999, 0.95], [300, 320, 30, 30, 999, 0]],
+  [[170, 260, 120, 120, 999, 1], [320, 90, 120, 360, 999, 1], [80, 180, 56, 220, 999, 0.9], [470, 200, 110, 270, 999, 1]],
+  [[230, 410, 70, 70, 999, 1], [430, 170, 70, 70, 999, 1], [330, 290, 70, 70, 999, 1], [130, 520, 70, 70, 999, 0.8]],
+]
+/** Formas de color glossy que pasan de una composición a otra, como en las referencias. */
+export function GlassShapes({ x, y, scale = 1, interval = 2600 }: { x: number; y: number; scale?: number; interval?: number }) {
+  const reduce = useReducedMotion()
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    if (reduce) return
+    const t = setInterval(() => setI(v => (v + 1) % SCENES.length), interval)
+    return () => clearInterval(t)
+  }, [reduce, interval])
+  const scene = SCENES[reduce ? 2 : i]
+  return (
+    <div className="absolute pointer-events-none" style={{ left: x, top: y, width: 640, height: 640, transform: `scale(${scale})`, transformOrigin: 'top left' }} aria-hidden>
+      {scene.map(([sx, sy, w, h, r, o], k) => (
+        <motion.div key={k} className="absolute"
+          style={{ background: GRADS[k], boxShadow: '0 30px 60px -20px rgba(75,34,244,.35), inset 0 2px 0 rgba(255,255,255,.55)' }}
+          initial={false}
+          animate={{ left: sx, top: sy, width: w, height: h, borderRadius: r, opacity: o }}
+          transition={{ type: 'spring', stiffness: 90, damping: 16, delay: k * 0.06 }} />
+      ))}
+    </div>
+  )
+}
+
+/* ───────── Lupa que recorre palabras ocultas y las ilumina ───────── */
+export function MagnifierWords({ words, field, box }: {
+  words: { t: string; x: number; y: number }[]           // palabras que la lupa visita
+  field: { t: string; x: number; y: number }[]           // palabras de fondo, apenas visibles
+  box: { x: number; y: number; w: number; h: number }
+}) {
+  const reduce = useReducedMotion()
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    if (reduce) return
+    const t = setInterval(() => setI(v => (v + 1) % words.length), 1900)
+    return () => clearInterval(t)
+  }, [reduce, words.length])
+  const cur = words[i]
+  const R = 120
+  return (
+    <div className="absolute pointer-events-none" style={{ left: box.x, top: box.y, width: box.w, height: box.h }} aria-hidden>
+      {field.map((f, k) => (
+        <span key={`f${k}`} className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 grid place-items-center text-white/15 text-[22px]"
+          style={{ left: f.x, top: f.y, width: 150, height: 150 }}>{f.t}</span>
+      ))}
+      {words.map((w, k) => (
+        <motion.span key={w.t} className="absolute -translate-x-1/2 -translate-y-1/2 font-display font-medium text-[30px] whitespace-nowrap"
+          style={{ left: w.x, top: w.y }}
+          animate={k === i
+            ? { color: '#ffffff', scale: 1.18, textShadow: '0 0 18px rgba(185,138,255,.95), 0 0 42px rgba(125,3,255,.8)' }
+            : { color: 'rgba(255,255,255,.22)', scale: 1, textShadow: '0 0 0 rgba(0,0,0,0)' }}
+          transition={{ duration: 0.5, delay: k === i ? 0.35 : 0 }}>{w.t}</motion.span>
+      ))}
+      <motion.div className="absolute" style={{ width: R * 2, height: R * 2, marginLeft: -R, marginTop: -R }}
+        initial={false} animate={{ left: cur.x, top: cur.y }} transition={{ type: 'spring', stiffness: 60, damping: 14 }}>
+        <div className="absolute inset-0 rounded-full border-[6px] border-white"
+          style={{ background: 'radial-gradient(circle, rgba(185,138,255,.22) 0%, rgba(255,255,255,.04) 60%, transparent 72%)', boxShadow: '0 0 40px rgba(125,3,255,.45)' }} />
+        <div className="absolute bg-white rounded-full" style={{ width: 16, height: 130, left: R * 2 - 34, top: R * 2 - 30, transform: 'rotate(-40deg)', transformOrigin: 'top center' }} />
+      </motion.div>
     </div>
   )
 }

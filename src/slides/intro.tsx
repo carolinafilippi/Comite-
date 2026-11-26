@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { QRCodeSVG } from 'qrcode.react'
 import { Logo, SymbolsRow } from '../components/Brand'
-import { MovingBg } from '../components/Motion'
+import { GlassBg, GlassShapes, MagnifierWords } from '../components/Motion'
 import { content } from '../content'
 import { TimerChip } from '../components/TimerChip'
 import { ease, Eyebrow, Frame, Highlight, Num, rise, Title } from './kit'
@@ -14,6 +14,7 @@ export function CoverSlide() {
     const lines = ['Lo que', 'el cliente', 'no dice']
   return (
     <div className="absolute inset-0 bg-white">
+      <GlassBg />
       <motion.div className="absolute top-[64px] left-[110px] right-[110px] flex items-start justify-between"
         initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8, ease }}>
         <Logo variant="stacked" height={70} />
@@ -60,7 +61,10 @@ export function BigQuestionSlide({ def, step }: SlideProps) {
   const follow: string[] = def.follow
   return (
     <Frame bg="bg-graphite" tone="white" footer={false}>
-      <div className="absolute left-[110px] right-[420px] top-[230px]">
+      <MagnifierWords box={{ x: 1330, y: 160, w: 560, h: 520 }}
+        words={[{ t: 'urgencia', x: 130, y: 60 }, { t: 'miedo', x: 420, y: 140 }, { t: 'presupuesto', x: 190, y: 270 }, { t: 'control', x: 430, y: 360 }, { t: 'confianza', x: 230, y: 470 }]}
+        field={[{ t: 'dudas', x: 470, y: 30 }, { t: 'presión', x: 50, y: 180 }, { t: 'jefe', x: 330, y: 220 }, { t: 'tiempo', x: 490, y: 470 }, { t: 'resultados', x: 70, y: 390 }]} />
+      <div className="absolute left-[110px] right-[640px] top-[230px]">
         <motion.h2 className="font-display font-bold text-white text-[88px] leading-[1.08]" {...rise(0.1)}>{def.question}</motion.h2>
       </div>
       <div className="absolute left-[110px] right-[110px] bottom-[110px] grid grid-cols-3 gap-8">
@@ -123,7 +127,8 @@ export function StatementSlide({ def }: SlideProps) {
 export function DividerSlide({ def }: SlideProps) {
   return (
     <div className="absolute inset-0 bg-white overflow-hidden">
-      <MovingBg src={`brand/bg/${def.bg}.jpg`} />
+      <GlassBg />
+      <GlassShapes x={1290} y={110} scale={0.9} />
       <div className="absolute top-[56px] left-[96px] right-[96px] flex justify-between">
         <Logo variant="stacked" height={58} /><SymbolsRow height={34} />
       </div>
@@ -193,7 +198,7 @@ export function LearnedSlide({ def, page }: SlideProps) {
   const icons = ['brand/symbols/awa-symbol-dots.png', 'brand/symbols/awa-symbol-arrow.png', 'brand/symbols/awa-symbol-ribbon.png']
   return (
     <Frame page={page}>
-      <MovingBg src="brand/bg/bg-pastel-sky.jpg" opacity={0.6} />
+      <GlassBg />
       <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={72}>{def.title}</Title></div>
       <div className="absolute left-[96px] right-[96px] top-[360px] bottom-[130px] grid grid-cols-3 gap-[64px]">
         {items.map((it, i) => (
@@ -244,7 +249,8 @@ export function FinalSlide({ def }: SlideProps) {
   const lines: string[] = def.title
   return (
     <div className="absolute inset-0">
-      <MovingBg src="brand/bg/bg-violet-orange-cloud.jpg" />
+      <GlassBg />
+      <GlassShapes x={1480} y={110} scale={0.55} interval={2800} />
       <div className="absolute top-[64px] left-[110px]"><Logo variant="stacked" height={70} /></div>
       <div className="absolute left-[110px] top-[260px]">
         {lines.map((l, i) => (

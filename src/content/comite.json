@@ -198,15 +198,7 @@
       "title": "Psicología e interpretación del cliente",
       "lead": "Por qué el mismo pedido se puede leer de maneras muy distintas.",
       "bg": "bg-lavender-wave",
-      "notes": "Transición: venimos de ver cuánto diferimos entre nosotros. Si eso nos pasa a nosotros, imaginen lo que pasa con el cliente.",
-      "decor": [
-        {
-          "e": "brain",
-          "x": 1430,
-          "y": 220,
-          "s": 290
-        }
-      ]
+      "notes": "Transición: venimos de ver cuánto diferimos entre nosotros. Si eso nos pasa a nosotros, imaginen lo que pasa con el cliente."
     },
     {
       "id": "why-different",
@@ -352,15 +344,7 @@
       "title": "Descifrando al cliente",
       "lead": "El cliente dice una cosa. ¿Qué necesita realmente?",
       "bg": "bg-peach-lilac",
-      "notes": "Armá los 6 grupos mixtos ahora (no por célula). Un celular por grupo.",
-      "decor": [
-        {
-          "e": "magnifier",
-          "x": 1430,
-          "y": 220,
-          "s": 290
-        }
-      ]
+      "notes": "Armá los 6 grupos mixtos ahora (no por célula). Un celular por grupo."
     },
     {
       "id": "a2-qr",
@@ -401,15 +385,7 @@
       "title": "Autoridad profesional y conversaciones difíciles",
       "lead": "Saber escuchar también implica saber recomendar.",
       "bg": "bg-pastel-sky",
-      "notes": "Cambio de foco: de interpretar a posicionarse.",
-      "decor": [
-        {
-          "e": "handshake",
-          "x": 1430,
-          "y": 220,
-          "s": 290
-        }
-      ]
+      "notes": "Cambio de foco: de interpretar a posicionarse."
     },
     {
       "id": "professional-place",
@@ -566,15 +542,7 @@
       "title": "El cliente tiene la palabra",
       "lead": "Actividad 03 · Practicamos una conversación difícil con un cliente.",
       "bg": "bg-peach-violet",
-      "notes": "Mismos 6 grupos y mismo celular por grupo.",
-      "decor": [
-        {
-          "e": "masks",
-          "x": 1430,
-          "y": 220,
-          "s": 290
-        }
-      ]
+      "notes": "Mismos 6 grupos y mismo celular por grupo."
     },
     {
       "id": "a3-run",
@@ -629,15 +597,7 @@
       "title": "Conclusiones y compromisos",
       "lead": "Lo que nos llevamos a la próxima conversación.",
       "bg": "bg-mint-violet",
-      "notes": "Cierre: 5 minutos.",
-      "decor": [
-        {
-          "e": "rocket",
-          "x": 1430,
-          "y": 200,
-          "s": 300
-        }
-      ]
+      "notes": "Cierre: 5 minutos."
     },
     {
       "id": "learned",
@@ -737,21 +697,7 @@
         "Responder mejor."
       ],
       "subtitle": "La confianza se construye en cada conversación.",
-      "notes": "Gracias. Contá que las reglas de los grupos y los resultados se comparten en los próximos días.",
-      "decor": [
-        {
-          "e": "party",
-          "x": 1580,
-          "y": 200,
-          "s": 240
-        },
-        {
-          "e": "sparkles",
-          "x": 1700,
-          "y": 560,
-          "s": 150
-        }
-      ]
+      "notes": "Gracias. Contá que las reglas de los grupos y los resultados se comparten en los próximos días."
     }
   ],
   "cases": [
