@@ -30,8 +30,3 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-
-## Créditos
-
-- Emojis 3D: [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) de Microsoft, licencia MIT (`public/emoji/`).
-- Tipografías Unbounded y Poppins: SIL Open Font License.

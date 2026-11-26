@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'motion/react'
 /** Assets originales del brandbook Avalon: nunca se redibujan ni recolorean. */
 
 export function Logo({ variant = 'stacked', tone = 'black', height = 64, className = '' }: {
@@ -10,8 +11,26 @@ export function Logo({ variant = 'stacked', tone = 'black', height = 64, classNa
   return <img src={`brand/logos/${file}`} alt="Avalon World Agency®" style={{ height }} className={className} draggable={false} />
 }
 
+/** Los 5 símbolos de Avalon (archivos originales), cada uno con su propia animación en bucle. */
+const SYMBOLS: { n: string; w: number; anim: Record<string, number[]>; dur: number }[] = [
+  { n: 'dots', w: 245, anim: { rotate: [0, 90, 90, 180, 180, 360] }, dur: 6 },
+  { n: 'bolt', w: 168, anim: { y: [0, -14, 0, 0], scale: [1, 1.12, 0.95, 1] }, dur: 2.4 },
+  { n: 'ribbon', w: 246, anim: { scaleX: [1, 0.8, 1.1, 1], rotate: [0, -8, 6, 0] }, dur: 3.2 },
+  { n: 'arrow', w: 248, anim: { x: [0, 8, 0], y: [0, -8, 0] }, dur: 1.8 },
+  { n: 'circle', w: 250, anim: { scale: [1, 1.18, 1] }, dur: 2.6 },
+]
 export function SymbolsRow({ height = 44, className = '' }: { height?: number; className?: string }) {
-  return <img src="brand/symbols/awa-symbols-row.png" alt="" aria-hidden style={{ height }} className={className} draggable={false} />
+  const reduce = useReducedMotion()
+  const k = height / 253
+  return (
+    <div className={`flex items-center ${className}`} style={{ gap: 50 * k, height }} aria-hidden>
+      {SYMBOLS.map((sym, i) => (
+        <motion.img key={sym.n} src={`brand/symbols/awa-symbol-${sym.n}.png`} alt="" draggable={false}
+          style={{ height: height * 0.97, width: sym.w * k }} className="object-contain"
+          animate={reduce ? {} : sym.anim} transition={{ duration: sym.dur, repeat: Infinity, ease: 'easeInOut', delay: i * 0.35, repeatDelay: 0.6 }} />
+      ))}
+    </div>
+  )
 }
 
 /** Header de slide interior: logo apilado arriba a la izquierda + fila de símbolos arriba a la derecha. */
