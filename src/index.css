@@ -20,7 +20,7 @@
 
   --color-brand: #7d03ff;        /* acento de marca */
   --color-display: #4b22f4;      /* titulares display */
-  --color-ink: #000000;
+  --color-ink: #2d2d30;          /* títulos: gris oscuro (no negro) */
   --color-text: #3f3f3f;
   --color-graphite: #2d2d2d;
   --color-muted: #6b6b6b;

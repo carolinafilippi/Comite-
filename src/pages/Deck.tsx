@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { DemoBadge } from '../components/Brand'
+import { Decor } from '../components/Motion'
 import { Stage } from '../components/Stage'
 import { content, OPTION_KEYS } from '../content'
 import { api, demo, IS_DEMO, IS_TEST_SESSION, publicUrl, SESION, useResultados } from '../lib/api'
@@ -207,6 +208,7 @@ export function Deck() {
       <AnimatePresence mode="wait">
         <motion.div key={screen.key} className="absolute inset-0" initial={t.initial} animate={t.animate} exit={{ ...t.exit, transition: { duration: 0.25 } }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
           {node}
+          <Decor items={def.decor} />
         </motion.div>
       </AnimatePresence>
 

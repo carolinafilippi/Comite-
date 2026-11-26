@@ -44,7 +44,27 @@
       "id": "cover",
       "type": "cover",
       "block": "01",
-      "notes": "Bienvenida. Presentate y contá el porqué del Comité: el equipo pidió herramientas para posicionarse frente al cliente. No es una repetición del Comité de autonomía y proactividad."
+      "notes": "Bienvenida. Presentate y contá el porqué del Comité: el equipo pidió herramientas para posicionarse frente al cliente. No es una repetición del Comité de autonomía y proactividad.",
+      "decor": [
+        {
+          "e": "shushing",
+          "x": 1380,
+          "y": 300,
+          "s": 250
+        },
+        {
+          "e": "speech",
+          "x": 1640,
+          "y": 520,
+          "s": 170
+        },
+        {
+          "e": "sparkles",
+          "x": 1290,
+          "y": 620,
+          "s": 110
+        }
+      ]
     },
     {
       "id": "big-question",
@@ -56,7 +76,15 @@
         "¿Defendiste tu recomendación?",
         "¿Terminaste aceptando algo con lo que no estabas de acuerdo?"
       ],
-      "notes": "Dejá 20 segundos de silencio. No hace falta que respondan en voz alta; si alguien quiere compartir, una o dos historias como máximo. Las preguntas aparecen de a una con →."
+      "notes": "Dejá 20 segundos de silencio. No hace falta que respondan en voz alta; si alguien quiere compartir, una o dos historias como máximo. Las preguntas aparecen de a una con →.",
+      "decor": [
+        {
+          "e": "thinking",
+          "x": 1600,
+          "y": 230,
+          "s": 220
+        }
+      ]
     },
     {
       "id": "two-skills",
@@ -84,7 +112,21 @@
         }
       ],
       "footnote": "Una sin la otra no alcanza: interpretar sin posicionarse es obedecer; posicionarse sin interpretar es imponer.",
-      "notes": "Idea central del Comité: la empatía y la firmeza no son opuestos. Todo lo que sigue entrena estas dos habilidades a la vez."
+      "notes": "Idea central del Comité: la empatía y la firmeza no son opuestos. Todo lo que sigue entrena estas dos habilidades a la vez.",
+      "decor": [
+        {
+          "e": "ear",
+          "x": 800,
+          "y": 330,
+          "s": 120
+        },
+        {
+          "e": "speech",
+          "x": 1700,
+          "y": 330,
+          "s": 120
+        }
+      ]
     },
     {
       "id": "core-message",
@@ -95,7 +137,15 @@
         "comprender lo que necesita"
       ],
       "attribution": "Avalon World Agency®",
-      "notes": "Frase editorial de Avalon, no es una cita académica."
+      "notes": "Frase editorial de Avalon, no es una cita académica.",
+      "decor": [
+        {
+          "e": "bulb",
+          "x": 1610,
+          "y": 760,
+          "s": 170
+        }
+      ]
     },
     {
       "id": "a1-intro",
@@ -113,7 +163,15 @@
       ],
       "disclaimer": "No hay ganadores. Las recomendaciones son guías para debatir, no leyes universales.",
       "notes": "Pedí que todos escaneen y respondan los 6 casos (unos 8 a 10 minutos; T inicia el temporizador). El formulario queda abierto hasta que pases al bloque 02. Después avanzá al gráfico y debatí los casos con más dispersión.",
-      "timerMin": 10
+      "timerMin": 10,
+      "decor": [
+        {
+          "e": "phone",
+          "x": 1195,
+          "y": 110,
+          "s": 150
+        }
+      ]
     },
     {
       "id": "a1-results",
@@ -132,7 +190,15 @@
       "title": "Psicología e interpretación del cliente",
       "lead": "Por qué el mismo pedido se puede leer de maneras muy distintas.",
       "bg": "bg-lavender-wave",
-      "notes": "Transición: venimos de ver cuánto diferimos entre nosotros. Si eso nos pasa a nosotros, imaginen lo que pasa con el cliente."
+      "notes": "Transición: venimos de ver cuánto diferimos entre nosotros. Si eso nos pasa a nosotros, imaginen lo que pasa con el cliente.",
+      "decor": [
+        {
+          "e": "brain",
+          "x": 1430,
+          "y": 220,
+          "s": 290
+        }
+      ]
     },
     {
       "id": "why-different",
@@ -164,7 +230,15 @@
         "Deseo de mayor reconocimiento"
       ],
       "warning": "Son hipótesis, no diagnósticos. Se confirman preguntando.",
-      "notes": "Cada hipótesis llevaría a una respuesta profesional distinta. Si respondemos al pedido literal, podemos acertar en la forma y fallar en el fondo."
+      "notes": "Cada hipótesis llevaría a una respuesta profesional distinta. Si respondemos al pedido literal, podemos acertar en la forma y fallar en el fondo.",
+      "decor": [
+        {
+          "e": "monocle",
+          "x": 1640,
+          "y": 150,
+          "s": 140
+        }
+      ]
     },
     {
       "id": "author-rogers",
@@ -210,7 +284,15 @@
         "ambos conocimientos trabajan juntos"
       ],
       "attribution": "Avalon World Agency®",
-      "notes": "Puente hacia el bloque de autoridad profesional."
+      "notes": "Puente hacia el bloque de autoridad profesional.",
+      "decor": [
+        {
+          "e": "puzzle",
+          "x": 1620,
+          "y": 770,
+          "s": 160
+        }
+      ]
     },
     {
       "id": "synthesis",
@@ -236,7 +318,15 @@
         }
       ],
       "footnote": "La comprensión profesional implica construir hipótesis y comprobarlas mediante buenas preguntas.",
-      "notes": "Esta secuencia es la base de la Actividad 02."
+      "notes": "Esta secuencia es la base de la Actividad 02.",
+      "decor": [
+        {
+          "e": "ear",
+          "x": 1680,
+          "y": 810,
+          "s": 130
+        }
+      ]
     },
     {
       "id": "sentiment",
@@ -261,7 +351,15 @@
       "title": "Descifrando al cliente",
       "lead": "El cliente dice una cosa. ¿Qué necesita realmente?",
       "bg": "bg-peach-lilac",
-      "notes": "Armá los 6 grupos mixtos ahora (no por célula). Un celular por grupo."
+      "notes": "Armá los 6 grupos mixtos ahora (no por célula). Un celular por grupo.",
+      "decor": [
+        {
+          "e": "magnifier",
+          "x": 1430,
+          "y": 220,
+          "s": 290
+        }
+      ]
     },
     {
       "id": "a2-qr",
@@ -302,7 +400,15 @@
       "title": "Autoridad profesional y conversaciones difíciles",
       "lead": "Saber escuchar también implica saber recomendar.",
       "bg": "bg-pastel-sky",
-      "notes": "Cambio de foco: de interpretar a posicionarse."
+      "notes": "Cambio de foco: de interpretar a posicionarse.",
+      "decor": [
+        {
+          "e": "handshake",
+          "x": 1430,
+          "y": 220,
+          "s": 290
+        }
+      ]
     },
     {
       "id": "professional-place",
@@ -392,7 +498,15 @@
           "short": "Cerrar quién hace qué y cuándo"
         }
       ],
-      "notes": "Cada clic suma un paso. Contá un ejemplo propio por paso, sin leer."
+      "notes": "Cada clic suma un paso. Contá un ejemplo propio por paso, sin leer.",
+      "decor": [
+        {
+          "e": "target",
+          "x": 1650,
+          "y": 150,
+          "s": 130
+        }
+      ]
     },
     {
       "id": "four-steps-example",
@@ -451,7 +565,15 @@
       "title": "El cliente tiene la palabra",
       "lead": "Actividad 03 · Practicamos una conversación difícil con un cliente.",
       "bg": "bg-peach-violet",
-      "notes": "Mismos 6 grupos y mismo celular por grupo."
+      "notes": "Mismos 6 grupos y mismo celular por grupo.",
+      "decor": [
+        {
+          "e": "masks",
+          "x": 1430,
+          "y": 220,
+          "s": 290
+        }
+      ]
     },
     {
       "id": "a3-run",
@@ -479,6 +601,14 @@
           "name": "Evalúen",
           "desc": "Los observadores completan la evaluación en el celular."
         }
+      ],
+      "decor": [
+        {
+          "e": "masks",
+          "x": 950,
+          "y": 150,
+          "s": 100
+        }
       ]
     },
     {
@@ -498,7 +628,15 @@
       "title": "Conclusiones y compromisos",
       "lead": "Lo que nos llevamos a la próxima conversación.",
       "bg": "bg-mint-violet",
-      "notes": "Cierre: 5 minutos."
+      "notes": "Cierre: 5 minutos.",
+      "decor": [
+        {
+          "e": "rocket",
+          "x": 1430,
+          "y": 200,
+          "s": 300
+        }
+      ]
     },
     {
       "id": "learned",
@@ -559,7 +697,15 @@
       "lead": "Cada grupo escribe en su celular una regla concreta que todo Avalon pueda aplicar desde mañana.",
       "footnote": "Con estas reglas armamos el Manual de Conversaciones con Clientes de Avalon.",
       "notes": "3 minutos (T). Mismo celular de grupo. Leé en voz alta las reglas a medida que llegan.",
-      "example": "Antes de responder un pedido, preguntamos qué quiere lograr el cliente."
+      "example": "Antes de responder un pedido, preguntamos qué quiere lograr el cliente.",
+      "decor": [
+        {
+          "e": "memo",
+          "x": 1490,
+          "y": 240,
+          "s": 130
+        }
+      ]
     },
     {
       "id": "closing-concept",
@@ -570,7 +716,15 @@
         "criterio, empatía y decisiones fundamentadas"
       ],
       "attribution": "Avalon World Agency®",
-      "notes": ""
+      "notes": "",
+      "decor": [
+        {
+          "e": "key",
+          "x": 1610,
+          "y": 760,
+          "s": 170
+        }
+      ]
     },
     {
       "id": "final",
@@ -582,7 +736,21 @@
         "Responder mejor."
       ],
       "subtitle": "La confianza se construye en cada conversación.",
-      "notes": "Gracias. Contá que las reglas de los grupos y los resultados se comparten en los próximos días."
+      "notes": "Gracias. Contá que las reglas de los grupos y los resultados se comparten en los próximos días.",
+      "decor": [
+        {
+          "e": "party",
+          "x": 1580,
+          "y": 200,
+          "s": 240
+        },
+        {
+          "e": "sparkles",
+          "x": 1700,
+          "y": 560,
+          "s": 150
+        }
+      ]
     }
   ],
   "cases": [

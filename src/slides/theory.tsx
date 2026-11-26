@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { authorById, content } from '../content'
+import { MovingBg } from '../components/Motion'
 import { ease, Eyebrow, Frame, Num, Pending, rise, Title } from './kit'
 import type { SlideProps } from './types'
 
@@ -99,7 +100,7 @@ export function SynthesisSlide({ def, page }: SlideProps) {
   const steps: { name: string; desc: string }[] = def.steps
   return (
     <Frame page={page} bg="bg-white">
-      <motion.img src="brand/bg/bg-pastel-sky.jpg" alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-70" initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={{ duration: 1.2 }} />
+      <MovingBg src="brand/bg/bg-pastel-sky.jpg" opacity={0.7} />
       <div className="absolute left-[96px] right-[96px] top-[180px]"><Title size={104}>{def.title}</Title></div>
       <div className="absolute left-[96px] right-[96px] top-[470px] grid grid-cols-4 gap-6">
         {steps.map((s, i) => (
