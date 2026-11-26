@@ -59,7 +59,7 @@
           "s": 170
         },
         {
-          "e": "sparkles",
+          "e": "eyes",
           "x": 1290,
           "y": 620,
           "s": 110
@@ -77,14 +77,7 @@
         "¿Terminaste aceptando algo con lo que no estabas de acuerdo?"
       ],
       "notes": "Dejá 20 segundos de silencio. No hace falta que respondan en voz alta; si alguien quiere compartir, una o dos historias como máximo. Las preguntas aparecen de a una con →.",
-      "decor": [
-        {
-          "e": "thinking",
-          "x": 1600,
-          "y": 230,
-          "s": 220
-        }
-      ]
+      "decor": []
     },
     {
       "id": "two-skills",
@@ -116,15 +109,30 @@
       "decor": [
         {
           "e": "ear",
-          "x": 800,
-          "y": 330,
+          "x": 560,
+          "y": 290,
           "s": 120
+        },
+        {
+          "e": "question",
+          "x": 690,
+          "y": 300,
+          "s": 105,
+          "d": 0.2
+        },
+        {
+          "e": "check",
+          "x": 810,
+          "y": 295,
+          "s": 110,
+          "d": 0.4
         },
         {
           "e": "speech",
           "x": 1700,
           "y": 330,
-          "s": 120
+          "s": 120,
+          "d": 0.6
         }
       ]
     },
