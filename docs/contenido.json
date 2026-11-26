@@ -345,13 +345,6 @@
       "notes": "Datos reales de la encuesta (4 de 16 clientes al 26/11). Es una muestra chica: hablá de tendencias. Lo más bajo es Gestión y comunicación (7,5) y los comentarios de mejora hablan de cercanía y claridad en la comunicación: es justamente el tema de este Comité. Comentarios anonimizados."
     },
     {
-      "id": "beliefs",
-      "type": "beliefs",
-      "block": "02",
-      "title": "Lo que nosotros creemos vs. lo que los clientes perciben",
-      "notes": "Distinguí siempre hechos (dato de la encuesta) de interpretaciones (lo que creemos que significa)."
-    },
-    {
       "id": "div-03",
       "type": "divider",
       "block": "03",
