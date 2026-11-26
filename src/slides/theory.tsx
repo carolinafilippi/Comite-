@@ -278,7 +278,17 @@ export function ProfessionalPlaceSlide({ def, page }: SlideProps) {
           </motion.div>
         ))}
       </div>
-      <motion.p className="absolute left-[96px] right-[96px] top-[800px] font-display font-semibold text-[34px] leading-[1.3] text-ink" {...rise(0.7)}>{def.together}</motion.p>
+      <div className="absolute left-[96px] right-[96px] top-[790px] bottom-[110px] flex items-end justify-between gap-10">
+        <motion.p className="font-display font-semibold text-[30px] leading-[1.3] text-ink max-w-[1050px]" {...rise(0.7)}>
+          {def.togetherHighlight ? (def.together as string).replace(new RegExp(`\\s*${def.togetherHighlight}\\.?$`, 'i'), '') : def.together}
+        </motion.p>
+        {def.togetherHighlight && (
+          <motion.span className="font-display font-extrabold text-display text-[110px] leading-[0.9] tracking-[-0.02em] uppercase"
+            initial={{ opacity: 0, scale: 0.85, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease }}>
+            {def.togetherHighlight}
+          </motion.span>
+        )}
+      </div>
     </Frame>
   )
 }

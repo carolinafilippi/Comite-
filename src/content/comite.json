@@ -378,7 +378,8 @@
         "text": "Aporta conocimiento especializado en marketing, estrategia, comunicación y ejecución."
       },
       "together": "La relación profesional requiere colaboración y respeto mutuo. Ni obediencia ni confrontación: confianza.",
-      "notes": "Si solo obedecemos, el cliente pierde el valor de lo que nos contrata. Si solo imponemos, perdemos la relación."
+      "notes": "Si solo obedecemos, el cliente pierde el valor de lo que nos contrata. Si solo imponemos, perdemos la relación.",
+      "togetherHighlight": "confianza"
     },
     {
       "id": "matrix",
