@@ -196,7 +196,7 @@ export function QRPanel({ url, className = '', label, qrSize = 240, footer }: { 
 /* ───────── Lo que nos llevamos ───────── */
 export function LearnedSlide({ def, page }: SlideProps) {
   const items: { name: string; desc: string; where?: string }[] = def.items
-  const icons = ['brand/symbols/awa-symbol-dots.png', 'brand/symbols/awa-symbol-arrow.png', 'brand/symbols/awa-symbol-circle.png']
+  const icons = ['brand/symbols/awa-symbol-dots.png', 'brand/symbols/awa-symbol-arrow.png', 'brand/symbols/awa-symbol-ribbon.png']
   return (
     <Frame page={page}>
       <MovingBg src="brand/bg/bg-pastel-sky.jpg" opacity={0.6} />
@@ -206,8 +206,8 @@ export function LearnedSlide({ def, page }: SlideProps) {
           <div key={it.name} className="relative min-w-0">
             <motion.div className={`h-full rounded-[44px] p-[48px] flex flex-col ${i === 2 ? 'bg-display text-white' : 'bg-white/90'}`} {...rise(0.25 + i * 0.25, 50)}>
               <motion.img src={icons[i]} alt="" aria-hidden className="h-[96px] w-fit origin-center"
-                animate={[{ rotate: [0, 90, 90, 180, 180, 360] }, { x: [0, 14, 0], y: [0, -14, 0] }, { scale: [1, 1.22, 1] }][i]}
-                transition={{ duration: [6, 1.8, 2.4][i], repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.4 }} />
+                animate={[{ rotate: [0, 90, 90, 180, 180, 360] }, { x: [0, 14, 0], y: [0, -14, 0] }, { scaleX: [1, 0.75, 1.12, 1], rotate: [0, -10, 8, 0] }][i]}
+                transition={{ duration: [6, 1.8, 2.8][i], repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.4 }} />
               <h3 className={`font-display font-bold text-[54px] leading-[1.02] mt-auto ${i === 2 ? 'text-white' : 'text-display'}`}>{it.name}</h3>
               <p className={`text-[28px] leading-[1.35] mt-4 ${i === 2 ? 'text-white/90' : 'text-ink'}`}>{it.desc}</p>
               {it.where && <span className={`mt-6 w-fit rounded-full px-5 py-2 text-[19px] font-display font-medium ${i === 2 ? 'bg-white/15 text-white' : 'bg-lilac-50 text-display'}`}>{it.where}</span>}
