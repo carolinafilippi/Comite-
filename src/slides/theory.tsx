@@ -324,41 +324,62 @@ export function MatrixSlide({ def, page }: SlideProps) {
   )
 }
 
-/* ───────── Cuatro pasos ───────── */
-export function FourStepsSlide({ def, page }: SlideProps) {
-  const steps: { name: string; desc: string }[] = def.steps
-  const ex = def.example
+/* ───────── Cuatro pasos: aparecen con cada clic ───────── */
+export function FourStepsFlowSlide({ def, page, step }: SlideProps) {
+  const steps: { name: string; short: string }[] = def.steps
   return (
     <Frame page={page}>
-      <div className="absolute left-[96px] right-[96px] top-[160px]"><Title size={60}>{def.title}</Title></div>
-      <div className="absolute left-[96px] right-[96px] top-[270px] grid grid-cols-4 gap-5">
-        {steps.map((s, i) => (
-          <motion.div key={s.name} className="rounded-[28px] bg-lilac-50 px-8 py-6" {...rise(0.15 + i * 0.1, 20)}>
-            <div className="flex items-baseline gap-3"><Num n={i + 1} className="text-[24px]" /><h3 className="font-display font-bold text-[36px] text-ink">{s.name}</h3></div>
-            <p className="text-[22px] leading-[1.4] text-text mt-2">{s.desc}</p>
-          </motion.div>
-        ))}
+      <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={64}>{def.title}</Title></div>
+      <div className="absolute left-[96px] right-[96px] top-[400px] h-[440px] grid grid-cols-4 gap-[56px]">
+        {steps.map((st, i) => {
+          const on = step >= i
+          return (
+            <div key={st.name} className="relative min-w-0">
+              <motion.div className={`h-full rounded-[40px] p-[38px] flex flex-col ${i === 3 ? 'bg-display text-white' : 'bg-lilac-50'}`}
+                initial={{ opacity: 0, y: 40 }} animate={on ? { opacity: 1, y: 0 } : { opacity: 0.08, y: 0 }} transition={{ duration: 0.6, ease }}>
+                <span className={`font-display font-bold text-[120px] leading-none ${i === 3 ? 'text-white/90' : 'text-display'}`}>{i + 1}</span>
+                <h3 className={`font-display font-bold text-[38px] leading-[1.05] mt-auto ${i === 3 ? 'text-white' : 'text-ink'}`}>{st.name}</h3>
+                <p className={`text-[23px] leading-[1.3] mt-3 ${i === 3 ? 'text-white/85' : 'text-text'}`}>{st.short}</p>
+              </motion.div>
+              {i < steps.length - 1 && (
+                <motion.span className="absolute top-1/2 -right-[46px] -translate-y-1/2 font-display font-bold text-[40px] text-rule" animate={{ opacity: step > i ? 1 : 0.1 }} transition={{ duration: 0.4 }}>→</motion.span>
+              )}
+            </div>
+          )
+        })}
       </div>
-      <motion.div className="absolute left-[96px] right-[96px] top-[500px] bottom-[110px] grid grid-cols-[0.9fr_1.6fr] gap-6" {...rise(0.6)}>
-        <div className="flex flex-col gap-5">
-          <div className="rounded-[28px] bg-mist px-8 py-6">
-            <p className="eyebrow text-[17px] text-muted">El cliente</p>
-            <p className="font-display font-medium text-[28px] leading-[1.3] text-ink mt-2">“{ex.client}”</p>
-          </div>
-          <div className="rounded-[28px] border-2 border-line px-8 py-6 flex-1">
-            <p className="eyebrow text-[17px] text-muted">✕ Respuesta reactiva</p>
-            <p className="text-[25px] leading-[1.4] text-muted mt-2">“{ex.bad}”</p>
-          </div>
-        </div>
-        <div className="rounded-[28px] bg-display text-white px-9 py-7">
-          <p className="eyebrow text-[17px] text-white/75">✓ Respuesta mejorada</p>
-          <p className="text-[25px] leading-[1.5] mt-3">
-            “{(ex.good as string).split(/(\[[^\]]+\])/).map((p, i) => p.startsWith('[')
-              ? <span key={i} className="inline-block align-middle mx-1 px-2.5 py-0.5 rounded-full bg-white/20 text-[16px] font-display uppercase tracking-[.06em]">{p.slice(1, -1)}</span>
-              : <span key={i}>{p}</span>)}”
-          </p>
-        </div>
+    </Frame>
+  )
+}
+
+/* ───────── Ejemplo: respuesta reactiva vs. respuesta en 4 pasos (por clics) ───────── */
+export function FourStepsExampleSlide({ def, page, step }: SlideProps) {
+  const good: { step: string; text: string }[] = def.good
+  const showBad = step >= 1
+  const shown = Math.max(0, step - 1)
+  return (
+    <Frame page={page}>
+      <div className="absolute left-[96px] right-[96px] top-[160px]"><Title size={56}>{def.title}</Title></div>
+      <motion.div className="absolute left-[96px] top-[290px] w-[760px] rounded-[32px] bg-mist px-10 py-8" {...rise(0.15, 20)}>
+        <p className="eyebrow text-[17px] text-muted">El cliente</p>
+        <p className="font-display font-bold text-[40px] leading-[1.15] text-ink mt-2">“{def.client}”</p>
       </motion.div>
+      <motion.div className="absolute left-[96px] top-[560px] w-[760px] rounded-[32px] border-2 border-line px-10 py-8"
+        initial={{ opacity: 0 }} animate={{ opacity: showBad ? 1 : 0, y: showBad ? 0 : 20 }} transition={{ duration: 0.5, ease }}>
+        <p className="eyebrow text-[17px] text-muted">✕ Respuesta reactiva</p>
+        <p className="text-[30px] leading-[1.35] text-muted mt-2">“{def.bad}”</p>
+      </motion.div>
+      <div className="absolute left-[920px] right-[96px] top-[290px] bottom-[110px] rounded-[36px] bg-display px-10 py-8 flex flex-col">
+        <p className="eyebrow text-[17px] text-white/75">✓ Respuesta en cuatro pasos</p>
+        <div className="mt-5 flex flex-col gap-5">
+          {good.map((g, i) => (
+            <motion.div key={g.step} className="flex gap-5 items-start" initial={{ opacity: 0 }} animate={{ opacity: i < shown ? 1 : 0, x: i < shown ? 0 : 20 }} transition={{ duration: 0.5, ease }}>
+              <span className="shrink-0 rounded-full bg-white text-display font-display font-bold text-[16px] uppercase tracking-[.06em] px-4 py-1.5 mt-1">{g.step}</span>
+              <p className="text-[28px] leading-[1.3] text-white">{g.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </Frame>
   )
 }

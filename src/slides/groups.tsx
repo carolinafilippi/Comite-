@@ -249,6 +249,43 @@ export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
   )
 }
 
+/* ───────── Análisis en una sola diapositiva ───────── */
+export function GroupSummarySlide({ def, page, ctx }: SlideProps) {
+  const res = ctx.results.interpretaciones
+  return (
+    <Frame page={page}>
+      <div className="absolute left-[96px] right-[96px] top-[160px]">
+        <Title size={56}>{def.title}</Title>
+        <motion.p className="text-[24px] text-text mt-2" {...rise(0.1)}>{def.lead}</motion.p>
+      </div>
+      <div className="absolute left-[96px] right-[96px] top-[320px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-6">
+        {content.groupsA2.map((g, i) => {
+          const reading = groupReading(g, res[g.group])
+          const ok = reading === g.need
+          return (
+            <motion.div key={g.group} className="rounded-[30px] bg-mist p-7 flex flex-col" {...rise(0.15 + i * 0.08, 20)}>
+              <p className="font-display font-medium text-[19px] leading-[1.3] text-ink line-clamp-3">“{g.quote}”</p>
+              <div className="mt-auto flex items-center gap-3 pt-3">
+                <div className="min-w-0">
+                  <p className="eyebrow text-[13px] text-muted">Parece</p>
+                  <p className="font-display font-semibold text-[18px] text-subtle line-through decoration-2 whitespace-nowrap">{g.theme}</p>
+                </div>
+                <span className="font-display text-[26px] text-rule">→</span>
+                <div className="min-w-0">
+                  <p className="eyebrow text-[13px] text-brand">Necesita</p>
+                  <p className="font-display font-bold text-[28px] leading-none text-display whitespace-nowrap">{g.need}</p>
+                </div>
+                {reading && <span className={`ml-auto shrink-0 size-[40px] rounded-full grid place-items-center font-display font-bold text-[20px] text-white ${ok ? 'bg-sym-green' : 'bg-subtle'}`} title={`Grupo ${g.group}: ${reading}`}>{ok ? '✓' : '✗'}</span>}
+              </div>
+              <p className="text-[17px] leading-[1.4] text-text mt-3">{g.needWhy}</p>
+            </motion.div>
+          )
+        })}
+      </div>
+    </Frame>
+  )
+}
+
 /* ───────── Introducción del roleplay ───────── */
 export function RoleplayIntroSlide({ def, page }: SlideProps) {
   const roles: { name: string; desc: string }[] = def.roles
@@ -280,28 +317,36 @@ export function RoleplayIntroSlide({ def, page }: SlideProps) {
   )
 }
 
-/* ───────── Roleplay en curso ───────── */
+/* ───────── Actividad 03: cómo funciona + estado de cada grupo ───────── */
 export function RoleplayRunSlide({ def, page, ctx }: SlideProps) {
   const ev = ctx.results.roleplay
+  const steps: { name: string; desc: string }[] = def.steps ?? []
   return (
     <Frame page={page}>
       {ctx.timer && <TimerChip t={ctx.timer} className="absolute right-[96px] top-[150px]" />}
-      <div className="absolute left-[96px] right-[400px] top-[160px]">
-        <Eyebrow>Actividad 03 · Mismo QR de grupo</Eyebrow>
-        <Title size={60} className="mt-3">{def.title}</Title>
+      <div className="absolute left-[96px] right-[420px] top-[160px]">
+        <Title size={56}>{def.title}</Title>
+        <motion.p className="text-[24px] leading-[1.4] text-text mt-3" {...rise(0.1)}>{def.lead}</motion.p>
       </div>
-      <div className="absolute left-[96px] right-[96px] top-[340px] bottom-[110px] grid grid-cols-3 grid-rows-2 gap-6">
+      <div className="absolute left-[96px] right-[96px] top-[360px] grid grid-cols-4 gap-5">
+        {steps.map((st, i) => (
+          <motion.div key={st.name} className={`rounded-[28px] p-7 h-[230px] flex flex-col ${i === 2 ? 'bg-display text-white' : 'bg-lilac-50'}`} {...rise(0.2 + i * 0.1, 24)}>
+            <span className={`font-display font-bold text-[48px] leading-none ${i === 2 ? 'text-white' : 'text-display'}`}>{i + 1}</span>
+            <h3 className={`font-display font-bold text-[28px] mt-auto ${i === 2 ? 'text-white' : 'text-ink'}`}>{st.name}</h3>
+            <p className={`text-[19px] leading-[1.35] mt-2 ${i === 2 ? 'text-white/90' : 'text-text'}`}>{st.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+      <div className="absolute left-[96px] right-[96px] top-[630px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-4">
         {content.roleplay.cases.map((c, i) => {
           const done = !!ev[c.group]
           return (
-            <motion.div key={c.group} className={`rounded-[30px] p-8 flex flex-col ${done ? 'bg-lilac-50 ring-2 ring-display' : 'bg-mist'}`} {...rise(0.15 + i * 0.06, 20)}>
-              <div className="flex justify-between items-center">
-                <span className="font-display font-bold text-[22px] text-ink">Grupo {String(c.group).padStart(2, '0')}</span>
-                <span className={`eyebrow text-[14px] px-3 py-1 rounded-full ${done ? 'bg-display text-white' : 'bg-white text-muted'}`}>{done ? 'Evaluado' : 'En conversación'}</span>
+            <motion.div key={c.group} className={`rounded-[24px] px-6 py-4 flex items-center gap-5 ${done ? 'bg-lilac-50 ring-2 ring-display' : 'bg-mist'}`} {...rise(0.5 + i * 0.05, 16)}>
+              <span className="font-display font-bold text-[40px] text-display tabular-nums">{String(c.group).padStart(2, '0')}</span>
+              <div className="min-w-0">
+                <p className="font-display font-bold text-[22px] text-ink truncate">{c.title}</p>
+                <p className="text-[17px] text-muted">{c.professional} · <span className={done ? 'text-display font-semibold' : ''}>{done ? 'Evaluado' : 'En conversación'}</span></p>
               </div>
-              <h3 className="font-display font-bold text-[34px] leading-[1.1] text-display mt-4">{c.title}</h3>
-              <p className="text-[22px] leading-[1.4] text-text mt-3">{c.summary}</p>
-              <p className="text-[19px] text-muted mt-auto">Profesional: {c.professional}</p>
             </motion.div>
           )
         })}
@@ -365,25 +410,33 @@ export function RoleplayResultsSlide({ def, page, ctx }: SlideProps) {
 /* ───────── Compromiso final ───────── */
 export function CommitmentSlide({ def, page, ctx }: SlideProps) {
   const comp = ctx.results.compromisos
+  const n = Object.keys(comp).length
   return (
     <Frame page={page} bg="bg-graphite" tone="white">
       {ctx.timer && <TimerChip t={ctx.timer} dark className="absolute right-[96px] top-[150px]" />}
-      <div className="absolute left-[96px] right-[440px] top-[170px]">
-        <motion.h2 className="font-display font-bold text-white text-[64px] leading-[1.1]" {...rise(0.1)}>{def.question}</motion.h2>
-        <motion.p className="text-[26px] text-on-dark mt-5" {...rise(0.25)}>{def.lead}</motion.p>
+      <div className="absolute left-[96px] right-[440px] top-[160px]">
+        <p className="eyebrow text-[20px] text-accent-dark">Compromiso final · por grupo</p>
+        <motion.h2 className="font-display font-bold text-white text-[56px] leading-[1.1] mt-3" {...rise(0.1)}>{def.question}</motion.h2>
+        <motion.p className="text-[24px] text-on-dark mt-4" {...rise(0.2)}>{def.lead}</motion.p>
       </div>
-      <div className="absolute left-[96px] right-[96px] top-[480px] bottom-[150px] grid grid-cols-3 grid-rows-2 gap-5">
+      {def.example && (
+        <motion.div className="absolute left-[96px] right-[96px] top-[440px] flex items-center gap-5" {...rise(0.3)}>
+          <span className="eyebrow text-[16px] text-on-dark/60 shrink-0">Por ejemplo</span>
+          <p className="rounded-full border border-white/20 px-6 py-2.5 text-[22px] text-white italic">“{def.example}”</p>
+        </motion.div>
+      )}
+      <div className="absolute left-[96px] right-[96px] top-[530px] bottom-[150px] grid grid-cols-3 grid-rows-2 gap-5">
         {GROUPS.map((g, i) => (
-          <motion.div key={g} className={`rounded-[28px] p-7 flex flex-col ${comp[g] ? 'bg-white' : 'bg-white/5 border border-white/10'}`} {...rise(0.3 + i * 0.05, 16)}>
+          <motion.div key={g} className={`rounded-[28px] p-7 flex flex-col ${comp[g] ? 'bg-white' : 'bg-white/5 border border-white/10'}`} {...rise(0.35 + i * 0.05, 16)}>
             <span className={`font-display font-bold text-[20px] ${comp[g] ? 'text-display' : 'text-on-dark/50'}`}>Grupo {String(g).padStart(2, '0')}</span>
             <AnimatePresence mode="wait">
-              {comp[g] ? <motion.p key="t" className="text-[24px] leading-[1.35] text-ink mt-3 line-clamp-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>“{comp[g]}”</motion.p>
-                : <p key="w" className="text-[20px] text-on-dark/40 mt-auto">Esperando…</p>}
+              {comp[g] ? <motion.p key="t" className="text-[23px] leading-[1.35] text-ink mt-3 line-clamp-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>“{comp[g]}”</motion.p>
+                : <p key="w" className="text-[19px] text-on-dark/40 mt-auto">Escribiendo…</p>}
             </AnimatePresence>
           </motion.div>
         ))}
       </div>
-      <p className="absolute left-[96px] right-[96px] bottom-[96px] text-[20px] text-on-dark/70">{def.footnote}</p>
+      <p className="absolute left-[96px] right-[96px] bottom-[96px] text-[20px] text-on-dark/70">{n}/6 reglas recibidas · {def.footnote}</p>
     </Frame>
   )
 }

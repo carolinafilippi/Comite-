@@ -31,7 +31,7 @@ export function buildScreens(): Screen[] {
       out.push({ key: `${def.id}-analysis`, def, sub: 'analysis', steps: 0, page, title: `Caso ${c.number} — análisis`, kind: 'reveal' })
       continue
     }
-    const steps = def.type === 'bigQuestion' ? def.follow.length : def.type === 'newStandard' ? def.pairs.length : def.type === 'groupResults' ? 1 : 0
+    const steps = def.type === 'bigQuestion' ? def.follow.length : def.type === 'newStandard' ? def.pairs.length : def.type === 'groupResults' ? 1 : def.type === 'fourStepsFlow' ? def.steps.length - 1 : def.type === 'fourStepsExample' ? 1 + def.good.length : 0
     out.push({
       key: def.id, def, steps,
       page: `${def.block}|${String(++n).padStart(2, '0')}`,

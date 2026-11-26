@@ -193,20 +193,25 @@ export function QRPanel({ url, className = '', label, qrSize = 240, footer }: { 
   )
 }
 
-/* ───────── Lo que aprendimos ───────── */
+/* ───────── Lo que nos llevamos ───────── */
 export function LearnedSlide({ def, page }: SlideProps) {
-  const items: { name: string; desc: string }[] = def.items
-  const icons = ['/brand/symbols/awa-symbol-dots.png', '/brand/symbols/awa-symbol-arrow.png', '/brand/symbols/awa-symbol-circle.png']
+  const items: { name: string; desc: string; where?: string }[] = def.items
+  const icons = ['brand/symbols/awa-symbol-dots.png', 'brand/symbols/awa-symbol-arrow.png', 'brand/symbols/awa-symbol-circle.png']
   return (
     <Frame page={page}>
-      <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={84}>{def.title}</Title></div>
-      <div className="absolute left-[96px] right-[96px] top-[380px] bottom-[150px] grid grid-cols-3 gap-8">
+      <motion.img src="brand/bg/bg-pastel-sky.jpg" alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-60" initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ duration: 1.2 }} />
+      <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={72}>{def.title}</Title></div>
+      <div className="absolute left-[96px] right-[96px] top-[360px] bottom-[130px] grid grid-cols-3 gap-[64px]">
         {items.map((it, i) => (
-          <motion.div key={it.name} className="rounded-[40px] bg-lilac-50 p-[52px] flex flex-col" {...rise(0.25 + i * 0.12, 50)}>
-            <img src={icons[i]} alt="" aria-hidden className="h-[72px] w-fit" />
-            <h3 className="font-display font-bold text-display text-[52px] leading-[1.05] mt-auto">{it.name}</h3>
-            <p className="text-[30px] leading-[1.45] text-text mt-5">{it.desc}</p>
-          </motion.div>
+          <div key={it.name} className="relative min-w-0">
+            <motion.div className={`h-full rounded-[44px] p-[48px] flex flex-col ${i === 2 ? 'bg-display text-white' : 'bg-white/90'}`} {...rise(0.25 + i * 0.25, 50)}>
+              <img src={icons[i]} alt="" aria-hidden className="h-[96px] w-fit" />
+              <h3 className={`font-display font-bold text-[54px] leading-[1.02] mt-auto ${i === 2 ? 'text-white' : 'text-display'}`}>{it.name}</h3>
+              <p className={`text-[28px] leading-[1.35] mt-4 ${i === 2 ? 'text-white/90' : 'text-ink'}`}>{it.desc}</p>
+              {it.where && <span className={`mt-6 w-fit rounded-full px-5 py-2 text-[19px] font-display font-medium ${i === 2 ? 'bg-white/15 text-white' : 'bg-lilac-50 text-display'}`}>{it.where}</span>}
+            </motion.div>
+            {i < items.length - 1 && <motion.span className="absolute top-1/2 -right-[50px] -translate-y-1/2 font-display font-bold text-[56px] text-display" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 + i * 0.25 }}>+</motion.span>}
+          </div>
         ))}
       </div>
     </Frame>

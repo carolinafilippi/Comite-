@@ -287,72 +287,12 @@
       "notes": "Primero se ve lo que interpretó cada grupo según sus respuestas. Con → aparece la necesidad real de cada cliente (✓ si coincide). Teclas 1 a 6: detalle de un grupo. Después sigue el análisis caso por caso."
     },
     {
-      "id": "a2-analysis-intro",
-      "type": "statement",
+      "id": "a2-analysis",
+      "type": "groupSummary",
       "block": "03",
-      "text": "Ahora, el análisis: qué señales había en cada frase y por qué esa es la lectura más sólida.",
-      "highlight": [
-        "por qué esa es la lectura más sólida"
-      ],
-      "attribution": "Etapa de análisis · Actividad 02",
-      "notes": "Para cada caso: pedí primero al grupo que justifique su elección, después mostrá el análisis."
-    },
-    {
-      "id": "a2-analysis-1",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 1,
-      "notes": "Grupo 01 · Falta de atención. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: antes, más pendientes, tenemos que pedir todo."
-    },
-    {
-      "id": "a2-analysis-2",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 2,
-      "notes": "Grupo 02 · Creatividad. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: se parece demasiado, más creativos."
-    },
-    {
-      "id": "a2-analysis-3",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 3,
-      "notes": "Grupo 03 · Resultados. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: pagamos todos los meses, no sé, nos está sirviendo."
-    },
-    {
-      "id": "a2-analysis-4",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 4,
-      "notes": "Grupo 04 · Comunicación. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: más reuniones, no estamos alineados."
-    },
-    {
-      "id": "a2-analysis-5",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 5,
-      "notes": "Grupo 05 · Exigencia. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: especialistas, tantas cosas, a mí."
-    },
-    {
-      "id": "a2-analysis-6",
-      "type": "groupAnalysis",
-      "block": "03",
-      "group": 6,
-      "notes": "Grupo 06 · Confianza. Antes de mostrar, preguntá al grupo por qué eligió lo que eligió. Señales clave: estoy pensando, si continuar."
-    },
-    {
-      "id": "a2-teaching",
-      "type": "questionsList",
-      "block": "03",
-      "title": "Interpretar no es adivinar. Es hacer mejores preguntas.",
-      "questions": [
-        "¿Qué te preocupa particularmente de esta situación?",
-        "¿Qué esperabas que sucediera?",
-        "¿Qué sería diferente si esto estuviera funcionando bien?",
-        "¿Podés contarme un ejemplo concreto?",
-        "¿Qué aspecto es prioritario para tu negocio?",
-        "¿Cómo sabríamos juntos que el problema quedó resuelto?"
-      ],
-      "notes": "Sugerí que cada uno elija una pregunta para usar esta semana."
+      "title": "Lo que dijeron vs. lo que necesitaban",
+      "lead": "Detrás de cada frase había otra necesidad. Se descubre preguntando.",
+      "notes": "Recorré las 6 tarjetas: lo que dice el cliente y lo que realmente necesita. Si un grupo no coincidió, pedile que cuente por qué eligió lo que eligió. Cierre: interpretar no es adivinar, es hacer mejores preguntas."
     },
     {
       "id": "div-04",
@@ -431,33 +371,55 @@
     },
     {
       "id": "four-steps",
-      "type": "fourSteps",
+      "type": "fourStepsFlow",
       "block": "04",
       "title": "Cuatro pasos para responder",
       "steps": [
         {
           "name": "Escuchar",
-          "desc": "Comprender el pedido sin reaccionar defensivamente."
+          "short": "Entender antes de reaccionar"
         },
         {
           "name": "Fundamentar",
-          "desc": "Explicar nuestro criterio con razones comprensibles."
+          "short": "Explicar el porqué"
         },
         {
           "name": "Proponer",
-          "desc": "Ofrecer una alternativa viable."
+          "short": "Ofrecer una alternativa"
         },
         {
           "name": "Acordar",
-          "desc": "Definir decisión, responsabilidades y próximos pasos."
+          "short": "Cerrar quién hace qué y cuándo"
         }
       ],
-      "example": {
-        "client": "Necesito que la campaña salga mañana, sí o sí.",
-        "bad": "Imposible, no llegamos. Nos tendrías que haber avisado antes.",
-        "good": "Entiendo que mañana es clave para vos. Contame qué pasa ese día. [escuchar] Para lanzar la campaña completa necesitamos aprobar piezas y configurar la pauta, y apurar eso pone en riesgo la calidad. [fundamentar] Lo que sí podemos hacer es salir mañana con dos piezas y el resto el jueves. [proponer] ¿Te parece si lo dejamos así y te confirmo a las 17 h? [acordar]"
-      },
-      "notes": "Leé la mala respuesta y preguntá qué genera en el cliente. Después la mejorada, marcando cada paso."
+      "notes": "Cada clic suma un paso. Contá un ejemplo propio por paso, sin leer."
+    },
+    {
+      "id": "four-steps-example",
+      "type": "fourStepsExample",
+      "block": "04",
+      "title": "Los cuatro pasos en una respuesta",
+      "client": "Necesito que la campaña salga mañana, sí o sí.",
+      "bad": "Imposible, no llegamos. Nos tendrías que haber avisado antes.",
+      "good": [
+        {
+          "step": "Escuchar",
+          "text": "Entiendo que mañana es clave para vos. Contame qué pasa ese día."
+        },
+        {
+          "step": "Fundamentar",
+          "text": "Lanzar todo junto nos obliga a apurar aprobaciones y pone en riesgo la calidad."
+        },
+        {
+          "step": "Proponer",
+          "text": "Podemos salir mañana con dos piezas y el resto el jueves."
+        },
+        {
+          "step": "Acordar",
+          "text": "¿Te parece? Te confirmo todo hoy a las 17 h."
+        }
+      ],
+      "notes": "Primer clic: la respuesta reactiva (preguntá qué genera en el cliente). Después, cada clic suma un paso de la respuesta mejorada."
     },
     {
       "id": "limits",
@@ -487,40 +449,9 @@
       "block": "05",
       "number": "05",
       "title": "El cliente tiene la palabra",
-      "lead": "Conversaciones bajo presión.",
+      "lead": "Actividad 03 · Practicamos una conversación difícil con un cliente.",
       "bg": "bg-peach-violet",
       "notes": "Mismos 6 grupos y mismo celular por grupo."
-    },
-    {
-      "id": "a3-intro",
-      "type": "roleplayIntro",
-      "block": "05",
-      "activity": "a3",
-      "title": "Roleplay en tres roles",
-      "roles": [
-        {
-          "name": "Cliente",
-          "desc": "Recibe una motivación que no expresa de forma directa."
-        },
-        {
-          "name": "Profesional de Avalon",
-          "desc": "Tiene que descubrirla con preguntas y llegar a un acuerdo."
-        },
-        {
-          "name": "Observadores",
-          "desc": "Siguen la conversación y completan la evaluación del grupo."
-        }
-      ],
-      "skills": [
-        "Escucha",
-        "Interpretación",
-        "Argumentación",
-        "Negociación",
-        "Establecimiento de límites",
-        "Cierre profesional"
-      ],
-      "privacy": "Cada tarjeta se lee en privado: mantené el dedo apretado para verla y soltá para ocultarla.",
-      "notes": "Primero el cliente lee su tarjeta a solas, después el profesional. Los observadores no leen ninguna."
     },
     {
       "id": "a3-run",
@@ -528,8 +459,27 @@
       "block": "05",
       "activity": "a3",
       "timerMin": 8,
-      "title": "Seis conversaciones difíciles",
-      "notes": "8 minutos de conversación y 4 de evaluación. Avisá cuando queden 2 minutos."
+      "title": "Actividad 03 · Roleplay",
+      "notes": "Mismo celular y mismo QR de grupo que en la Actividad 02: la pantalla cambia sola. 8 minutos de conversación (T) y 3 de evaluación. Avisá cuando queden 2 minutos.",
+      "lead": "Cada grupo practica una conversación difícil. El cliente oculta lo que realmente le pasa; el profesional tiene que descubrirlo.",
+      "steps": [
+        {
+          "name": "Repartan roles",
+          "desc": "Uno hace de cliente, otro de profesional de Avalon. El resto observa."
+        },
+        {
+          "name": "Lean su tarjeta",
+          "desc": "En el celular del grupo. Cada rol lee solo la suya, manteniendo el dedo apretado."
+        },
+        {
+          "name": "Conversen 8 minutos",
+          "desc": "El profesional pregunta, fundamenta, propone y busca un acuerdo."
+        },
+        {
+          "name": "Evalúen",
+          "desc": "Los observadores completan la evaluación en el celular."
+        }
+      ]
     },
     {
       "id": "a3-results",
@@ -554,19 +504,22 @@
       "id": "learned",
       "type": "learned",
       "block": "06",
-      "title": "Lo que aprendimos",
+      "title": "Lo que nos llevamos",
       "items": [
         {
           "name": "Comprender",
-          "desc": "Escuchar el pedido e identificar posibles necesidades."
+          "desc": "Escuchar el pedido y descubrir la necesidad.",
+          "where": "Actividades 01 y 02"
         },
         {
           "name": "Recomendar",
-          "desc": "Fundamentar decisiones con conocimiento y evidencia."
+          "desc": "Fundamentar con criterio y proponer.",
+          "where": "Los 4 pasos"
         },
         {
           "name": "Construir confianza",
-          "desc": "Cumplir compromisos y cuidar la relación."
+          "desc": "Acordar, cumplir y cuidar la relación.",
+          "where": "Actividad 03"
         }
       ],
       "notes": ""
@@ -602,10 +555,11 @@
       "block": "06",
       "activity": "compromiso",
       "timerMin": 3,
-      "question": "¿Qué vas a hacer diferente en tu próxima conversación con un cliente?",
-      "lead": "Cada grupo aporta una regla de comunicación para incorporar a Avalon.",
-      "footnote": "Estas reglas serán el insumo del futuro Manual de Conversaciones con Clientes.",
-      "notes": "3 minutos. Leé en voz alta las reglas a medida que llegan."
+      "question": "Una regla para el Manual de Conversaciones con Clientes",
+      "lead": "Cada grupo escribe en su celular una regla concreta que todo Avalon pueda aplicar desde mañana.",
+      "footnote": "Con estas reglas armamos el Manual de Conversaciones con Clientes de Avalon.",
+      "notes": "3 minutos (T). Mismo celular de grupo. Leé en voz alta las reglas a medida que llegan.",
+      "example": "Antes de responder un pedido, preguntamos qué quiere lograr el cliente."
     },
     {
       "id": "closing-concept",

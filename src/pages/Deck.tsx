@@ -7,16 +7,16 @@ import { api, demo, IS_DEMO, IS_TEST_SESSION, publicUrl, SESION, useResultados }
 import { buildScreens, type Screen } from '../lib/deck'
 import { playBlip } from '../lib/sound'
 import { A1ResultsSlide, WhyDifferentSlide } from '../slides/activity1'
-import { CommitmentSlide, GroupAnalysisSlide, GroupChallengeSlide, GroupQRSlide, GroupResultsSlide, RoleplayIntroSlide, RoleplayResultsSlide, RoleplayRunSlide } from '../slides/groups'
+import { CommitmentSlide, GroupAnalysisSlide, GroupSummarySlide, GroupChallengeSlide, GroupQRSlide, GroupResultsSlide, RoleplayIntroSlide, RoleplayResultsSlide, RoleplayRunSlide } from '../slides/groups'
 import { ActivityIntroSlide, BigQuestionSlide, CoverSlide, DividerSlide, FinalSlide, LearnedSlide, NewStandardSlide, StatementSlide, TwoSkillsSlide } from '../slides/intro'
-import { AuthorSlide, BeliefsSlide, FourStepsSlide, LimitsSlide, MatrixSlide, ProfessionalPlaceSlide, QuestionsListSlide, SayVsNeedSlide, SentimentSlide, SynthesisSlide } from '../slides/theory'
+import { AuthorSlide, BeliefsSlide, FourStepsExampleSlide, FourStepsFlowSlide, LimitsSlide, MatrixSlide, ProfessionalPlaceSlide, QuestionsListSlide, SayVsNeedSlide, SentimentSlide, SynthesisSlide } from '../slides/theory'
 import type { DeckCtx, SlideProps } from '../slides/types'
 
 const REGISTRY: Record<string, (p: SlideProps) => React.ReactElement> = {
   cover: CoverSlide, a1Results: A1ResultsSlide, groupAnalysis: GroupAnalysisSlide, bigQuestion: BigQuestionSlide, twoSkills: TwoSkillsSlide, statement: StatementSlide, activityIntro: ActivityIntroSlide,
   divider: DividerSlide, whyDifferent: WhyDifferentSlide, sayVsNeed: SayVsNeedSlide, author: AuthorSlide, synthesis: SynthesisSlide,
   sentiment: SentimentSlide, beliefs: BeliefsSlide, groupQR: GroupQRSlide, groupChallenge: GroupChallengeSlide, groupResults: GroupResultsSlide,
-  questionsList: QuestionsListSlide, professionalPlace: ProfessionalPlaceSlide, matrix: MatrixSlide, fourSteps: FourStepsSlide, limits: LimitsSlide,
+  questionsList: QuestionsListSlide, professionalPlace: ProfessionalPlaceSlide, matrix: MatrixSlide, fourStepsFlow: FourStepsFlowSlide, fourStepsExample: FourStepsExampleSlide, groupSummary: GroupSummarySlide, limits: LimitsSlide,
   roleplayIntro: RoleplayIntroSlide, roleplayRun: RoleplayRunSlide, roleplayResults: RoleplayResultsSlide, learned: LearnedSlide,
   newStandard: NewStandardSlide, commitment: CommitmentSlide, final: FinalSlide,
 }
