@@ -243,8 +243,8 @@
       "type": "sentiment",
       "block": "02",
       "title": "Lo que dicen nuestros clientes",
-      "lead": "Resultados del formulario de sentimiento y satisfacción.",
-      "notes": "Si la encuesta todavía no tiene resultados confirmados, la diapositiva lo dice. Nunca mostrar cifras estimadas."
+      "lead": "Encuesta de satisfacción de clientes",
+      "notes": "Datos reales de la encuesta (4 de 16 clientes al 26/11). Es una muestra chica: hablá de tendencias. Lo más bajo es Gestión y comunicación (7,5) y los comentarios de mejora hablan de cercanía y claridad en la comunicación: es justamente el tema de este Comité. Comentarios anonimizados."
     },
     {
       "id": "beliefs",
@@ -1476,41 +1476,87 @@
     ]
   },
   "sentimentSurvey": {
-    "loaded": false,
-    "period": "",
-    "clientsSurveyed": null,
-    "responses": null,
-    "scaleMax": 5,
+    "loaded": true,
+    "period": "Resultados parciales al 26/11/2026",
+    "clientsSurveyed": 16,
+    "responses": 4,
+    "scaleMax": 10,
+    "satisfaction": 8.75,
+    "recommendation": 9.5,
     "metrics": [
       {
-        "id": "satisfaccion",
-        "label": "Satisfacción general",
-        "value": null
+        "id": "gestion",
+        "label": "Gestión y comunicación",
+        "value": 7.5
       },
       {
-        "id": "acompanamiento",
-        "label": "Percepción del acompañamiento",
-        "value": null
+        "id": "estrategia",
+        "label": "Estrategia de marketing",
+        "value": 9.0
       },
       {
-        "id": "claridad",
-        "label": "Claridad de la comunicación",
-        "value": null
+        "id": "creatividad",
+        "label": "Creatividad y diseño",
+        "value": 9.5
       },
       {
-        "id": "valor",
-        "label": "Valor percibido",
-        "value": null
+        "id": "contenido",
+        "label": "Contenido y redes sociales",
+        "value": 9.25
       },
       {
-        "id": "facilidad",
-        "label": "Facilidad para resolver problemas",
-        "value": null
+        "id": "publicidad",
+        "label": "Publicidad y performance",
+        "value": 8.0
+      },
+      {
+        "id": "audiovisual",
+        "label": "Producción audiovisual",
+        "value": 9.75
       }
     ],
-    "strengths": [],
-    "improvements": [],
-    "comments": []
+    "expectations": [
+      {
+        "label": "Cumple sus expectativas",
+        "value": 3
+      },
+      {
+        "label": "Cumple parcialmente",
+        "value": 1
+      },
+      {
+        "label": "No cumple",
+        "value": 0
+      }
+    ],
+    "trust": [
+      {
+        "label": "Alta",
+        "value": 4
+      },
+      {
+        "label": "Media",
+        "value": 0
+      },
+      {
+        "label": "Baja",
+        "value": 0
+      }
+    ],
+    "strengths": [
+      "La organización y la estética en las redes.",
+      "La creatividad y la paciencia.",
+      "El profesionalismo."
+    ],
+    "improvements": [
+      "Estar más cerca del cliente en publicidad (Meta) para ver cómo evolucionan los meses.",
+      "Cuando llega el documento para corregir, no queda claro si es algo interno o si es para el cliente.",
+      "La comunicación es correcta, pero podría ser más fluida."
+    ],
+    "comments": [
+      "No tuve la repercusión que esperaba, sobre todo comparando con otro cliente. (Cumple parcialmente)"
+    ],
+    "note": "Muestra parcial: 4 respuestas de 16 clientes invitados. Indica tendencias, no conclusiones."
   },
   "beliefsVsPerception": {
     "items": []

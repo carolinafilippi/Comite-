@@ -116,52 +116,98 @@ export function SynthesisSlide({ def, page }: SlideProps) {
   )
 }
 
-/* ───────── Encuesta de sentimiento (sin datos inventados) ───────── */
+/* ───────── Encuesta de sentimiento (solo datos reales; si no hay, "pendiente") ───────── */
+const fmt = (n: number | null | undefined) => (n == null ? '—' : n.toLocaleString('es-AR', { maximumFractionDigits: 1 }))
+
 export function SentimentSlide({ def, page }: SlideProps) {
+  const s = content.sentimentSurvey
+  if (!s.loaded) return <SentimentPending def={def} page={page} />
+  const max = s.scaleMax
+  const metrics = [...s.metrics].filter(m => m.value != null).sort((a, b) => b.value! - a.value!)
+  const lowest = metrics[metrics.length - 1]?.value
+  const exp = s.expectations ?? [], expTotal = exp.reduce((a, e) => a + e.value, 0)
+  const trustHigh = s.trust?.find(t => t.label === 'Alta')?.value ?? null
+  return (
+    <Frame page={page}>
+      <div className="absolute left-[96px] right-[96px] top-[160px] flex items-end justify-between gap-10">
+        <div>
+          <Title size={58}>{def.title}</Title>
+          <motion.p className="text-[22px] text-text mt-2" {...rise(0.1)}>{def.lead} · {s.period}</motion.p>
+        </div>
+        <motion.div className="flex gap-4" {...rise(0.15)}>
+          <Kpi label="respuestas" value={`${s.responses ?? '—'}`} sub={s.clientsSurveyed ? `de ${s.clientsSurveyed} clientes` : undefined} />
+          <Kpi label="satisfacción general" value={fmt(s.satisfaction)} sub={`sobre ${max}`} strong />
+          <Kpi label="recomendación" value={fmt(s.recommendation)} sub={`sobre ${max}`} />
+        </motion.div>
+      </div>
+
+      {/* Evaluación por área */}
+      <motion.div className="absolute left-[96px] top-[345px] w-[900px] bottom-[150px] rounded-[30px] bg-mist px-9 py-7 flex flex-col" {...rise(0.2, 20)}>
+        <p className="eyebrow text-[17px] text-muted">Evaluación por área · promedio sobre {max}</p>
+        <div className="flex flex-col justify-between flex-1 mt-5">
+          {metrics.map((m, i) => (
+            <div key={m.id} className="grid grid-cols-[300px_1fr_70px] items-center gap-5">
+              <span className="text-[22px] text-ink">{m.label}</span>
+              <div className="h-[28px] rounded-full bg-white overflow-hidden">
+                <motion.div className="h-full rounded-full" style={{ background: m.value === lowest ? '#b9a6f5' : 'linear-gradient(90deg,#4b22f4,#7d03ff)' }}
+                  initial={{ width: 0 }} animate={{ width: `${(m.value! / max) * 100}%` }} transition={{ delay: 0.4 + i * 0.07, duration: 0.9, ease }} />
+              </div>
+              <span className="font-display font-bold text-[26px] text-ink text-right tabular-nums">{fmt(m.value)}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-[17px] text-muted mt-4 flex items-center gap-2"><span className="inline-block w-5 h-3 rounded-full bg-rule" />Área con el promedio más bajo</p>
+      </motion.div>
+
+      {/* Expectativas + confianza */}
+      <motion.div className="absolute left-[1028px] right-[96px] top-[345px] h-[200px] rounded-[30px] border-2 border-line px-8 py-6" {...rise(0.3, 20)}>
+        <p className="eyebrow text-[16px] text-muted">Expectativas</p>
+        <div className="flex h-[30px] rounded-full overflow-hidden mt-4 bg-mist">
+          {exp.filter(e => e.value > 0).map((e, i) => (
+            <motion.div key={e.label} className="h-full" style={{ background: ['#4b22f4', '#b9a6f5', '#e4e1ec'][i] }}
+              initial={{ width: 0 }} animate={{ width: `${expTotal ? (e.value / expTotal) * 100 : 0}%` }} transition={{ delay: 0.5, duration: 0.9, ease }} />
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-x-6 gap-y-1 mt-3 text-[18px] text-text">
+          {exp.map((e, i) => <span key={e.label} className="flex items-center gap-2"><span className="size-3 rounded-full" style={{ background: ['#4b22f4', '#b9a6f5', '#e4e1ec'][i] }} />{e.label}: <b className="font-display">{e.value}</b></span>)}
+        </div>
+        {trustHigh != null && <p className="text-[18px] text-text mt-2">Confianza en Avalon: <b className="font-display">alta en {trustHigh} de {s.responses}</b></p>}
+      </motion.div>
+
+      {/* Voces de clientes */}
+      <div className="absolute left-[1028px] right-[96px] top-[570px] bottom-[150px] grid grid-cols-2 gap-5">
+        <motion.div className="rounded-[26px] bg-lilac-50 px-6 py-5 overflow-hidden" {...rise(0.4, 20)}>
+          <p className="eyebrow text-[15px] text-brand">Lo que más valoran</p>
+          <ul className="mt-2 flex flex-col gap-2">{s.strengths.slice(0, 3).map(t => <li key={t} className="text-[18px] leading-[1.35] text-ink">“{t}”</li>)}</ul>
+        </motion.div>
+        <motion.div className="rounded-[26px] bg-display text-white px-6 py-5 overflow-hidden" {...rise(0.5, 20)}>
+          <p className="eyebrow text-[15px] text-white/75">Qué mejorarían</p>
+          <ul className="mt-2 flex flex-col gap-2">{s.improvements.slice(0, 3).map(t => <li key={t} className="text-[17px] leading-[1.35]">“{t}”</li>)}</ul>
+        </motion.div>
+      </div>
+
+      <p className="absolute left-[96px] right-[96px] bottom-[96px] text-[18px] text-muted">{s.note} Comentarios anonimizados.</p>
+    </Frame>
+  )
+}
+
+function SentimentPending({ def, page }: { def: SlideProps['def']; page: string }) {
   const s = content.sentimentSurvey
   return (
     <Frame page={page}>
-      <div className="absolute left-[96px] right-[96px] top-[170px] flex items-end justify-between">
-        <div><Title size={64}>{def.title}</Title><motion.p className="text-[26px] text-text mt-3" {...rise(0.15)}>{def.lead}{s.period ? ` · ${s.period}` : ''}</motion.p></div>
-        <div className="flex gap-10 text-right">
-          <Kpi label="Clientes encuestados" value={s.clientsSurveyed} />
-          <Kpi label="Respuestas recibidas" value={s.responses} />
-        </div>
-      </div>
-      <div className="absolute left-[96px] top-[400px] w-[1000px] flex flex-col gap-6">
-        {s.metrics.map((m, i) => (
-          <motion.div key={m.id} className="grid grid-cols-[400px_1fr_120px] items-center gap-6" {...rise(0.2 + i * 0.06, 12)}>
-            <span className="text-[26px] text-ink">{m.label}</span>
-            <div className="h-[30px] rounded-full bg-lilac-50 overflow-hidden">
-              {m.value != null && <motion.div className="h-full bg-display rounded-full" initial={{ width: 0 }} animate={{ width: `${(m.value / s.scaleMax) * 100}%` }} transition={{ delay: 0.4, duration: 1, ease }} />}
-            </div>
-            <span className="font-display font-bold text-[28px] text-right tabular-nums">{m.value != null ? `${m.value}/${s.scaleMax}` : <span className="text-subtle">—</span>}</span>
-          </motion.div>
-        ))}
-        {!s.loaded && <Pending small text="Datos pendientes de incorporar · la encuesta todavía no tiene resultados confirmados" />}
-      </div>
-      <div className="absolute right-[96px] top-[400px] w-[600px] bottom-[130px] flex flex-col gap-6">
-        <ListBox title="Principales fortalezas" items={s.strengths} />
-        <ListBox title="Oportunidades de mejora" items={s.improvements} />
-        <ListBox title="Comentarios abiertos (anonimizados)" items={s.comments.map(c => `“${c}”`)} />
+      <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={64}>{def.title}</Title><motion.p className="text-[26px] text-text mt-3" {...rise(0.15)}>{def.lead}</motion.p></div>
+      <div className="absolute left-[96px] right-[96px] top-[400px] bottom-[150px]">
+        <Pending text={`Datos pendientes de incorporar · ${s.metrics.length} indicadores preparados`} />
       </div>
     </Frame>
   )
 }
-function Kpi({ label, value }: { label: string; value: number | null }) {
+
+function Kpi({ label, value, sub, strong }: { label: string; value: string; sub?: string; strong?: boolean }) {
   return (
-    <div>
-      <p className="font-display font-bold text-[64px] leading-none text-display tabular-nums">{value ?? '—'}</p>
-      <p className="text-[19px] text-muted mt-2">{label}</p>
-    </div>
-  )
-}
-function ListBox({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="flex-1 rounded-[24px] bg-mist px-7 py-5 overflow-hidden">
-      <p className="eyebrow text-[17px] text-muted">{title}</p>
-      {items.length ? <ul className="mt-2 text-[21px] leading-[1.4] text-ink">{items.slice(0, 3).map(t => <li key={t}>· {t}</li>)}</ul>
-        : <p className="text-[20px] text-subtle mt-2">Pendiente de incorporar</p>}
+    <div className={`rounded-[24px] px-6 py-4 min-w-[190px] ${strong ? 'bg-display text-white' : 'bg-lilac-50'}`}>
+      <p className={`font-display font-bold text-[48px] leading-none tabular-nums ${strong ? 'text-white' : 'text-display'}`}>{value}</p>
+      <p className={`text-[16px] mt-2 ${strong ? 'text-white/80' : 'text-muted'}`}>{label}{sub ? ` · ${sub}` : ''}</p>
     </div>
   )
 }

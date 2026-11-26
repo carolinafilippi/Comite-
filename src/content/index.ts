@@ -46,8 +46,10 @@ export interface ComiteContent {
   roleplay: { evaluation: { id: string; label: string }[]; phraseQuestion: string; cases: RoleplayCase[] }
   sentimentSurvey: {
     loaded: boolean; period: string; clientsSurveyed: number | null; responses: number | null; scaleMax: number
+    satisfaction?: number | null; recommendation?: number | null
     metrics: { id: string; label: string; value: number | null }[]
-    strengths: string[]; improvements: string[]; comments: string[]
+    expectations?: { label: string; value: number }[]; trust?: { label: string; value: number }[]
+    strengths: string[]; improvements: string[]; comments: string[]; note?: string
   }
   beliefsVsPerception: { items: { internal: string; client: string; kind: 'hecho' | 'interpretacion' }[] }
 }
