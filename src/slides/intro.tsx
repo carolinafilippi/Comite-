@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { QRCodeSVG } from 'qrcode.react'
 import { Logo, SymbolsRow } from '../components/Brand'
-import { FloatingBlobs, MovingBg } from '../components/Motion'
+import { MovingBg } from '../components/Motion'
 import { content } from '../content'
 import { TimerChip } from '../components/TimerChip'
 import { ease, Eyebrow, Frame, Highlight, Num, rise, Title } from './kit'
@@ -108,7 +108,6 @@ export function TwoSkillsSlide({ def, page }: SlideProps) {
 export function StatementSlide({ def }: SlideProps) {
   return (
     <Frame footer={false}>
-      <FloatingBlobs items={[{ src: 'brand/blobs/blob-violet-sky.png', x: 1250, y: 520, w: 820, o: 0.28 }, { src: 'brand/blobs/blob-mint-blue.png', x: -260, y: -220, w: 620, o: 0.22, d: 6 }]} />
       <div className="absolute inset-x-[160px] top-0 bottom-0 flex flex-col justify-center">
         <motion.div className="w-[120px] h-[6px] bg-display mb-14 origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.8, ease }} />
         <motion.p className="font-display font-bold text-ink text-[80px] leading-[1.14] tracking-[-0.01em]" {...rise(0.15, 30)}>
@@ -125,7 +124,6 @@ export function DividerSlide({ def }: SlideProps) {
   return (
     <div className="absolute inset-0 bg-white overflow-hidden">
       <MovingBg src={`brand/bg/${def.bg}.jpg`} />
-      <FloatingBlobs items={[{ src: 'brand/blobs/blob-lilac-blue.png', x: 1100, y: 80, w: 640, o: 0.45 }, { src: 'brand/blobs/blob-pink-orange.png', x: 1550, y: 560, w: 420, o: 0.35, d: 7 }]} />
       <div className="absolute top-[56px] left-[96px] right-[96px] flex justify-between">
         <Logo variant="stacked" height={58} /><SymbolsRow height={34} />
       </div>
