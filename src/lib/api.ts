@@ -26,8 +26,10 @@ const ESTADO_INICIAL: Estado = { fase: 'espera', caso: null, abierta: false, abi
 const VACIO: Resultados = { estado: ESTADO_INICIAL, votos: {}, interpretaciones: {}, roleplay: {}, compromisos: {}, unidos: [], ahora: Date.now() }
 
 function hashParams() {
-  const q = window.location.hash.split('?')[1] ?? ''
-  return new URLSearchParams(q || window.location.search)
+  // acepta parámetros antes o después del # (…/?sesion=X#/presentacion o …/#/presentacion?sesion=X)
+  const out = new URLSearchParams(window.location.search)
+  new URLSearchParams(window.location.hash.split('?')[1] ?? '').forEach((v, k) => out.set(k, v))
+  return out
 }
 const cfg = window.AVALON_CONFIG ?? {}
 const params = hashParams()

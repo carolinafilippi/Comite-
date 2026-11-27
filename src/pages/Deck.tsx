@@ -38,7 +38,7 @@ const REVIEW = IS_DEMO && !!(window.AVALON_CONFIG as { review?: boolean } | unde
 
 function readKey() {
   const q = new URLSearchParams(window.location.hash.split('?')[1] ?? '')
-  const k = q.get('k')
+  const k = q.get('k') || new URLSearchParams(window.location.search).get('k')
   if (k) { localStorage.setItem('awa-key', k); return k }
   return localStorage.getItem('awa-key') ?? ''
 }
