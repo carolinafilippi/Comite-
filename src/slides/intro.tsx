@@ -186,7 +186,6 @@ export function QRPanel({ url, className = '', label, qrSize = 240, footer }: { 
       initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25, duration: 0.8, ease }}>
       <p className="eyebrow text-[22px] text-accent-dark">{label}</p>
       <div className="bg-white rounded-[24px] p-4 mt-6"><QRCodeSVG value={url} size={qrSize} level="M" marginSize={0} /></div>
-      <p className="text-[19px] text-on-dark/80 mt-5 break-all leading-snug">{url.replace(/^https?:\/\//, '')}</p>
       {footer && <div className="mt-auto w-full">{footer}</div>}
     </motion.aside>
   )
