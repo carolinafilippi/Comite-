@@ -40,7 +40,7 @@ function readKey() {
   const q = new URLSearchParams(window.location.hash.split('?')[1] ?? '')
   const k = q.get('k') || new URLSearchParams(window.location.search).get('k')
   if (k) { localStorage.setItem('awa-key', k); return k }
-  return localStorage.getItem('awa-key') ?? ''
+  return localStorage.getItem('awa-key') || (window.AVALON_CONFIG as { clave?: string } | undefined)?.clave || ''
 }
 
 export function Deck() {
