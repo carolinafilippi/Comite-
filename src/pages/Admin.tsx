@@ -3,6 +3,7 @@ import { Logo } from '../components/Brand'
 import { content } from '../content'
 import { api, SESION, useControl, useResultados } from '../lib/api'
 import { buildScreens } from '../lib/deck'
+import { rtSend, useRealtime } from '../lib/realtime'
 
 /** Control administrativo: control remoto de la presentación + reinicio de cada formulario.
  *  Funciona desde cualquier dispositivo (celular, otra compu). Las respuestas reiniciadas
@@ -22,10 +23,14 @@ export function Admin() {
     setPos({ i: ctrl.i, step: ctrl.step })
   }, [ctrl])
 
+  // posición de la presentación al instante
+  useRealtime(m => { if (m.origen === 'deck' && Date.now() - lastSent.current > 800) setPos({ i: m.i, step: m.step }) })
+
   const send = (p: { i: number; step: number }) => {
     const i = Math.max(0, Math.min(screens.length - 1, p.i))
     const step = Math.max(0, Math.min(screens[i].steps, p.step))
     setPos({ i, step }); lastSent.current = Date.now()
+    rtSend({ i, step, origen: 'admin', seq: lastSent.current })
     api.post({ accion: 'control', i, step, origen: 'admin' }).catch(() => setMsg('Sin conexión: no se pudo mover la presentación'))
   }
   const next = () => send(pos.step < screens[pos.i].steps ? { i: pos.i, step: pos.step + 1 } : { i: pos.i + 1, step: 0 })

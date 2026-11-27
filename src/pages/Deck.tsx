@@ -4,6 +4,7 @@ import { DemoBadge } from '../components/Brand'
 import { Decor } from '../components/Motion'
 import { Stage } from '../components/Stage'
 import { content, OPTION_KEYS } from '../content'
+import { rtSend, useRealtime, type RtMsg } from '../lib/realtime'
 import { api, demo, IS_DEMO, IS_PRUEBA, IS_TEST_SESSION, publicUrl, SESION, useControl, useResultados } from '../lib/api'
 import { buildScreens, type Screen } from '../lib/deck'
 import { playBlip } from '../lib/sound'
@@ -131,17 +132,30 @@ export function Deck() {
   /* ── Control remoto desde /admin: la presentación sigue las órdenes del administrador ── */
   const ctrl = useControl().data.control
   const ctrlSeen = useRef<number | null>(null)
+  const openedAt = useRef(Date.now())
+  const rtLast = useRef(0)      // último mensaje recibido por el canal instantáneo
+  const fromAdmin = useRef('')  // posición puesta por el admin (no hace falta avisarle)
+  const applyCtrl = useCallback((c: RtMsg) => {
+    if (c.origen !== 'admin' || c.seq <= (ctrlSeen.current ?? 0)) return
+    ctrlSeen.current = c.seq
+    fromAdmin.current = `${c.i}:${c.step}`
+    const i = Math.max(0, Math.min(screens.length - 1, c.i))
+    setPos({ i, step: Math.max(0, Math.min(screens[i].steps, c.step)) }); setOverview(false)
+  }, [screens])
+  // canal instantáneo
+  useRealtime(m => { rtLast.current = Date.now(); applyCtrl(m) })
+  // respaldo por Google (ignora órdenes anteriores a abrir la presentación)
   useEffect(() => {
-    if (!ctrl) { if (ctrlSeen.current === null) ctrlSeen.current = 0; return }
-    if (ctrlSeen.current === null) { ctrlSeen.current = ctrl.seq; return } // ignora órdenes viejas al abrir
-    if (ctrl.seq <= ctrlSeen.current) return
-    ctrlSeen.current = ctrl.seq
-    if (ctrl.origen !== 'admin') return
-    const i = Math.max(0, Math.min(screens.length - 1, ctrl.i))
-    setPos({ i, step: Math.max(0, Math.min(screens[i].steps, ctrl.step)) }); setOverview(false)
-  }, [ctrl, screens])
+    if (!ctrl) return
+    if (ctrlSeen.current === null) { ctrlSeen.current = Math.max(ctrl.seq, 0); if (ctrl.seq < openedAt.current) return }
+    // el respaldo solo actúa si el canal instantáneo no está funcionando (evita saltos hacia atrás)
+    if (Date.now() - rtLast.current < 8000) { ctrlSeen.current = Math.max(ctrlSeen.current ?? 0, ctrl.seq); return }
+    applyCtrl(ctrl as RtMsg)
+  }, [ctrl, applyCtrl])
   // avisa al administrador en qué slide está la presentación
   useEffect(() => {
+    if (fromAdmin.current !== `${pos.i}:${pos.step}`) rtSend({ i: pos.i, step: pos.step, origen: 'deck', seq: Date.now() })
+    fromAdmin.current = ''
     const id = window.setTimeout(() => { api.post({ accion: 'control', i: pos.i, step: pos.step, origen: 'deck' }).catch(() => {}) }, 150)
     return () => clearTimeout(id)
   }, [pos.i, pos.step])
