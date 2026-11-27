@@ -109,9 +109,9 @@ export function WhyDifferentSlide({ def, page, ctx }: SlideProps) {
             const n = t ? OPTION_KEYS.reduce((s, k) => s + t[k], 0) : 0
             const top = any && d === max && d > 0
             return (
-              <motion.div key={c.id} className={`rounded-[24px] p-5 ${top ? 'bg-lilac-50 ring-2 ring-display' : 'bg-mist'}`} {...rise(0.2 + i * 0.06, 16)}>
-                <div className="flex justify-between items-baseline">
-                  <span className="font-display font-semibold text-[20px] text-ink">{c.number} · {c.area}</span>
+              <motion.div key={c.id} className={`rounded-[24px] p-5 flex flex-col ${top ? 'bg-lilac-50 ring-2 ring-display' : 'bg-mist'}`} {...rise(0.2 + i * 0.06, 16)}>
+                <div className="h-[52px] flex items-start">
+                  <span className="font-display font-semibold text-[19px] leading-[1.3] text-ink line-clamp-2">{c.number} · {c.area}</span>
                 </div>
                 <div className="flex items-end gap-2 h-[110px] mt-4">
                   {OPTION_KEYS.map(k => {

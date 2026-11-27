@@ -230,15 +230,7 @@
         "Deseo de mayor reconocimiento"
       ],
       "warning": "Son hipótesis, no diagnósticos. Se confirman preguntando.",
-      "notes": "Cada hipótesis llevaría a una respuesta profesional distinta. Si respondemos al pedido literal, podemos acertar en la forma y fallar en el fondo.",
-      "decor": [
-        {
-          "e": "monocle",
-          "x": 1640,
-          "y": 150,
-          "s": 140
-        }
-      ]
+      "notes": "Cada hipótesis llevaría a una respuesta profesional distinta. Si respondemos al pedido literal, podemos acertar en la forma y fallar en el fondo."
     },
     {
       "id": "author-rogers",
