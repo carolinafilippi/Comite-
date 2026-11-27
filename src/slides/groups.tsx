@@ -10,7 +10,6 @@ const GROUPS = [1, 2, 3, 4, 5, 6]
 
 /* ───────── Seis QR de grupo + estado de respuesta ───────── */
 export function GroupQRSlide({ def, page, ctx }: SlideProps) {
-  const joined = new Set(ctx.results.unidos)
   const answered = ctx.results.interpretaciones
   const done = Object.keys(answered).length
   return (
@@ -27,12 +26,12 @@ export function GroupQRSlide({ def, page, ctx }: SlideProps) {
         </div>
         <div className="flex items-center gap-5 shrink-0">
           {ctx.timer && <TimerChip t={ctx.timer} />}
-          <p className="font-display font-semibold text-[24px] text-ink tabular-nums text-right leading-tight">{done}/6 respondieron<br /><span className="font-normal text-[18px] text-muted">{joined.size}/6 conectados</span></p>
+          <p className="font-display font-semibold text-[24px] text-ink tabular-nums text-right leading-tight">{done}/6 respondieron</p>
         </div>
       </div>
       <div className="absolute left-[96px] right-[96px] top-[400px] bottom-[96px] grid grid-cols-3 grid-rows-2 gap-6">
         {GROUPS.map((g, i) => {
-          const ok = !!answered[g], on = joined.has(g) || ok
+          const ok = !!answered[g], on = false // solo cuenta quien respondió (no «conectados»)
           return (
             <motion.div key={g} className={`rounded-[32px] bg-white flex items-center gap-7 px-7 border-[3px] transition-colors ${ok ? 'border-display' : on ? 'border-sym-green' : 'border-transparent'}`} {...rise(0.15 + i * 0.07, 24)}>
               <div className="p-1.5 bg-white rounded-xl"><QRCodeSVG value={ctx.groupUrl(g)} size={190} level="M" marginSize={0} /></div>
@@ -41,7 +40,7 @@ export function GroupQRSlide({ def, page, ctx }: SlideProps) {
                 <p className="font-display font-bold text-[76px] leading-none text-ink tabular-nums">{String(g).padStart(2, '0')}</p>
                 <p className={`mt-3 flex items-center gap-2 text-[19px] ${ok ? 'text-display font-display font-semibold' : on ? 'text-ink' : 'text-subtle'}`}>
                   <span className={`size-3.5 rounded-full ${ok ? 'bg-display' : on ? 'bg-sym-green' : 'bg-line'}`} />
-                  {ok ? 'Respondió' : on ? 'Conectado' : 'Esperando'}
+                  {ok ? 'Respondió' : on ? 'Conectado' : 'Esperando respuesta'}
                 </p>
               </div>
             </motion.div>
