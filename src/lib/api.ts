@@ -161,12 +161,14 @@ export function usePoll<T>(fn: () => Promise<T>, ms: number, initial: T) {
       const my = ++tick.current
       try {
         const d = await fn()
-        if (!alive || my !== tick.current) return
-        setData(d); setOnline(true)
-        const ahora = (d as { ahora?: number }).ahora
-        if (ahora) setOffset(ahora - Date.now())
+        // si llegó una respuesta más nueva mientras tanto, se descarta esta, pero el sondeo SIGUE
+        if (alive && my === tick.current) {
+          setData(d); setOnline(true)
+          const ahora = (d as { ahora?: number }).ahora
+          if (ahora) setOffset(ahora - Date.now())
+        }
       } catch { if (alive) setOnline(false) }
-      if (alive) timer = window.setTimeout(run, document.hidden ? ms * 3 : ms)
+      if (alive) { clearTimeout(timer); timer = window.setTimeout(run, document.hidden ? ms * 3 : ms) }
     }
     run()
     const onChange = () => { clearTimeout(timer); run() }
@@ -174,7 +176,7 @@ export function usePoll<T>(fn: () => Promise<T>, ms: number, initial: T) {
     window.addEventListener('online', onChange)
     return () => { alive = false; clearTimeout(timer); bc?.removeEventListener('message', onChange); window.removeEventListener('online', onChange) }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  const refresh = () => { tick.current++; fn().then(d => { setData(d); setOnline(true) }).catch(() => setOnline(false)) }
+  const refresh = () => { const my = ++tick.current; fn().then(d => { if (my === tick.current) { setData(d); setOnline(true) } }).catch(() => setOnline(false)) }
   return { data, online, offset, refresh }
 }
 
