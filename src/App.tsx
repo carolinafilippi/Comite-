@@ -2,6 +2,7 @@ import { MotionConfig } from 'motion/react'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 import { Logo } from './components/Brand'
 import { IS_DEMO, SESION } from './lib/api'
+import { Admin } from './pages/Admin'
 import { Deck } from './pages/Deck'
 import { Grupo } from './pages/mobile/Grupo'
 import { Votar } from './pages/mobile/Votar'
@@ -34,6 +35,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Deck />} />
           <Route path="/inicio" element={<Inicio />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/presentacion" element={<Deck />} />
           <Route path="/notas" element={<Notas />} />
           <Route path="/votar" element={<Votar />} />

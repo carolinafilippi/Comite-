@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import type { ReactNode } from 'react'
 import { Logo } from '../../components/Brand'
-import { IS_DEMO, IS_TEST_SESSION, SESION } from '../../lib/api'
+import { IS_DEMO, IS_PRUEBA, SESION } from '../../lib/api'
 
 export const mEase = [0.22, 1, 0.36, 1] as const
 
@@ -9,7 +9,7 @@ export function MobileShell({ right, children, online = true }: { right?: ReactN
   return (
     <div className="min-h-dvh bg-white flex flex-col">
       {IS_DEMO && <div className="bg-graphite text-white text-center text-[11px] font-display tracking-[.12em] uppercase py-1.5">Modo demo · no es una votación real</div>}
-      {!IS_DEMO && IS_TEST_SESSION && <div className="bg-graphite text-white text-center text-[11px] font-display tracking-[.12em] uppercase py-1.5">Sesión de prueba · {SESION}</div>}
+      {!IS_DEMO && IS_PRUEBA && <div className="bg-graphite text-white text-center text-[11px] font-display tracking-[.12em] uppercase py-1.5">Sesión de prueba · {SESION}</div>}
       <header className="px-5 pt-5 pb-4 flex items-center justify-between">
         <Logo variant="horizontal" height={22} />
         <span className="text-[13px] text-muted font-display tabular-nums">{right}</span>

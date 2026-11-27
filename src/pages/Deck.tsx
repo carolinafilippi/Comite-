@@ -4,7 +4,7 @@ import { DemoBadge } from '../components/Brand'
 import { Decor } from '../components/Motion'
 import { Stage } from '../components/Stage'
 import { content, OPTION_KEYS } from '../content'
-import { api, demo, IS_DEMO, IS_TEST_SESSION, publicUrl, SESION, useResultados } from '../lib/api'
+import { api, demo, IS_DEMO, IS_PRUEBA, IS_TEST_SESSION, publicUrl, SESION, useResultados } from '../lib/api'
 import { buildScreens, type Screen } from '../lib/deck'
 import { playBlip } from '../lib/sound'
 import { A1ResultsSlide, WhyDifferentSlide } from '../slides/activity1'
@@ -217,7 +217,7 @@ export function Deck() {
       </AnimatePresence>
 
       {IS_DEMO && <DemoBadge text="Modo demo · datos simulados" />}
-      {!IS_DEMO && IS_TEST_SESSION && <DemoBadge text={`Sesión de prueba · ${SESION}`} />}
+      {!IS_DEMO && IS_PRUEBA && <DemoBadge text={`Sesión de prueba · ${SESION}`} />}
       {!online && <div className="absolute bottom-6 right-6 z-50 rounded-full bg-graphite text-white text-[18px] px-5 py-2 flex items-center gap-3"><span className="size-3 rounded-full bg-sym-orange" />Reconectando…</div>}
 
       <AnimatePresence>

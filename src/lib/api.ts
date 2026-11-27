@@ -34,7 +34,8 @@ function hashParams() {
 const cfg = window.AVALON_CONFIG ?? {}
 const params = hashParams()
 export const IS_DEMO = !cfg.apiUrl || params.has('demo')
-export const SESION = (params.get('sesion') || cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
+function storedSesion() { try { return localStorage.getItem('awa-sesion') || '' } catch { return '' } }
+export const SESION = (params.get('sesion') || storedSesion() || cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
 /** Sesión de prueba = cualquier sesión distinta de la configurada para el evento (config.js → sesion). */
 export const IS_TEST_SESSION = SESION !== (cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
 
@@ -185,3 +186,6 @@ export function secondsLeft(e: Estado, offset: number) {
   if (!e.abierta || !e.duracion) return 0
   return Math.max(0, Math.ceil((e.abiertaEn + e.duracion * 1000 - (Date.now() + offset)) / 1000))
 }
+
+/** Solo las sesiones que empiezan con PRUEBA muestran el cartel de prueba. */
+export const IS_PRUEBA = SESION.startsWith('PRUEBA')
