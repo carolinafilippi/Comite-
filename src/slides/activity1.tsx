@@ -17,11 +17,11 @@ export function A1ResultsSlide({ def, page, ctx }: SlideProps) {
     <Frame page={page}>
       <div className="absolute left-[96px] right-[96px] top-[160px] flex items-end justify-between gap-10">
         <div>
-          <Title size={60}>{def.title}</Title>
+          <Title size={60} className="whitespace-nowrap">{def.title}</Title>
           <motion.p className="text-[22px] text-text mt-2" {...rise(0.15)}>{ctx.hidden ? 'Resultados ocultos durante la explicación.' : def.lead}</motion.p>
         </div>
         <div className="flex items-center gap-6 shrink-0">
-          {ctx.timer && <TimerChip t={ctx.timer} />}
+          {ctx.timer && <TimerChip t={ctx.timer} compact className="!py-1.5" />}
           <StatusPill open={open} pulseKey={totals.reduce((a, b) => a + b, 0)} />
           <p className="font-display font-semibold text-[24px] text-ink tabular-nums"><AnimatedNumber value={people} /> <span className="font-normal text-muted">participantes</span></p>
         </div>

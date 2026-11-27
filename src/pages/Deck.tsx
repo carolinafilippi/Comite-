@@ -78,7 +78,8 @@ export function Deck() {
     if (lastKey.current === screen.key) return
     lastKey.current = screen.key
     setSelected(null); setHidden(false)
-    setTimer(def.timerMin ? { remaining: def.timerMin * 60, total: def.timerMin * 60, running: true } : null)
+    // el cronómetro de la actividad 01 sigue corriendo en el slide de resultados
+    setTimer(t => def.timerMin ? { remaining: def.timerMin * 60, total: def.timerMin * 60, running: true } : def.type === 'a1Results' && t ? t : null)
     const est = results.estado
     const a1Open = est.fase === 'a1' && est.abierta
     if (def.type === 'activityIntro') {
