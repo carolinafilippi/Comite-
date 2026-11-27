@@ -39,8 +39,10 @@ const REVIEW = IS_DEMO && !!(window.AVALON_CONFIG as { review?: boolean } | unde
 function readKey() {
   const q = new URLSearchParams(window.location.hash.split('?')[1] ?? '')
   const k = q.get('k') || new URLSearchParams(window.location.search).get('k')
+  const cfgKey = (window.AVALON_CONFIG as { clave?: string } | undefined)?.clave
+  if (cfgKey) return cfgKey
   if (k) { localStorage.setItem('awa-key', k); return k }
-  return localStorage.getItem('awa-key') || (window.AVALON_CONFIG as { clave?: string } | undefined)?.clave || ''
+  return (window.AVALON_CONFIG as { clave?: string } | undefined)?.clave || localStorage.getItem('awa-key') || ''
 }
 
 export function Deck() {
