@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { QRCodeSVG } from 'qrcode.react'
 import { content, groupReading, type InterpKey, type OptionKey } from '../content'
 import { TimerChip } from '../components/TimerChip'
+import { TypingDots } from './intro'
 import { ease, Eyebrow, Frame, Highlight, Num, rise, Title } from './kit'
 import type { DeckCtx, SlideProps } from './types'
 
@@ -142,7 +143,7 @@ export function GroupResultsSlide({ def, page, step, ctx }: SlideProps) {
                 </div>
               ) : (
                 <div className="mt-auto">
-                  <p className="text-[19px] text-subtle">Esperando respuesta…</p>
+                  <p className="text-[19px] text-subtle flex items-center gap-3">Esperando respuesta <TypingDots delay={0} size={8} /></p>
                   {reveal && <p className="mt-3 rounded-[18px] px-5 py-3 bg-display text-white neon font-display neon"><span className="text-[14px] uppercase tracking-[.08em] opacity-80 block">Necesidad real</span><span className="font-bold text-[28px]">{g.need}</span></p>}
                 </div>
               )}

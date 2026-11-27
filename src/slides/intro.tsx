@@ -50,7 +50,7 @@ export function TypingDots({ delay, size = 26 }: { delay: number; size?: number 
         <motion.span key={i} className="inline-block rounded-full bg-display" style={{ width: size, height: size }}
           initial={{ opacity: 0, scale: 0.4 }}
           animate={reduce ? { opacity: 1, scale: 1 } : { opacity: [0, 1, 0.35, 1], scale: [0.4, 1, 1, 1] }}
-          transition={{ delay: delay + i * 0.18, duration: 1.6, times: [0, 0.25, 0.6, 1] }} />
+          transition={{ delay: delay + i * 0.18, duration: 1.6, times: [0, 0.25, 0.6, 1], repeat: Infinity, repeatDelay: 0.6 }} />
       ))}
     </span>
   )

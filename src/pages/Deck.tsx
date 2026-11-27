@@ -32,6 +32,8 @@ const TRANSITIONS = {
 
 export const presenterChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('awa-presenter') : null
 const POS_KEY = `awa-deck-${SESION}`
+// Borra datos simulados que hayan quedado guardados de versiones anteriores del simulado
+try { if (IS_DEMO && localStorage.getItem('awa-demo-v') !== '3') { demo.reset(); localStorage.setItem('awa-demo-v', '3') } } catch { /* sin storage */ }
 const REVIEW = IS_DEMO && !!(window.AVALON_CONFIG as { review?: boolean } | undefined)?.review
 
 function readKey() {
@@ -109,7 +111,7 @@ export function Deck() {
 
   /* ── Modo revisión: votos que van llegando solos y grupos que responden ── */
   useEffect(() => {
-    if (!REVIEW) return
+    if (!REVIEW || true) return // sin respuestas automáticas: todo espera respuestas reales
     // Actividad 01: sin votos automáticos; arranca en cero y solo suma respuestas reales (o la tecla D en demo)
     if (isA1) return
     const kind = def.type === 'groupChallenge' || def.type === 'groupResults' ? 'a2' : def.activity === 'a3' && def.type !== 'roleplayIntro' ? 'a3' : def.activity === 'compromiso' ? 'compromiso' : null
