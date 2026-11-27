@@ -76,7 +76,7 @@ export function Deck() {
     if (lastKey.current === screen.key) return
     lastKey.current = screen.key
     setSelected(null); setHidden(false)
-    setTimer(def.timerMin ? { remaining: def.timerMin * 60, total: def.timerMin * 60, running: false } : null)
+    setTimer(def.timerMin ? { remaining: def.timerMin * 60, total: def.timerMin * 60, running: true } : null)
     const est = results.estado
     const a1Open = est.fase === 'a1' && est.abierta
     if (def.type === 'activityIntro') {
