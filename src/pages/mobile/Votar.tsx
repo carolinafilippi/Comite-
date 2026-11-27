@@ -4,7 +4,7 @@ import { content, OPTION_KEYS, type OptionKey } from '../../content'
 import { api, deviceToken, SESION, useEstadoSala } from '../../lib/api'
 import { MobileShell, mEase, PrimaryButton, StateScreen } from './Shell'
 
-const KEY = `awa-a1-${SESION}`
+let KEY = `awa-a1-${SESION}`
 const readDone = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(KEY) || '{}') } catch { return {} } }
 
 /** Actividad 01 — formulario individual y anónimo: los 6 casos, uno tras otro, a ritmo propio. */
@@ -13,7 +13,12 @@ export function Votar() {
   const est = data.estado
   const open = true || (est.fase === 'a1' && est.abierta) // formulario siempre activo
   const cases = content.cases
+  // si el administrador reinicia el formulario 1, el celular vuelve a empezar solo
+  const epoch = est.resets?.a1 ?? 0
+  KEY = `awa-a1-${SESION}-${epoch}`
   const [done, setDone] = useState(readDone)
+  const [seenEpoch, setSeenEpoch] = useState(epoch)
+  if (seenEpoch !== epoch) { setSeenEpoch(epoch); setDone(readDone()) }
   const [selected, setSelected] = useState<OptionKey | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')

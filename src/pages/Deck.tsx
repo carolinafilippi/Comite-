@@ -4,7 +4,7 @@ import { DemoBadge } from '../components/Brand'
 import { Decor } from '../components/Motion'
 import { Stage } from '../components/Stage'
 import { content, OPTION_KEYS } from '../content'
-import { api, demo, IS_DEMO, IS_PRUEBA, IS_TEST_SESSION, publicUrl, SESION, useResultados } from '../lib/api'
+import { api, demo, IS_DEMO, IS_PRUEBA, IS_TEST_SESSION, publicUrl, SESION, useControl, useResultados } from '../lib/api'
 import { buildScreens, type Screen } from '../lib/deck'
 import { playBlip } from '../lib/sound'
 import { A1ResultsSlide, WhyDifferentSlide } from '../slides/activity1'
@@ -127,6 +127,24 @@ export function Deck() {
   const next = useCallback(() => setPos(p => (p.step < screens[p.i].steps ? { ...p, step: p.step + 1 } : p.i < screens.length - 1 ? { i: p.i + 1, step: 0 } : p)), [screens])
   const prev = useCallback(() => setPos(p => (p.step > 0 ? { ...p, step: p.step - 1 } : p.i > 0 ? { i: p.i - 1, step: screens[p.i - 1].steps } : p)), [screens])
   const goto = useCallback((i: number) => { setPos({ i: Math.max(0, Math.min(screens.length - 1, i)), step: 0 }); setOverview(false) }, [screens.length])
+
+  /* ── Control remoto desde /admin: la presentación sigue las órdenes del administrador ── */
+  const ctrl = useControl().data.control
+  const ctrlSeen = useRef<number | null>(null)
+  useEffect(() => {
+    if (!ctrl) { if (ctrlSeen.current === null) ctrlSeen.current = 0; return }
+    if (ctrlSeen.current === null) { ctrlSeen.current = ctrl.seq; return } // ignora órdenes viejas al abrir
+    if (ctrl.seq <= ctrlSeen.current) return
+    ctrlSeen.current = ctrl.seq
+    if (ctrl.origen !== 'admin') return
+    const i = Math.max(0, Math.min(screens.length - 1, ctrl.i))
+    setPos({ i, step: Math.max(0, Math.min(screens[i].steps, ctrl.step)) }); setOverview(false)
+  }, [ctrl, screens])
+  // avisa al administrador en qué slide está la presentación
+  useEffect(() => {
+    const id = window.setTimeout(() => { api.post({ accion: 'control', i: pos.i, step: pos.step, origen: 'deck' }).catch(() => {}) }, 150)
+    return () => clearTimeout(id)
+  }, [pos.i, pos.step])
 
   const isA1 = def.type === 'activityIntro' || def.activity === 'a1'
   const toggleVote = useCallback(() => {

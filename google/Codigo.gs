@@ -28,6 +28,7 @@ function doGet(e) {
   try {
     if (p.accion === 'estado') return json({ ok: true, estado: leerEstado(sesion), ahora: Date.now() });
     if (p.accion === 'resultados') return json(resultados(sesion));
+    if (p.accion === 'control') return json({ ok: true, control: leerControl(sesion), ahora: Date.now() });
     return json({ ok: true, servicio: 'Comité Avalon', ahora: Date.now() });
   } catch (err) {
     return json({ ok: false, error: String(err) });
@@ -39,6 +40,7 @@ function doPost(e) {
   var d = {};
   try { d = JSON.parse(e.postData.contents); } catch (err) { return json({ ok: false, error: 'formato' }); }
   var sesion = limpiar(d.sesion || 'COMITE', 40);
+  if (d.accion === 'control') return json(guardarControl(sesion, d));
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
@@ -49,6 +51,7 @@ function doPost(e) {
       case 'roleplay': return json(guardarRoleplay(sesion, d));
       case 'compromiso': return json(guardarGrupo('compromisos', sesion, d, ['regla']));
       case 'estado': return json(cambiarEstado(sesion, d));
+      case 'reiniciar': return json(reiniciar(sesion, d));
       default: return json({ ok: false, error: 'accion' });
     }
   } catch (err) {
@@ -65,6 +68,7 @@ function leerEstado(sesion) {
   var est = raw ? JSON.parse(raw) : { fase: 'espera', caso: null, abierta: false, abiertaEn: 0, duracion: 0 };
   // Cierre automático cuando vence el tiempo
   if (est.abierta && est.duracion && Date.now() > est.abiertaEn + est.duracion * 1000 + 3000) est.abierta = false;
+  est.resets = leerResets(sesion);
   return est;
 }
 
@@ -76,7 +80,9 @@ function cambiarEstado(sesion, d) {
     est.abierta = !!d.abierta;
     if (est.abierta) { est.abiertaEn = Date.now(); est.duracion = Math.max(10, Math.min(3600, Number(d.duracion) || 1800)); }
   }
+  delete est.resets;
   PropertiesService.getScriptProperties().setProperty('estado:' + sesion, JSON.stringify(est));
+  est.resets = leerResets(sesion);
   return { ok: true, estado: est };
 }
 
@@ -91,7 +97,7 @@ function votar(sesion, d) {
   if (!hash) return { ok: false, error: 'token' };
 
   var cache = CacheService.getScriptCache();
-  var clave = 'v:' + sesion + ':' + caso + ':' + hash;
+  var clave = 'v:' + sesion + ':' + (leerResets(sesion).a1 || 0) + ':' + caso + ':' + hash;
   if (cache.get(clave) || yaVoto(sesion, caso, hash)) return { ok: false, error: 'duplicado' };
 
   hoja('votos').appendRow([new Date(), sesion, caso, opcion, hash]);
@@ -101,8 +107,9 @@ function votar(sesion, d) {
 
 function yaVoto(sesion, caso, hash) {
   var datos = hoja('votos').getDataRange().getValues();
+  var desde = leerResets(sesion).a1 || 0;
   for (var i = datos.length - 1; i > 0; i--) {
-    if (datos[i][1] === sesion && datos[i][2] === caso && datos[i][4] === hash) return true;
+    if (datos[i][1] === sesion && datos[i][2] === caso && datos[i][4] === hash && tiempo(datos[i][0]) >= desde) return true;
   }
   return false;
 }
@@ -152,8 +159,9 @@ function resultados(sesion) {
   var hit = cache.get('res:' + sesion);
   if (hit) return JSON.parse(hit);
 
+  var rs = leerResets(sesion);
   var votos = {};
-  filas('votos', sesion).forEach(function (r) {
+  filas('votos', sesion).filter(function (r) { return tiempo(r[0]) >= (rs.a1 || 0); }).forEach(function (r) {
     var c = r[2];
     votos[c] = votos[c] || { A: 0, B: 0, C: 0, D: 0 };
     if (votos[c][r[3]] !== undefined) votos[c][r[3]]++;
@@ -161,15 +169,15 @@ function resultados(sesion) {
 
   // De cada grupo se usa su última respuesta
   var interp = {};
-  filas('lecturas', sesion).forEach(function (r) {
+  filas('lecturas', sesion).filter(vigenteGrupo(rs)).forEach(function (r) {
     interp[r[2]] = { siente: r[3], busca: r[4], primera: r[5] };
   });
   var rp = {};
-  filas('roleplay', sesion).forEach(function (r) {
+  filas('roleplay', sesion).filter(vigenteGrupo(rs)).forEach(function (r) {
     rp[r[2]] = { comprension: r[3], fundamento: r[4], limites: r[5], solucion: r[6], acuerdo: r[7], frase: r[8] };
   });
   var comp = {};
-  filas('compromisos', sesion).forEach(function (r) { comp[r[2]] = r[3]; });
+  filas('compromisos', sesion).filter(vigenteGrupo(rs)).forEach(function (r) { comp[r[2]] = r[3]; });
 
   var unidos = [];
   for (var g = 1; g <= 6; g++) if (cache.get('g:' + sesion + ':' + g)) unidos.push(g);
@@ -177,6 +185,36 @@ function resultados(sesion) {
   var out = { ok: true, estado: leerEstado(sesion), votos: votos, interpretaciones: interp, roleplay: rp, compromisos: comp, unidos: unidos, ahora: Date.now() };
   cache.put('res:' + sesion, JSON.stringify(out), 2);
   return out;
+}
+
+/* ───────── Reinicios por formulario (las respuestas viejas quedan en la planilla) ───────── */
+function leerResets(sesion) {
+  var raw = PropertiesService.getScriptProperties().getProperty('reset:' + sesion);
+  return raw ? JSON.parse(raw) : {};
+}
+function reiniciar(sesion, d) {
+  var que = String(d.que || '');
+  var claves = que === 'grupos' ? ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'] : que === 'todo' ? ['a1', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6'] : [que];
+  var rs = leerResets(sesion), ahora = Date.now();
+  for (var i = 0; i < claves.length; i++) {
+    if (!/^(a1|g[1-6])$/.test(claves[i])) return { ok: false, error: 'que' };
+    rs[claves[i]] = ahora;
+  }
+  PropertiesService.getScriptProperties().setProperty('reset:' + sesion, JSON.stringify(rs));
+  return { ok: true, resets: rs };
+}
+function vigenteGrupo(rs) { return function (r) { return tiempo(r[0]) >= (rs['g' + r[2]] || 0); }; }
+function tiempo(v) { return v instanceof Date ? v.getTime() : new Date(v).getTime() || 0; }
+
+/* ───────── Control remoto de la presentación (rápido: solo caché, sin planilla) ───────── */
+function leerControl(sesion) {
+  var raw = CacheService.getScriptCache().get('ctrl:' + sesion);
+  return raw ? JSON.parse(raw) : null;
+}
+function guardarControl(sesion, d) {
+  var c = { i: Math.max(0, Number(d.i) || 0), step: Math.max(0, Number(d.step) || 0), origen: d.origen === 'admin' ? 'admin' : 'deck', seq: Date.now() };
+  CacheService.getScriptCache().put('ctrl:' + sesion, JSON.stringify(c), 21600);
+  return { ok: true, control: c };
 }
 
 /* ───────── Utilidades ───────── */

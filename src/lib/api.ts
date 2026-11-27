@@ -9,7 +9,8 @@ import type { OptionKey } from '../content'
 
 declare global { interface Window { AVALON_CONFIG?: { apiUrl?: string; sesion?: string; siteUrl?: string } } }
 
-export interface Estado { fase: string; caso: string | null; abierta: boolean; abiertaEn: number; duracion: number }
+export interface Estado { fase: string; caso: string | null; abierta: boolean; abiertaEn: number; duracion: number; resets?: Record<string, number> }
+export interface Control { i: number; step: number; origen: 'admin' | 'deck'; seq: number }
 export interface Interpretacion { siente: OptionKey | ''; busca: OptionKey | ''; primera: OptionKey | '' }
 export interface Evaluacion { comprension: number; fundamento: number; limites: number; solucion: number; acuerdo: number; frase: string }
 export interface Resultados {
@@ -34,8 +35,7 @@ function hashParams() {
 const cfg = window.AVALON_CONFIG ?? {}
 const params = hashParams()
 export const IS_DEMO = !cfg.apiUrl || params.has('demo')
-function storedSesion() { try { return localStorage.getItem('awa-sesion') || '' } catch { return '' } }
-export const SESION = (params.get('sesion') || storedSesion() || cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
+export const SESION = (params.get('sesion') || cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
 /** Sesión de prueba = cualquier sesión distinta de la configurada para el evento (config.js → sesion). */
 export const IS_TEST_SESSION = SESION !== (cfg.sesion || 'COMITE').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 40)
 
@@ -98,6 +98,25 @@ async function demoPost(body: Record<string, any>): Promise<{ ok: boolean; error
     case 'interpretacion': demoWrite(d => { d.interpretaciones[g] = { siente: body.siente, busca: body.busca, primera: body.primera } }); return { ok: true }
     case 'roleplay': demoWrite(d => { d.roleplay[g] = body as Evaluacion }); return { ok: true }
     case 'compromiso': demoWrite(d => { d.compromisos[g] = body.regla }); return { ok: true }
+    case 'reiniciar': {
+      const que = String(body.que)
+      const keys = que === 'grupos' ? ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'] : que === 'todo' ? ['a1', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6'] : [que]
+      demoWrite(d => {
+        const rs = { ...(d.estado.resets ?? {}) }
+        for (const k of keys) {
+          rs[k] = Date.now()
+          if (k === 'a1') { d.votos = {}; d.tokens = [] }
+          else { const g = k.slice(1); delete d.interpretaciones[g]; delete d.roleplay[g]; delete d.compromisos[g] }
+        }
+        d.estado = { ...d.estado, resets: rs }
+      })
+      return { ok: true }
+    }
+    case 'control': {
+      const c: Control = { i: Number(body.i) || 0, step: Number(body.step) || 0, origen: body.origen === 'admin' ? 'admin' : 'deck', seq: Date.now() }
+      localStorage.setItem(`awa-ctrl-${SESION}`, JSON.stringify(c)); bc?.postMessage('changed')
+      return { ok: true }
+    }
     case 'estado': {
       let est = demoEstado()
       demoWrite(d => {
@@ -141,6 +160,10 @@ export const api = {
   async resultados(): Promise<Resultados> {
     if (IS_DEMO) { const { tokens: _t, ...r } = demoRead(); void _t; return { ...r, estado: demoEstado(), ahora: Date.now() } }
     const r = await realGet('resultados'); if (!r.ok) throw new Error(r.error); return r
+  },
+  async control(): Promise<{ control: Control | null; ahora: number }> {
+    if (IS_DEMO) { try { return { control: JSON.parse(localStorage.getItem(`awa-ctrl-${SESION}`) || 'null'), ahora: Date.now() } } catch { return { control: null, ahora: Date.now() } } }
+    const r = await realGet('control'); if (!r.ok) throw new Error(r.error); return r
   },
   async estado(): Promise<{ estado: Estado; ahora: number }> {
     if (IS_DEMO) return { estado: demoEstado(), ahora: Date.now() }
@@ -222,3 +245,5 @@ export function secondsLeft(e: Estado, offset: number) {
 
 /** Solo las sesiones que empiezan con PRUEBA muestran el cartel de prueba. */
 export const IS_PRUEBA = SESION.startsWith('PRUEBA')
+
+export const useControl = () => useFastPoll(api.control, 600, { control: null as Control | null, ahora: 0 })

@@ -10,6 +10,9 @@ export function Grupo() {
   const g = Number(useParams().n)
   const { data, online } = useEstadoSala()
   const fase = data.estado.fase
+  // si el administrador reinicia el formulario de este grupo, se vacía solo
+  const ep = data.estado.resets?.[`g${g}`] ?? 0
+  DRAFT_EPOCH = ep
 
   useEffect(() => { if (g >= 1 && g <= 6) api.post({ accion: 'grupo_unirse', grupo: g }).catch(() => {}) }, [g])
 
@@ -19,17 +22,18 @@ export function Grupo() {
   return (
     <MobileShell online={online} right={label}>
       <AnimatePresence mode="wait">
-        {fase === 'a3' ? <Roleplay key="a3" g={g} />
-          : fase === 'compromiso' ? <Compromiso key="c" g={g} />
-            : <Interpretacion key="a2" g={g} />}
+        {fase === 'a3' ? <Roleplay key={`a3-${ep}`} g={g} />
+          : fase === 'compromiso' ? <Compromiso key={`c-${ep}`} g={g} />
+            : <Interpretacion key={`a2-${ep}`} g={g} />}
       </AnimatePresence>
     </MobileShell>
   )
 }
 
 /* ── Borrador persistente (por si se recarga o se corta la conexión) ── */
+let DRAFT_EPOCH = 0
 function useDraft<T>(key: string, initial: T) {
-  const k = `awa-draft-${SESION}-${key}`
+  const k = `awa-draft-${SESION}-${DRAFT_EPOCH}-${key}`
   const [v, setV] = useState<T>(() => { try { return { ...initial, ...JSON.parse(localStorage.getItem(k) || '{}') } } catch { return initial } })
   useEffect(() => { localStorage.setItem(k, JSON.stringify(v)) }, [k, v])
   return [v, setV] as const
