@@ -67,7 +67,6 @@ export function Deck() {
   /* ── Cambio de estado de la sala (solo con clave en modo real) ── */
   const setEstado = useCallback(async (body: Record<string, unknown>) => {
     const r = await api.post({ accion: 'estado', clave, ...body })
-    if (!r.ok && r.error === 'clave') flash('Falta la clave de presentador: no se puede abrir ni cerrar la votación')
     refresh()
     return r
   }, [clave, refresh])

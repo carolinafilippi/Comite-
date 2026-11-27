@@ -6,10 +6,12 @@
  * duplicados guarda solo un hash (SHA-256 con sal secreta) de un número aleatorio que genera
  * el celular. Los grupos se guardan por número, nunca con nombres de integrantes.
  *
- * Propiedades del script (Configuración del proyecto → Propiedades del script):
- *   CLAVE_PRESENTADOR  → clave larga que solo tiene la compu de Gerson (abre/cierra votaciones)
- *   SAL                → texto aleatorio largo (para el hash de los tokens)
+ * Versión sin clave: los formularios están siempre activos y cualquier presentación puede
+ * cambiar de actividad. Las respuestas se separan por sesión (columna «sesion»).
  */
+
+// Planilla donde se guardan las respuestas
+var PLANILLA_ID = '1XTqdfrh42hotiCl8G3g8WM_JRuySiRDDhyq_qOsd7eo';
 
 var HOJAS = {
   votos: ['fecha', 'sesion', 'caso', 'opcion', 'token_hash'],
@@ -67,8 +69,6 @@ function leerEstado(sesion) {
 }
 
 function cambiarEstado(sesion, d) {
-  var clave = PropertiesService.getScriptProperties().getProperty('CLAVE_PRESENTADOR');
-  if (!clave || d.clave !== clave) return { ok: false, error: 'clave' };
   var est = leerEstado(sesion);
   if (d.fase !== undefined) est.fase = limpiar(d.fase, 20);
   if (d.caso !== undefined) est.caso = d.caso ? limpiar(d.caso, 10) : null;
@@ -86,9 +86,7 @@ function votar(sesion, d) {
   if (OPCIONES.indexOf(opcion) < 0) return { ok: false, error: 'opcion' };
   var caso = limpiar(d.caso, 12);
   if (!/^[a-z0-9_-]+$/i.test(caso)) return { ok: false, error: 'caso' };
-  // La Actividad 01 se responde completa desde el celular mientras está abierta
-  var est = leerEstado(sesion);
-  if (!est.abierta || est.fase !== 'a1') return { ok: false, error: 'cerrada' };
+  // Formulario siempre activo: no depende de que la presentación lo abra
   var hash = hashToken(d.token);
   if (!hash) return { ok: false, error: 'token' };
 
@@ -183,7 +181,7 @@ function resultados(sesion) {
 
 /* ───────── Utilidades ───────── */
 function hoja(nombre) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = SpreadsheetApp.openById(PLANILLA_ID);
   var h = ss.getSheetByName(nombre);
   if (!h) {
     h = ss.insertSheet(nombre);

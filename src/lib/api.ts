@@ -87,8 +87,6 @@ async function demoPost(body: Record<string, any>): Promise<{ ok: boolean; error
   const g = String(body.grupo ?? '')
   switch (body.accion) {
     case 'votar': {
-      const e = demoEstado()
-      if (!e.abierta || e.fase !== 'a1') return { ok: false, error: 'cerrada' }
       const caso = String(body.caso)
       const tk = `${caso}:${body.token}`
       if (demoRead().tokens.includes(tk)) return { ok: false, error: 'duplicado' }

@@ -19,10 +19,9 @@ export function Grupo() {
   return (
     <MobileShell online={online} right={label}>
       <AnimatePresence mode="wait">
-        {fase === 'a2' ? <Interpretacion key="a2" g={g} />
-          : fase === 'a3' ? <Roleplay key="a3" g={g} />
-            : fase === 'compromiso' ? <Compromiso key="c" g={g} />
-              : <StateScreen key="w" icon="dots" title={`${label} conectado`} body="Dejá esta pantalla abierta. Cuando empiece la actividad, aparece acá sola." foot="Solo este celular envía las respuestas del grupo. No se registran nombres." />}
+        {fase === 'a3' ? <Roleplay key="a3" g={g} />
+          : fase === 'compromiso' ? <Compromiso key="c" g={g} />
+            : <Interpretacion key="a2" g={g} />}
       </AnimatePresence>
     </MobileShell>
   )

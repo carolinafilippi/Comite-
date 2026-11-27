@@ -11,7 +11,7 @@ const readDone = (): Record<string, string> => { try { return JSON.parse(localSt
 export function Votar() {
   const { data, online, refresh } = useEstadoSala()
   const est = data.estado
-  const open = est.fase === 'a1' && est.abierta
+  const open = true || (est.fase === 'a1' && est.abierta) // formulario siempre activo
   const cases = content.cases
   const [done, setDone] = useState(readDone)
   const [selected, setSelected] = useState<OptionKey | null>(null)
