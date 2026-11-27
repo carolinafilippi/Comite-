@@ -32,12 +32,13 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Inicio />} />
+          <Route path="/" element={<Deck />} />
+          <Route path="/inicio" element={<Inicio />} />
           <Route path="/presentacion" element={<Deck />} />
           <Route path="/notas" element={<Notas />} />
           <Route path="/votar" element={<Votar />} />
           <Route path="/grupo/:n" element={<Grupo />} />
-          <Route path="*" element={<Inicio />} />
+          <Route path="*" element={<Deck />} />
         </Routes>
       </HashRouter>
     </MotionConfig>
