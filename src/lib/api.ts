@@ -180,7 +180,38 @@ export function usePoll<T>(fn: () => Promise<T>, ms: number, initial: T) {
   return { data, online, offset, refresh }
 }
 
-export const useResultados = () => usePoll(api.resultados, 2500, VACIO)
+export const useResultados = () => useFastPoll(api.resultados, 1000, VACIO)
+
+/** Sondeo rápido para la presentación: lanza una consulta por segundo sin esperar a la anterior
+ *  y aplica siempre la respuesta más nueva. Así las respuestas aparecen casi al instante. */
+export function useFastPoll<T>(fn: () => Promise<T>, ms: number, initial: T) {
+  const [data, setData] = useState<T>(initial)
+  const [online, setOnline] = useState(true)
+  const [offset, setOffset] = useState(0)
+  const sent = useRef(0), applied = useRef(0), fails = useRef(0)
+  const fetchOne = useRef<() => void>(() => {})
+  fetchOne.current = () => {
+    const my = ++sent.current
+    fn().then(d => {
+      fails.current = 0
+      if (my <= applied.current) return
+      applied.current = my
+      setData(d); setOnline(true)
+      const ahora = (d as { ahora?: number }).ahora
+      if (ahora) setOffset(ahora - Date.now())
+    }).catch(() => { if (++fails.current >= 3) setOnline(false) })
+  }
+  useEffect(() => {
+    fetchOne.current()
+    const id = window.setInterval(() => { if (!document.hidden || sent.current % 3 === 0) fetchOne.current(); else sent.current++ }, ms)
+    const onChange = () => fetchOne.current()
+    bc?.addEventListener('message', onChange)
+    window.addEventListener('online', onChange)
+    return () => { clearInterval(id); bc?.removeEventListener('message', onChange); window.removeEventListener('online', onChange) }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  const refresh = () => fetchOne.current()
+  return { data, online, offset, refresh }
+}
 export const useEstadoSala = () => usePoll(api.estado, 3000, { estado: ESTADO_INICIAL, ahora: Date.now() })
 
 /** Segundos restantes de la votación abierta, según el reloj del servidor. */
