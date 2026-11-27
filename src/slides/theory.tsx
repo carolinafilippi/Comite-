@@ -108,7 +108,7 @@ export function SynthesisSlide({ def, page }: SlideProps) {
             <Num n={i + 1} className="text-[30px]" />
             <h3 className="font-display font-bold text-[44px] text-ink mt-auto">{s.name}</h3>
             <p className="text-[24px] leading-[1.4] text-text mt-3">{s.desc}</p>
-            {i < steps.length - 1 && <span className="absolute -right-[22px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-display text-white grid place-items-center font-display text-[20px]">→</span>}
+            {i < steps.length - 1 && <span className="absolute -right-[22px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-display text-white neon grid place-items-center font-display text-[20px]">→</span>}
           </motion.div>
         ))}
       </div>
@@ -181,7 +181,7 @@ export function SentimentSlide({ def, page }: SlideProps) {
           <p className="eyebrow text-[15px] text-brand">Lo que más valoran</p>
           <ul className="mt-2 flex flex-col gap-2">{s.strengths.slice(0, 3).map(t => <li key={t} className="text-[18px] leading-[1.35] text-ink">“{t}”</li>)}</ul>
         </motion.div>
-        <motion.div className="rounded-[26px] bg-display text-white px-6 py-5 overflow-hidden" {...rise(0.5, 20)}>
+        <motion.div className="rounded-[26px] bg-display text-white neon px-6 py-5 overflow-hidden" {...rise(0.5, 20)}>
           <p className="eyebrow text-[15px] text-white/75">Qué mejorarían</p>
           <ul className="mt-2 flex flex-col gap-2">{s.improvements.slice(0, 3).map(t => <li key={t} className="text-[17px] leading-[1.35]">“{t}”</li>)}</ul>
         </motion.div>
@@ -272,7 +272,7 @@ export function ProfessionalPlaceSlide({ def, page }: SlideProps) {
       <div className="absolute left-[96px] right-[96px] top-[170px]"><Title size={70}>{def.title}</Title></div>
       <div className="absolute left-[96px] right-[96px] top-[400px] h-[340px] grid grid-cols-2 gap-0">
         {[def.client, def.agency].map((x: { label: string; text: string }, i: number) => (
-          <motion.div key={x.label} className={`p-[52px] flex flex-col ${i === 0 ? 'bg-mist rounded-l-[40px]' : 'bg-display text-white rounded-r-[40px]'}`}
+          <motion.div key={x.label} className={`p-[52px] flex flex-col ${i === 0 ? 'bg-mist rounded-l-[40px]' : 'bg-display text-white neon rounded-r-[40px]'}`}
             initial={{ opacity: 0, x: i ? 50 : -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25, duration: 0.8, ease }}>
             <p className={`eyebrow text-[22px] ${i ? 'text-white/75' : 'text-muted'}`}>{x.label}</p>
             <p className={`text-[36px] leading-[1.35] mt-auto ${i ? 'text-white' : 'text-ink'}`}>{x.text}</p>

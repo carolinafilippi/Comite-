@@ -129,7 +129,7 @@ export function GroupResultsSlide({ def, page, step, ctx }: SlideProps) {
                   <p className={`font-display font-bold text-[44px] leading-[1.05] mt-1 transition-colors ${reveal && !ok ? 'text-subtle line-through decoration-[3px]' : 'text-ink'}`}>{reading}</p>
                   <AnimatePresence>
                     {reveal && (
-                      <motion.div className={`mt-3 rounded-[18px] px-5 py-3 flex items-center gap-3 ${ok ? 'bg-sym-green text-white' : 'bg-display text-white'}`}
+                      <motion.div className={`mt-3 rounded-[18px] px-5 py-3 flex items-center gap-3 ${ok ? 'bg-sym-green text-white neon-green' : 'bg-display text-white neon'}`}
                         initial={{ opacity: 0, y: 16, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: i * 0.12, duration: 0.5, ease }}>
                         <span className="font-display font-bold text-[26px]">{ok ? '✓' : '→'}</span>
                         <div>
@@ -143,7 +143,7 @@ export function GroupResultsSlide({ def, page, step, ctx }: SlideProps) {
               ) : (
                 <div className="mt-auto">
                   <p className="text-[19px] text-subtle">Esperando respuesta…</p>
-                  {reveal && <p className="mt-3 rounded-[18px] px-5 py-3 bg-display text-white font-display"><span className="text-[14px] uppercase tracking-[.08em] opacity-80 block">Necesidad real</span><span className="font-bold text-[28px]">{g.need}</span></p>}
+                  {reveal && <p className="mt-3 rounded-[18px] px-5 py-3 bg-display text-white neon font-display neon"><span className="text-[14px] uppercase tracking-[.08em] opacity-80 block">Necesidad real</span><span className="font-bold text-[28px]">{g.need}</span></p>}
                 </div>
               )}
             </motion.div>
@@ -165,7 +165,7 @@ function InterpretationModal({ g, ctx, reveal }: { g: number; ctx: DeckCtx; reve
         <p className="font-display font-bold text-[36px] leading-[1.2] text-ink mt-2">“{meta.quote}”</p>
         <div className="mt-5 flex gap-4 text-[22px]">
           <span className="rounded-full bg-lilac-50 px-5 py-2">Interpretaron: <b className="font-display">{groupReading(meta, r)}</b></span>
-          {reveal && <span className="rounded-full bg-display text-white px-5 py-2">Necesidad real: <b className="font-display">{meta.need}</b></span>}
+          {reveal && <span className="rounded-full bg-display text-white neon px-5 py-2">Necesidad real: <b className="font-display">{meta.need}</b></span>}
         </div>
         <div className="mt-6 flex flex-col gap-5">
           {meta.questions.map(q => {
@@ -199,7 +199,7 @@ export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
         <Eyebrow>Análisis · Grupo {String(g.group).padStart(2, '0')} · {g.theme}</Eyebrow>
         <motion.p className="font-display font-bold text-[40px] leading-[1.2] text-ink mt-3 max-w-[1650px]" {...rise(0.1)}>“<Highlight text={g.quote} marks={g.signals} />”</motion.p>
         <motion.div className="flex items-center gap-4 mt-3" {...rise(0.2)}>
-          <span className="rounded-full bg-display text-white px-5 py-1.5 font-display font-semibold text-[20px]">Necesidad real: {g.need}</span>
+          <span className="rounded-full bg-display text-white neon px-5 py-1.5 font-display font-semibold text-[20px]">Necesidad real: {g.need}</span>
           {r && <span className={`rounded-full px-5 py-1.5 text-[19px] ${groupReading(g, r) === g.need ? 'bg-sym-green text-white' : 'bg-mist text-text'}`}>El grupo interpretó: <b className="font-display">{groupReading(g, r)}</b></span>}
           <span className="text-[18px] text-muted">En violeta, las señales de la frase.</span>
         </motion.div>
@@ -208,7 +208,7 @@ export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
         {g.questions.map((q, i) => (
           <motion.div key={q.id} className="rounded-[26px] bg-lilac-50 px-8 py-5" {...rise(0.25 + i * 0.12, 18)}>
             <div className="flex items-center gap-4">
-              <span className="size-[42px] rounded-full bg-display text-white grid place-items-center font-display font-bold text-[20px] shrink-0">{q.correct}</span>
+              <span className="size-[42px] rounded-full bg-display text-white neon grid place-items-center font-display font-bold text-[20px] shrink-0">{q.correct}</span>
               <div className="min-w-0">
                 <p className="eyebrow text-[14px] text-brand">{q.prompt}</p>
                 <p className="font-display font-semibold text-[22px] leading-[1.25] text-ink">{q.options[q.correct]}</p>
@@ -239,7 +239,7 @@ export function GroupAnalysisSlide({ def, page, ctx }: SlideProps) {
           <p className="eyebrow text-[15px] text-muted">Por qué no las otras</p>
           <p className="text-[19px] leading-[1.42] text-text mt-2">{g.othersMiss}</p>
         </motion.div>
-        <motion.div className="rounded-[26px] bg-display text-white px-7 py-5 mt-auto" {...rise(0.6, 18)}>
+        <motion.div className="rounded-[26px] bg-display text-white neon px-7 py-5 mt-auto" {...rise(0.6, 18)}>
           <p className="eyebrow text-[15px] text-white/75">Respaldo</p>
           <p className="font-display font-semibold text-[20px] mt-1">{g.backing.author}</p>
           <p className="text-[19px] leading-[1.4] text-white/90 mt-2">{g.backing.text}</p>
@@ -394,7 +394,7 @@ export function RoleplayResultsSlide({ def, page, ctx }: SlideProps) {
             const e = ctx.results.roleplay[c.group]
             const active = sel === c.group && e
             return (
-              <motion.div key={c.group} layout className={`rounded-[20px] px-6 py-3.5 ${active ? 'bg-display text-white py-6' : e ? 'bg-lilac-50' : 'bg-mist'}`} transition={{ duration: 0.35, ease }}>
+              <motion.div key={c.group} layout className={`rounded-[20px] px-6 py-3.5 ${active ? 'bg-display text-white neon py-6' : e ? 'bg-lilac-50' : 'bg-mist'}`} transition={{ duration: 0.35, ease }}>
                 <p className={`text-[16px] font-display font-semibold ${active ? 'text-white/75' : 'text-muted'}`}>Grupo {String(c.group).padStart(2, '0')} · {c.title}</p>
                 <p className={`${active ? 'text-[30px] leading-[1.3] mt-2' : 'text-[20px] line-clamp-1'} ${e ? '' : 'text-subtle'}`}>{e?.frase ? `“${e.frase}”` : e ? '—' : 'Pendiente'}</p>
               </motion.div>

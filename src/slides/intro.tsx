@@ -90,7 +90,7 @@ export function TwoSkillsSlide({ def, page }: SlideProps) {
       </div>
       <div className="absolute left-[96px] right-[96px] top-[360px] h-[440px] flex items-stretch">
         {skills.map((s, i) => (
-          <motion.div key={s.name} className={`flex-1 rounded-[40px] p-[56px] flex flex-col ${i === 0 ? 'bg-lilac-50 pr-[96px]' : 'bg-display text-white pl-[96px]'}`}
+          <motion.div key={s.name} className={`flex-1 rounded-[40px] p-[56px] flex flex-col ${i === 0 ? 'bg-lilac-50 pr-[96px]' : 'bg-display text-white neon pl-[96px]'}`}
             initial={{ opacity: 0, x: i === 0 ? -60 : 60 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 + i * 0.12, duration: 0.9, ease }}>
             <span className={`eyebrow text-[22px] ${i === 0 ? 'text-brand' : 'text-white/75'}`}>Habilidad {i + 1}</span>
             <h3 className={`font-display font-bold text-[80px] leading-none mt-4 ${i === 0 ? 'text-display' : 'text-white'}`}>{s.name}</h3>

@@ -1,6 +1,7 @@
 import { motion, type MotionProps } from 'motion/react'
 import type { ReactNode } from 'react'
 import { SlideFooter, SlideHeader } from '../components/Brand'
+import { DarkGlow, GlassBg } from '../components/Motion'
 import { content, type OptionKey } from '../content'
 
 export const ease = [0.22, 1, 0.36, 1] as const
@@ -18,6 +19,7 @@ export function Frame({ children, page, bg = 'bg-white', footer = true, header =
 }) {
   return (
     <div className={`absolute inset-0 ${bg}`}>
+      {bg.includes('graphite') ? <DarkGlow /> : <GlassBg />}
       {header && <SlideHeader tone={tone} />}
       {children}
       {footer && page && <SlideFooter label={chapterLabel(page)} page={page.split('|')[1]} tone={tone === 'white' ? 'light' : 'dark'} />}

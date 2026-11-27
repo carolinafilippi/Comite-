@@ -141,3 +141,17 @@ export function MagnifierWords({ words, field, box }: {
     </div>
   )
 }
+
+/** Fondo oscuro con brillo violeta tipo neón y grilla tenue. */
+export function DarkGlow() {
+  const reduce = useReducedMotion()
+  return (
+    <div className="absolute inset-0 overflow-hidden" aria-hidden>
+      <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px)', backgroundSize: '64px 64px' }} />
+      <motion.div className="absolute rounded-full" style={{ width: 900, height: 900, left: 1100, top: -300, background: 'radial-gradient(circle, rgba(125,3,255,.38) 0%, rgba(75,34,244,.12) 45%, transparent 70%)' }}
+        animate={reduce ? {} : { opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }} />
+      <motion.div className="absolute rounded-full" style={{ width: 700, height: 700, left: -250, top: 600, background: 'radial-gradient(circle, rgba(185,138,255,.22) 0%, transparent 65%)' }}
+        animate={reduce ? {} : { opacity: [0.5, 0.9, 0.5] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }} />
+    </div>
+  )
+}
