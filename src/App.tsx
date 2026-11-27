@@ -15,7 +15,7 @@ function Inicio() {
         <Logo variant="stacked" height={48} />
         <p className="eyebrow text-[13px] text-brand mt-10">Comité Avalon</p>
         <h1 className="font-display font-bold text-4xl text-ink mt-2">Lo que el cliente no dice</h1>
-        <p className="text-muted mt-2">{IS_DEMO ? 'Simulado para revisar: los votos y las respuestas de grupos son datos de prueba que se generan solos.' : `Sesión: ${SESION}`}</p>
+        <p className="text-muted mt-2">{IS_DEMO ? 'Simulado de diseño: no está conectado a los formularios reales, así que escanear los QR desde acá no funciona. Para probar con el celular, usá la versión online (carolinafilippi.github.io/Comite-) con tu link de presentador.' : `Sesión: ${SESION}`}</p>
         <ul className="mt-8 space-y-3 text-lg">
           <li><Link className="text-display underline" to={`/presentacion${q}`}>Presentación (proyector)</Link></li>
           <li><Link className="text-display underline" to={`/votar${q}`}>Votación individual (celular)</Link></li>
